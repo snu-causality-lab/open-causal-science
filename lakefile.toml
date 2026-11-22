@@ -1,0 +1,14 @@
+name = "OpenCausalScience"
+version = "0.1.0"
+defaultTargets = ["OpenCausalScience"]
+
+[leanOptions]
+warningAsError = true
+
+[[require]]
+name = "Causalean"
+git = "https://github.com/Jiyuan-Tan/CausalSmith.git"
+rev = "a7085d88d2e4b30003db7097ca374f4718da0f01"
+
+[[lean_lib]]
+name = "OpenCausalScience"
