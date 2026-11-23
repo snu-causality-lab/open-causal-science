@@ -1,6 +1,8 @@
 # Open Causal Science
 
-Open Causal Science connects classical results on causal graphs to runnable examples and Lean proofs. The [finite DAG library](OpenCausalScience/Graph.lean) uses Lean's bundled standard library. The first [course topics](docs/foundations.md) use this library to check d-separation and compare small graphs.
+Open Causal Science checks specific results from published work on causal graphs. The [paper checks](docs/paper-checks.md) identify the original statement and what Lean proves. The [finite DAG library](OpenCausalScience/Graph.lean) uses Lean's bundled standard library and provides the graph operations for these checks.
+
+The first checks cover Witte et al.'s Figures 2B and 2F, the parent-pair loop discussed in van der Zander et al.'s corrigendum, and directed path blocking in front-door searches. The [foundations guide](docs/foundations.md) traces mathematical dependencies across related papers.
 
 ## Conditioning on a collider or its descendant
 

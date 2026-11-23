@@ -13,3 +13,17 @@ open OpenCausalScience OpenCausalScience.Examples
 #print axioms chain_fork_equal_singleton_signatures
 #print axioms chain_collider_same_skeleton
 #print axioms collider_chain_distinguished_given_empty
+
+#print axioms WitteFigure2B.noDirectedTreatmentToOutcome
+#print axioms WitteFigure2B.reverseEdgeGivesActivePath
+#print axioms WitteFigure2B.candidateSetsFailToSeparate
+#print axioms AugmentationParentPairs.checks_le
+#print axioms AugmentationParentPairs.witness_checks
+#print axioms AugmentationParentPairs.exceeds_quadratic
+#print axioms WitteFigure2F.directedEdges
+#print axioms WitteFigure2F.bidirectedEdges
+#print axioms WitteFigure2F.printedExtraArrowsAbsent
+#print axioms WitteFigure2F.adjustmentObstructionRemains
+#print axioms FrontDoorPathBlocking.deleted_graph_iff_avoiding_walk
+#print axioms FrontDoorPathBlocking.no_avoiding_directed_walk
+#print axioms FrontDoorPathBlocking.still_d_connected
