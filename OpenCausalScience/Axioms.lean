@@ -1,15 +1,15 @@
 module
 import OpenCausalScience
 
-open OpenCausalScience.DSeparation
+open OpenCausalScience OpenCausalScience.Examples
 
-#print axioms dSeparated_iff_noActiveWalk
-#print axioms dSeparated_given_empty
-#print axioms dConnected_given_collider
-#print axioms dConnected_given_descendant
-
-open OpenCausalScience.MarkovEquivalence
-
-#print axioms chain_markovEquiv_fork
-#print axioms chain_sameSkeleton_collider
-#print axioms chain_not_markovEquiv_collider
+#print axioms DAG.no_directed_cycle
+#print axioms collider_separated_given_empty
+#print axioms collider_connected_given_middle
+#print axioms collider_connected_given_descendant
+#print axioms coincident_endpoints_invalid
+#print axioms conditioned_endpoint_invalid
+#print axioms singleton_query_count
+#print axioms chain_fork_equal_singleton_signatures
+#print axioms chain_collider_same_skeleton
+#print axioms collider_chain_distinguished_given_empty

@@ -1,3 +1,3 @@
 module
-public import OpenCausalScience.DSeparation
-public import OpenCausalScience.MarkovEquivalence
+public import OpenCausalScience.Separation
+public import OpenCausalScience.Examples
