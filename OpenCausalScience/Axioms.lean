@@ -156,3 +156,25 @@ open OpenCausalScience.Papers.YiLee2024.UniformSupports
 #print axioms zero_masks_count
 #print axioms uniform_zero_probability
 #print axioms uniform_zero_expectation
+
+open OpenCausalScience.Papers.JungEtAl2024.SequentialFormula
+#print axioms conditional_on_randomization
+#print axioms StageSample.exchangeable_cross_product
+#print axioms StageSample.intervention_conditional_eq
+#print axioms StageMasses.stage_recursion
+#print axioms StageConditions.step_of_sample
+#print axioms sequential_adjustment_formula
+
+open OpenCausalScience.Papers.LeeEtAl2019.UpperHedgelets
+#print axioms intact_frontier_parity
+#print axioms intact_hedge_disables_root
+#print axioms supplied_agreement_from_untouched_hedge
+#print axioms target_world_from_hedgelet_hits
+#print axioms target_laws_differ_from_hedgelet_hits
+
+open OpenCausalScience.Papers.KimEtAl2026.BayesBallCorrectness
+#print axioms corrected_reachable_iff_dconnected
+#print axioms hasDirectedWalk_iff
+#print axioms visitedStates_nodup
+#print axioms mem_visitedStates_iff
+#print axioms mem_bayesBall_iff
