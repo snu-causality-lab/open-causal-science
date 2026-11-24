@@ -11,6 +11,7 @@ public import OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
 public import OpenCausalScience.Papers.HwangEtAl2023.ContextIndependence
 public import OpenCausalScience.Papers.HwangEtAl2024FineGrainedCausalDynamics.LocalContexts
 public import OpenCausalScience.Papers.HwangEtAl2024Positivity.AncestorPartition
+public import OpenCausalScience.Papers.HwangEtAl2024Positivity.FrontDoorSupportExamples
 public import OpenCausalScience.Papers.HwangEtAl2024Positivity.SupportedRuleThree
 public import OpenCausalScience.Papers.KimEtAl2026.BayesBall
 public import OpenCausalScience.Papers.KimEtAl2026.BayesBallCorrectness
