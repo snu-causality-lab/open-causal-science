@@ -5,6 +5,7 @@ public import OpenCausalScience.FrontDoorPathBlocking
 public import OpenCausalScience.AugmentationParentPairs
 public import OpenCausalScience.Papers.JungEtAl2024.SequentialAdjustment
 public import OpenCausalScience.Papers.JungEtAl2024.SequentialFormula
+public import OpenCausalScience.Papers.JungEtAl2024.StageGraph
 public import OpenCausalScience.Papers.KimEtAl2024.DeduceDep
 public import OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
 public import OpenCausalScience.Papers.HwangEtAl2023.ContextIndependence
@@ -22,11 +23,13 @@ public import OpenCausalScience.Papers.LeeBareinboim2020.ScopeFeasibility
 public import OpenCausalScience.Papers.LeeBareinboim2020.ScopeReduction
 public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.HedgeNoise
 public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.PositiveHedgeWitness
+public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.DirectedTransport
 public import OpenCausalScience.Papers.LeeBareinboim2021.OutcomeIndexedProxies
 public import OpenCausalScience.Papers.LeeBareinboim2021.ProxyInversion
 public import OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
 public import OpenCausalScience.Papers.LeeEtAl2019.IntactHedgelet
 public import OpenCausalScience.Papers.LeeEtAl2019.UpperHedgelets
+public import OpenCausalScience.Papers.LeeEtAl2019.UpperSupport
 public import OpenCausalScience.Papers.LeeHonavar2017.DeletionBound
 public import OpenCausalScience.Papers.YeomEtAl2026.JacobianSupport
 public import OpenCausalScience.Papers.YeomEtAl2026.SupportedRollout
