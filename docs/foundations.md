@@ -1,6 +1,6 @@
 # Causal graph foundations
 
-The [first Lean cases](../OpenCausalScience/Examples.lean) check d-separation on four-vertex collider, chain, and fork graphs using the project's finite DAG library. The topics below follow their mathematical dependencies.
+The [Lean cases](../OpenCausalScience/Examples/DSeparation.lean) check d-separation on four-vertex collider, chain, and fork graphs using the project's finite DAG library. The topics below follow their mathematical dependencies.
 
 ## DAG separation and causal identification
 
@@ -11,7 +11,7 @@ The [first Lean cases](../OpenCausalScience/Examples.lean) check d-separation on
 
 ## DAG equivalence and discovery
 
-1. **Markov equivalence and essential graphs.** Start with the [worked comparison](../OpenCausalScience/Examples.lean) of d-separation queries across different orientations on one skeleton. Next, connect the same-skeleton and same-unshielded-collider characterization to the essential graph, whose arrows are the orientations that all DAGs in the class share. The Causalean proof and covered reversal are available for comparison. [Verma and Pearl, UAI, 1990, revised report, 1991](https://ftp.cs.ucla.edu/tech-report/1991-reports/910020.pdf) · [Andersson, Madigan, and Perlman, 1997](https://doi.org/10.1214/aos/1031833662) · [Chickering, UAI, 1995](https://www.microsoft.com/en-us/research/publication/a-transformational-characterization-of-equivalent-bayesian-network-structures/) · [Causalean](https://causalsmith.org/library/Graph/MarkovEquiv/)
+1. **Markov equivalence and essential graphs.** Start with the [worked comparison](../OpenCausalScience/Examples/DSeparation.lean) of d-separation queries across different orientations on one skeleton. Next, connect the same-skeleton and same-unshielded-collider characterization to the essential graph, whose arrows are the orientations that all DAGs in the class share. The Causalean proof and covered reversal are available for comparison. [Verma and Pearl, UAI, 1990, revised report, 1991](https://ftp.cs.ucla.edu/tech-report/1991-reports/910020.pdf) · [Andersson, Madigan, and Perlman, 1997](https://doi.org/10.1214/aos/1031833662) · [Chickering, UAI, 1995](https://www.microsoft.com/en-us/research/publication/a-transformational-characterization-of-equivalent-bayesian-network-structures/) · [Causalean](https://causalsmith.org/library/Graph/MarkovEquiv/)
 2. **PC.** Use an exact conditional independence oracle under causal sufficiency, the causal Markov condition, and faithfulness. Start with skeleton recovery or one orientation rule. Meek's Theorem 3 shows that closing a DAG pattern under R1–R3 gives a maximally oriented graph. Theorem 4 adds R4 and consistent background knowledge. [Spirtes and Glymour, 1991](https://doi.org/10.1177/089443939100900106) · [Spirtes, Glymour, and Scheines, 1993](https://link.springer.com/book/10.1007/978-1-4612-2748-9) · [Meek, UAI, 1995](https://arxiv.org/abs/1302.4972)
 3. **Greedy equivalence search (GES).** Build on equivalence-class operators and covered reversals. Start with one insert or delete operator under the paper's validity conditions. The two-phase large-sample result additionally needs the score and distribution assumptions that make the search consistent. [Chickering, JMLR, 2002](https://jmlr.org/papers/v3/chickering02b.html)
 

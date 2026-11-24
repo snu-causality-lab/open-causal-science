@@ -1,7 +1,6 @@
 module
+public import OpenCausalScience.Core
+public import OpenCausalScience.Graph
 public import OpenCausalScience.Separation
 public import OpenCausalScience.Examples
-public import OpenCausalScience.WitteFigure2B
-public import OpenCausalScience.AugmentationParentPairs
-public import OpenCausalScience.WitteFigure2F
-public import OpenCausalScience.FrontDoorPathBlocking
+public import OpenCausalScience.Papers

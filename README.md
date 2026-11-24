@@ -1,12 +1,14 @@
 # Open Causal Science
 
-Open Causal Science checks specific results from published work on causal graphs. The [paper checks](docs/paper-checks.md) identify the original statement and what Lean proves. The [finite DAG library](OpenCausalScience/Graph.lean) uses Lean's bundled standard library and provides the graph operations for these checks.
+Open Causal Science formalizes results from published research on causal graphs. The [paper checks](docs/paper-checks.md) identify the original statement and what Lean proves. The [finite DAG library](OpenCausalScience/Graph/DAG.lean) uses Lean's bundled standard library and provides the graph operations for these checks.
 
 The first checks cover Witte et al.'s Figures 2B and 2F, the parent-pair loop discussed in van der Zander et al.'s corrigendum, and directed path blocking in front-door searches. The [foundations guide](docs/foundations.md) traces mathematical dependencies across related papers.
 
+Import `OpenCausalScience.Core` to use the shared definitions and theorems or import an individual `OpenCausalScience.Papers` module to work with a published result. The [structure guide](docs/structure.md) explains module placement and naming.
+
 ## Conditioning on a collider or its descendant
 
-The first [Lean example](OpenCausalScience/Examples.lean) uses the graph `X → M ← Y`, `M → D`.
+The [Lean example](OpenCausalScience/Examples/DSeparation.lean) uses the graph `X → M ← Y`, `M → D`.
 
 | Conditioning set | Relation between `X` and `Y` |
 | --- | --- |
@@ -14,7 +16,7 @@ The first [Lean example](OpenCausalScience/Examples.lean) uses the graph `X → 
 | `{M}` | d-connected |
 | `{D}` | d-connected |
 
-The [reference checker](OpenCausalScience/Separation.lean) searches simple paths and tests whether each interior vertex is active given the conditioning set. It returns `none` for coincident endpoints or conditioning on an endpoint. The graph library also proves that ranks strictly increase along every nonempty directed walk, ruling out directed cycles. [Geiger, Verma and Pearl (1990)](https://doi.org/10.1002/net.3230200504)
+The [reference checker](OpenCausalScience/Graph/DSeparation.lean) searches simple paths and tests whether each interior vertex is active given the conditioning set. It returns `none` for coincident endpoints or conditioning on an endpoint. The graph library also proves that ranks strictly increase along every nonempty directed walk, ruling out directed cycles. [Geiger, Verma and Pearl (1990)](https://doi.org/10.1002/net.3230200504)
 
 ## Comparing d-separations on the same skeleton
 
