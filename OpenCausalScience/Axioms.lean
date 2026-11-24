@@ -117,3 +117,42 @@ open OpenCausalScience.Papers.YiLee2024.FixedEdgeSparsity
 #print axioms pair_ways_eq
 #print axioms support_count_eq
 #print axioms expectation_three_vertices_two_edges
+
+open OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
+#print axioms walk_mask
+#print axioms raw_root_laws_equal
+#print axioms supplied_slice_positive
+#print axioms target_laws_differ
+#print axioms degenerate_thicket_witness
+#print axioms root_disabled_by_intact_hedge
+#print axioms supplied_slice_agreement_from_hedges
+
+open OpenCausalScience.Papers.LeeEtAl2019.IntactHedgelet
+#print axioms observational_tables_equal_and_positive
+#print axioms intact_second_hedgelet_with_unequal_root_laws
+
+open OpenCausalScience.Papers.LeeBareinboim2020.ScopeReduction
+#print axioms restrict_preserves_policy_reward
+#print axioms extend_preserves_policy_reward
+#print axioms drop_deleted_observation_preserves_policy_reward
+#print axioms original_nro_is_retained
+#print axioms optimal_value_vectors_equal
+#print axioms nro_original_iff_induced
+#print axioms pomps_original_iff_induced
+
+open OpenCausalScience.Papers.KwonEtAl2025.AggregateReward
+#print axioms static_border_mixture
+#print axioms projected_aggregate_value
+#print axioms static_candidates_legal
+#print axioms aggregate_optimal_value_coverage
+
+open OpenCausalScience.Papers.LeeBareinboim2021.OutcomeIndexedProxies
+#print axioms recover_observed_marginal
+#print axioms outcome_indexed_identification
+#print axioms example_inverses
+#print axioms outcome_varying_proxy_witness
+
+open OpenCausalScience.Papers.YiLee2024.UniformSupports
+#print axioms zero_masks_count
+#print axioms uniform_zero_probability
+#print axioms uniform_zero_expectation
