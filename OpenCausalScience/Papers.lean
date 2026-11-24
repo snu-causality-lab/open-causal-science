@@ -3,3 +3,6 @@ public import OpenCausalScience.WitteFigure2B
 public import OpenCausalScience.WitteFigure2F
 public import OpenCausalScience.FrontDoorPathBlocking
 public import OpenCausalScience.AugmentationParentPairs
+public import OpenCausalScience.Papers.JungEtAl2024.SequentialAdjustment
+public import OpenCausalScience.Papers.KimEtAl2024.DeduceDep
+public import OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum

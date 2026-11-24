@@ -27,3 +27,28 @@ open OpenCausalScience OpenCausalScience.Examples
 #print axioms FrontDoorPathBlocking.deleted_graph_iff_avoiding_walk
 #print axioms FrontDoorPathBlocking.no_avoiding_directed_walk
 #print axioms FrontDoorPathBlocking.still_d_connected
+
+open OpenCausalScience.Papers.JungEtAl2024.SequentialAdjustment
+#print axioms forbidden_descendant_of_intervened
+#print axioms published_stage_rejects
+#print axioms corrected_stages_accept
+#print axioms chain_adjustment_formula
+#print axioms stale_history_hides_open_fork
+#print axioms moving_covariate_to_second_stage_passes
+#print axioms RequiredHistory.endpoint_domain_omits_active_history
+
+open OpenCausalScience.Papers.KimEtAl2024.DeduceDep
+#print axioms dependence_of_lower_order_ci
+#print axioms marginal_cutoff
+#print axioms calls_above_cutoff
+#print axioms no_exponential_call_bound
+#print axioms positive_orders_keep_spurious_edge
+#print axioms zero_order_removes_spurious_edge
+
+open OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
+#print axioms hedgelet_xor_aggregates
+#print axioms hedgelet_xor_eq_grouped_xor
+#print axioms xor_eq_crossings_of_paired_internal
+#print axioms corrected_frontiers_contain_false
+#print axioms noise_all_injective
+#print axioms noise_all_pos
