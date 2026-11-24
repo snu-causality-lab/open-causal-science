@@ -52,3 +52,68 @@ open OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
 #print axioms corrected_frontiers_contain_false
 #print axioms noise_all_injective
 #print axioms noise_all_pos
+
+open OpenCausalScience.Papers.HwangEtAl2023.ContextIndependence
+#print axioms csi_implies_cssi
+#print axioms pci_implies_cssi
+#print axioms zero_mass_changed_law
+
+open OpenCausalScience.Papers.HwangEtAl2024FineGrainedCausalDynamics.LocalContexts
+#print axioms local_parents_of_subcontext
+#print axioms remove_fixed_input
+#print axioms canonical_context_with_positive_atom_has_no_parents
+
+open OpenCausalScience.Papers.HwangEtAl2024Positivity.AncestorPartition
+#print axioms treatment_ancestors_eq_complement
+#print axioms outcome_treatment_partition
+#print axioms outcome_treatment_disjoint
+#print axioms original_sets_can_overlap
+
+open OpenCausalScience.Papers.KimEtAl2026.BayesBall
+#print axioms both_downward_moves
+#print axioms corrected_chain_reaches_unconditioned_node
+
+open OpenCausalScience.Papers.KwonEtAl2025.FixedPlanCounterexample
+#print axioms forced_first_maximum
+#print axioms unrestricted_maximum
+#print axioms forcing_first_loses_value
+
+open OpenCausalScience.Papers.LeeBareinboim2019.RestorationCounterexample
+#print axioms agreement_is_constant
+#print axioms no_common_fair_bit
+#print axioms projected_common_fair_bit
+
+open OpenCausalScience.Papers.LeeBareinboim2020.ScopeFeasibility
+#print axioms original_scope_has_cycle
+#print axioms reduced_scope_is_acyclic
+#print axioms targeting_x_breaks_cycle
+#print axioms observing_c_attains_one
+#print axioms targeting_x_leaves_half
+
+open OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.HedgeNoise
+#print axioms compensating_flip_preserves_parity
+#print axioms compensation_products
+#print axioms positive_biased_xor
+#print axioms root_parity_after_transfer
+#print axioms figure13_six_compensating_flips
+
+open OpenCausalScience.Papers.LeeBareinboim2021.ProxyInversion
+#print axioms recover_adjustment_term
+#print axioms rectangular_proxy_left_inverse
+#print axioms zero_weight_rectangular_recovery
+
+open OpenCausalScience.Papers.LeeHonavar2017.DeletionBound
+#print axioms renormalized_difference
+#print axioms mmsd_deletion_bound
+#print axioms original_constant_fails_for_bounded_terms
+#print axioms constant_data_tail
+
+open OpenCausalScience.Papers.YeomEtAl2026.JacobianSupport
+#print axioms ancestor_of_nonzero_path_sum
+#print axioms inverse_support
+#print axioms ancestor_derivative_cancels
+
+open OpenCausalScience.Papers.YiLee2024.FixedEdgeSparsity
+#print axioms pair_ways_eq
+#print axioms support_count_eq
+#print axioms expectation_three_vertices_two_edges

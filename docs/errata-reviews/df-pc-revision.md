@@ -1,0 +1,12 @@
+# DF-PC revised manuscript
+
+Jonghwan Kim and Sanghack Lee, UAI 2026. The proceedings PDF has SHA-256 `a52d85b930cde40ad4120228abe8f8adbd17a40dc05a700249b886933d374319`. The September 14 homepage revision has SHA-256 `ff707cec97590ba2e83aaca4568618443155779159a5c897f9e304fc95c1a742`. Both versions contain the same numbered algorithms. [Proceedings PDF](https://raw.githubusercontent.com/mlresearch/v337/main/assets/kim26a/kim26a.pdf) · [Homepage revision](https://www.sanghacklee.me/assets/2026-UAI-dfpc-paper-2026-09-14.pdf)
+
+| Location in revision | Scope of change and current evidence |
+| --- | --- |
+| Section 2, Proposition 2 and Appendix B | Primary queries proceed by size. For an edge still present after a level, the schedule has exhausted that level's eligible conditioning sets for the edge. Early stopping and edge removal can skip other queries. The proof still concerns the specified level-wise PC-like schedule. |
+| Section 3.1, query history | The explanation distinguishes queries actually executed from lower-order queries that could have been posed. This affects which cached results the inference engine can use. |
+| Section 3.2, early stopping | The revision states that lower-order histories in finite samples can change with traversal order. The public implementation retains early stopping by default and offers `early_stopping=False` as an option for `PCStable`. This observation concerns finite-sample histories and emitted skeletons. [Pinned code and option](https://github.com/snu-causality-lab/DF-PC/commit/b1c320027b7a8be8b31a2b751f51135fcb3e8c34) |
+| Appendix D, proof of Theorem 1 | The new final step uses Lemma 1 for the helper and the exact conditional-independence oracle for the fallback. Recording a correct answer preserves cache soundness. Induction on the calls then supplies the sound-cache input premise to every call beginning from the empty cache. The recursive helper and its probabilistic rules have their own premises. |
+| Sections 4–5 and robustness experiment | The released implementation reports skeleton discovery. Runtime comparisons are qualified by the tested conditions. The robustness setup's high-order oracle responses are exact, while deductions can still use erroneous lower-order inputs. These are implementation and experimental qualifications. |
+| Experiments 8–9 | The revision identifies the preferential-attachment parameter as `D/2` in Experiment 8 and `D` in Experiment 9. Matching `D` across graph families is not an average-degree match. The revision keeps the reported experimental results. |

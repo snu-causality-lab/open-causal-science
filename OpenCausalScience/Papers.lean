@@ -6,3 +6,15 @@ public import OpenCausalScience.AugmentationParentPairs
 public import OpenCausalScience.Papers.JungEtAl2024.SequentialAdjustment
 public import OpenCausalScience.Papers.KimEtAl2024.DeduceDep
 public import OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
+public import OpenCausalScience.Papers.HwangEtAl2023.ContextIndependence
+public import OpenCausalScience.Papers.HwangEtAl2024FineGrainedCausalDynamics.LocalContexts
+public import OpenCausalScience.Papers.HwangEtAl2024Positivity.AncestorPartition
+public import OpenCausalScience.Papers.KimEtAl2026.BayesBall
+public import OpenCausalScience.Papers.KwonEtAl2025.FixedPlanCounterexample
+public import OpenCausalScience.Papers.LeeBareinboim2019.RestorationCounterexample
+public import OpenCausalScience.Papers.LeeBareinboim2020.ScopeFeasibility
+public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.HedgeNoise
+public import OpenCausalScience.Papers.LeeBareinboim2021.ProxyInversion
+public import OpenCausalScience.Papers.LeeHonavar2017.DeletionBound
+public import OpenCausalScience.Papers.YeomEtAl2026.JacobianSupport
+public import OpenCausalScience.Papers.YiLee2024.FixedEdgeSparsity
