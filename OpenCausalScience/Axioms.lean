@@ -178,3 +178,49 @@ open OpenCausalScience.Papers.KimEtAl2026.BayesBallCorrectness
 #print axioms visitedStates_nodup
 #print axioms mem_visitedStates_iff
 #print axioms mem_bayesBall_iff
+
+open OpenCausalScience.Papers.HwangEtAl2024Positivity.SupportedRuleThree
+#print axioms AugmentedModel.mass_univ
+#print axioms AugmentedModel.slice_mass_positive
+#print axioms AugmentedModel.slice_mass_le_mass
+#print axioms supported_rule_three
+#print axioms unconditional_rule_three
+#print axioms SupportDerivation.all_positive
+
+open OpenCausalScience.Papers.KimLee2026DFPC.DeductiveCache
+#print axioms infer_dep_iff
+#print axioms infer_ind_iff
+#print axioms infer_sound
+#print axioms deduceHelper_marginal
+#print axioms deduceHelper_sound
+#print axioms deduce_usesCIT_iff
+#print axioms deduce_sound
+#print axioms runDeduce_from_empty
+
+open OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.PositiveHedgeWitness
+#print axioms constant_on_parity_of_fair_masks
+#print axioms joint_eq_of_parity_law
+#print axioms run_positive_of_emits
+#print axioms equal_positive_observational_laws
+#print axioms target_parities_differ_after_transfer
+#print axioms walk_crosses_cut
+#print axioms target_difference_from_intervention_cut
+#print axioms parity_kernel_generated_of_atoms
+#print axioms connected_transported_fair_masks_cover
+#print axioms trimmed_transported_fair_masks_cover
+
+open OpenCausalScience.Papers.YeomEtAl2026.SupportedRollout
+#print axioms eq_at_supported_input
+#print axioms LocalMechanism.ofContinuousSupport
+#print axioms Schedule.rollout_eq
+#print axioms Schedule.rollout_eq_almost_everywhere
+#print axioms Schedule.trajectory_event_agrees_almost_everywhere
+#print axioms Schedule.trajectory_mass_univ
+#print axioms Schedule.trajectory_mass_eq
+
+open OpenCausalScience.Papers.KimLee2026DFPC.QueryHistory
+#print axioms scan_survives_iff
+#print axioms scan_records_all_of_survives
+#print axioms marginal_recorded
+#print axioms required_history_of_frozen_neighbors
+#print axioms required_history_at_query

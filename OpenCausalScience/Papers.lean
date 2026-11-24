@@ -10,14 +10,18 @@ public import OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
 public import OpenCausalScience.Papers.HwangEtAl2023.ContextIndependence
 public import OpenCausalScience.Papers.HwangEtAl2024FineGrainedCausalDynamics.LocalContexts
 public import OpenCausalScience.Papers.HwangEtAl2024Positivity.AncestorPartition
+public import OpenCausalScience.Papers.HwangEtAl2024Positivity.SupportedRuleThree
 public import OpenCausalScience.Papers.KimEtAl2026.BayesBall
 public import OpenCausalScience.Papers.KimEtAl2026.BayesBallCorrectness
+public import OpenCausalScience.Papers.KimLee2026DFPC.DeductiveCache
+public import OpenCausalScience.Papers.KimLee2026DFPC.QueryHistory
 public import OpenCausalScience.Papers.KwonEtAl2025.AggregateReward
 public import OpenCausalScience.Papers.KwonEtAl2025.FixedPlanCounterexample
 public import OpenCausalScience.Papers.LeeBareinboim2019.RestorationCounterexample
 public import OpenCausalScience.Papers.LeeBareinboim2020.ScopeFeasibility
 public import OpenCausalScience.Papers.LeeBareinboim2020.ScopeReduction
 public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.HedgeNoise
+public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.PositiveHedgeWitness
 public import OpenCausalScience.Papers.LeeBareinboim2021.OutcomeIndexedProxies
 public import OpenCausalScience.Papers.LeeBareinboim2021.ProxyInversion
 public import OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
@@ -25,5 +29,6 @@ public import OpenCausalScience.Papers.LeeEtAl2019.IntactHedgelet
 public import OpenCausalScience.Papers.LeeEtAl2019.UpperHedgelets
 public import OpenCausalScience.Papers.LeeHonavar2017.DeletionBound
 public import OpenCausalScience.Papers.YeomEtAl2026.JacobianSupport
+public import OpenCausalScience.Papers.YeomEtAl2026.SupportedRollout
 public import OpenCausalScience.Papers.YiLee2024.FixedEdgeSparsity
 public import OpenCausalScience.Papers.YiLee2024.UniformSupports
