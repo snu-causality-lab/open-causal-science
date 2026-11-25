@@ -15,6 +15,11 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 ## Causal decision making
 
 - <a name="lee-and-bareinboim-2018-structural-causal-bandits"></a>[Lee and Bareinboim (2018), structural causal bandits](papers/lee-bareinboim-2018-structural-causal-bandits.md)
+- [Park and Lee (2026), counterfactual structural causal bandits](papers/park-lee-2026-ctf-scb.md)
+
+## Counterfactual fairness
+
+- [Kim, Cho and Lee (2026), Beyond Bounds](papers/kim-cho-lee-2026-beyond-bounds.md)
 
 ## Discovery
 

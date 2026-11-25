@@ -1,6 +1,6 @@
 name = "OpenCausalScienceAnalysis"
 version = "0.1.0"
-defaultTargets = ["OpenCausalScienceAnalysis"]
+defaultTargets = ["OpenCausalScienceAnalysis", "KimEtAl2026BeyondBounds"]
 
 [leanOptions]
 warningAsError = true
@@ -16,3 +16,6 @@ rev = "v4.36.0"
 
 [[lean_lib]]
 name = "OpenCausalScienceAnalysis"
+
+[[lean_lib]]
+name = "KimEtAl2026BeyondBounds"
