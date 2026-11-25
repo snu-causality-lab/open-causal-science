@@ -78,7 +78,7 @@ Compare the proceedings with the October 25, 2026 correction. Its change summary
 | §4.1, Fig. 2a, §§3–4 | The example changes the first block from `{Za,Zb,Zc,Zd}` to `{Za,Zb}` because `Zc` and `Zd` descend from the future treatment. The second block is empty. The correction also changes stage conditioning and the Rule 3 graph and drops the general exponential twin-network statement for a fixed factual/intervention pair. The exact figure example and the Rule 3 application remain cross-edition checks. |
 | Throughout | The revision fixes indices, equation references and notation and adds proof citations while preserving the main numbering. The paper uses graph examples. Earlier finite replays and rational proofs give evidence for those inputs, independently of any empirical performance claim. |
 
-The formal results and the separately pinned minSAC replay are described in the existing paper checks. [SequentialAdjustment.lean](../../OpenCausalScience/Papers/JungEtAl2024/SequentialAdjustment.lean) · [Paper checks](../paper-checks.md#jung-park-and-lee-2024-sequential-adjustment-correction)
+The formal results and the separately pinned minSAC replay are described in the existing paper checks. [SequentialAdjustment.lean](../../OpenCausalScience/Papers/JungEtAl2024/SequentialAdjustment.lean) · [Paper checks](../papers/jung-park-lee-2024-sequential-adjustment.md)
 
 ## Kim, Hwang and Lee (UAI 2024), DEDUCE-DEP
 
@@ -92,4 +92,4 @@ Compare the proceedings with the September 20, 2026 correction. Its final page c
 | §5.2 | The original interprets F1 improvement as detecting low-power tests. The revision treats the reported F1 as the observed balance of precision and recall. Its value leaves the reason for any individual changed decision unidentified. The correction keeps the experimental values and figures without a rerun. |
 | §§1–5, Alg. 1 and appendices | The correction carries `K` through recursive calls and consistently uses direct testing through `∣Z∣ ≤ K`. It clarifies return values, CI-rule wording, the cited degrees-of-freedom heuristic, and the expansion of CPDAG. Lean checks the marginal cutoff and proves the lower-order dependence rule from explicit CI axioms. It leaves CI test power and statistical consistency open. |
 
-The formal statements and the separately pinned Python replay are described in the existing paper checks. [DeduceDep.lean](../../OpenCausalScience/Papers/KimEtAl2024/DeduceDep.lean) · [Paper checks](../paper-checks.md#kim-hwang-and-lee-2024-deduce-dep-correction)
+The formal statements and the separately pinned Python replay are described in the existing paper checks. [DeduceDep.lean](../../OpenCausalScience/Papers/KimEtAl2024/DeduceDep.lean) · [Paper checks](../papers/kim-hwang-lee-2024-deduce-dep.md)

@@ -25,6 +25,19 @@ OpenCausalScience/
 
 **Examples and verification.** Put general reference examples under `Examples/` and published figures beside the paper result. Keep the axiom inspection commands in `Axioms.lean`, keyed by declaration name. In the paper record, distinguish a calculation on a concrete graph, a theorem quantified over a class of models, and a proof that an implementation meets a specification. For a counterexample, show which hypotheses hold and which conclusion fails. Record a corrected theorem with its own assumptions and conclusion. The release or toolchain revision, source version, theorem name, and precise mathematical statement identify what was checked.
 
+## Paper records
+
+Use one Markdown record per paper in `docs/papers/`, with a stable filename such as `witte-et-al-2020-efficient-adjustment.md`. Give the record a level-one title followed by a topic comment such as `<!-- topic: Adjustment -->`. Use sections within the record for multiple figures, statements, or connected versions.
+
+Link new references directly to the record, adding a section fragment when useful. Older links into `paper-checks.md` are retained through `index-anchor` and `topic-anchor` comments. Keep those comments when updating an existing record.
+
+Regenerate the topic index after adding or editing a record.
+
+```sh
+python3 scripts/build-paper-index.py
+python3 scripts/build-paper-index.py --check
+```
+
 ## Naming
 
 - Use `UpperCamelCase` for modules, namespaces, structures and inductive types, `lowerCamelCase` for executable definitions such as `dSeparated`, and `snake_case` for new theorems such as `no_directed_cycle`. Preserve standard acronyms in graph type names such as `DAG`. [Lean standard library naming conventions](https://github.com/leanprover/lean4/blob/v4.36.0/doc/std/naming.md)
