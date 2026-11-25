@@ -41,3 +41,11 @@ public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.Exa
 public import OpenCausalScience.Papers.JungEtAl2024.TailAlignment
 public import OpenCausalScience.Papers.JungEtAl2024.Randomization
 public import OpenCausalScience.Papers.LeeEtAl2019.JointSCM
+public import OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment
+public import OpenCausalScience.Papers.KivvaEtAl2022.Example2
+public import OpenCausalScience.Papers.VermaPearl1990.DAGEquivalence
+public import OpenCausalScience.Papers.AliRichardsonSpirtes2009.EquivalenceNecessary
+public import OpenCausalScience.Papers.AliRichardsonSpirtes2009.Figures4And6
+public import OpenCausalScience.Papers.RichardsonSpirtes2002.Figure9
+public import OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
+public import OpenCausalScience.Papers.VermaPearl1990.Figure2

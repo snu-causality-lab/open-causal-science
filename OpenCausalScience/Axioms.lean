@@ -423,3 +423,63 @@ open OpenCausalScience.Papers.KimLee2026DFPC.QueryHistory
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.target_root_parity_weights_differ
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.parity_weights_total
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.target_odd_weight_differs
+
+#print axioms OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment.Suffix.nodup
+#print axioms OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment.reaches_iff
+#print axioms OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment.first_arrow_iff
+#print axioms OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment.forbidden_from_first_iff
+#print axioms OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment.proper_backdoor_removes_iff
+
+#print axioms OpenCausalScience.Papers.KivvaEtAl2022.Example2.outcome_kernels_normalized
+#print axioms OpenCausalScience.Papers.KivvaEtAl2022.Example2.observational_agreement
+#print axioms OpenCausalScience.Papers.KivvaEtAl2022.Example2.observational_off_diagonal_zero
+#print axioms OpenCausalScience.Papers.KivvaEtAl2022.Example2.target_values
+#print axioms OpenCausalScience.Papers.KivvaEtAl2022.Example2.printed_values_are_twice_the_targets
+#print axioms OpenCausalScience.Papers.KivvaEtAl2022.Example2.target_disagrees
+
+open OpenCausalScience.Papers.VermaPearl1990.DAGEquivalence
+#print axioms adjacent_dConnected
+#print axioms parents_dSeparate
+#print axioms nonadjacent_has_separator
+#print axioms middle_omitted_iff_headToHead_of_separating
+#print axioms sameSkeleton_and_sameUnshieldedColliders_of_sameDConnections
+#print axioms signaturesMatch_iff
+#print axioms signaturesMatch_of_sameDConnections
+#print axioms distinguishing_query_of_signaturesMismatch
+
+#print axioms MarkedGraph.activated_iff
+#print axioms MarkedGraph.activated_of_conditioned
+#print axioms MarkedGraph.mConnected_iff
+#print axioms MarkedGraph.mConnected_false_iff
+#print axioms MarkedGraph.sameSeparations_of_checks
+#print axioms MarkedGraph.adjacent_mConnected
+#print axioms MarkedGraph.collider_excluded_from_separator
+#print axioms MarkedGraph.noncollider_in_separator
+#print axioms AliRichardsonSpirtes2009.equivalent_adjacencies
+#print axioms AliRichardsonSpirtes2009.equivalent_unshielded_colliders
+#print axioms RichardsonSpirtes2002.Figure9.missing_edge
+#print axioms RichardsonSpirtes2002.Figure9.gamma_delta_connected
+#print axioms RichardsonSpirtes2002.Figure9.graph_has_no_maximality_witness
+#print axioms RichardsonSpirtes2002.Figure9.extension_is_complete
+#print axioms RichardsonSpirtes2002.Figure9.extension_has_separators
+#print axioms RichardsonSpirtes2002.Figure9.extension_same_separations
+#print axioms AliRichardsonSpirtes2009.Figure4.same_adjacencies
+#print axioms AliRichardsonSpirtes2009.Figure4.same_unshielded_colliders
+#print axioms AliRichardsonSpirtes2009.Figure4.first_third_witness
+#print axioms AliRichardsonSpirtes2009.Figure4.first_third_not_equivalent
+#print axioms AliRichardsonSpirtes2009.Figure4.first_second_equivalent
+#print axioms AliRichardsonSpirtes2009.Figure6.path_differs_in_both_panels
+#print axioms AliRichardsonSpirtes2009.Figure6.panel_i_equivalent
+#print axioms AliRichardsonSpirtes2009.Figure6.panel_ii_equivalent
+
+
+open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
+#print axioms activated_of_mem_conditioningAncestors
+#print axioms dConnected_of_dSeparated_false
+#print axioms dSeparated_false_iff_dConnected
+#print axioms dSeparated_true_iff_dSeparatedBy
+#print axioms sameDConnections_of_same_dSeparated
+#print axioms distinguishing_dSeparated_of_signaturesMismatch
+#print axioms OpenCausalScience.Papers.VermaPearl1990.Figure2.signatures_of_top_orientations
+#print axioms OpenCausalScience.Papers.VermaPearl1990.Figure2.panels_a_b_c_same_executable_queries
+#print axioms OpenCausalScience.Papers.VermaPearl1990.Figure2.both_at_top_distinguished_given_top
