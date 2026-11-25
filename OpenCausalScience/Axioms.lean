@@ -483,3 +483,12 @@ open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
 #print axioms OpenCausalScience.Papers.VermaPearl1990.Figure2.signatures_of_top_orientations
 #print axioms OpenCausalScience.Papers.VermaPearl1990.Figure2.panels_a_b_c_same_executable_queries
 #print axioms OpenCausalScience.Papers.VermaPearl1990.Figure2.both_at_top_distinguished_given_top
+
+#print axioms OpenCausalScience.Moralization.Query.relevant_iff
+#print axioms OpenCausalScience.Moralization.Query.ActiveWalk.toMoralWalk
+#print axioms OpenCausalScience.Moralization.Query.dConnection_iff_moralConnection
+#print axioms OpenCausalScience.Moralization.Query.dSeparation_iff_no_moralConnection
+#print axioms OpenCausalScience.Moralization.Query.relevantBool_iff
+#print axioms OpenCausalScience.Moralization.Query.mem_moralNeighbors_iff
+#print axioms OpenCausalScience.Moralization.Query.mem_moralVisited_iff
+#print axioms OpenCausalScience.Moralization.Query.dagMoralSeparated_eq_true_iff

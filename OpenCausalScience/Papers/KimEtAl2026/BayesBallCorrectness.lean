@@ -345,7 +345,7 @@ decreasing_by
   · exact Prod.Lex.right _ (by simp)
 
 
-private theorem explore_covers {α : Type} [DecidableEq α] {next : α → List α}
+theorem explore_covers {α : Type} [DecidableEq α] {next : α → List α}
     {remaining pending : List α} {state : α}
     (unseen : state ∈ remaining) (queued : state ∈ pending) :
     state ∈ explore next remaining pending := by
@@ -366,7 +366,7 @@ private theorem explore_covers {α : Type} [DecidableEq α] {next : α → List 
     · exact (absent (same ▸ unseen)).elim
     · exact later
 
-private theorem explore_closed {α : Type} [DecidableEq α] {next : α → List α}
+theorem explore_closed {α : Type} [DecidableEq α] {next : α → List α}
     {remaining pending : List α} {before after : α}
     (reached : before ∈ explore next remaining pending) (move : after ∈ next before)
     (unseen : after ∈ remaining) : after ∈ explore next remaining pending := by
@@ -387,7 +387,7 @@ private theorem explore_closed {α : Type} [DecidableEq α] {next : α → List 
     rw [explore, ite_eq_right absent] at reached ⊢
     exact ih reached unseen
 
-private theorem explore_sound {α : Type} [DecidableEq α] {next : α → List α}
+theorem explore_sound {α : Type} [DecidableEq α] {next : α → List α}
     {remaining pending : List α} {P : α → Prop} {state : α}
     (closed : ∀ a b, P a → b ∈ next a → P b)
     (queued : ∀ a ∈ pending, P a)
