@@ -36,3 +36,9 @@ public import OpenCausalScience.Papers.YeomEtAl2026.JacobianSupport
 public import OpenCausalScience.Papers.YeomEtAl2026.SupportedRollout
 public import OpenCausalScience.Papers.YiLee2024.FixedEdgeSparsity
 public import OpenCausalScience.Papers.YiLee2024.UniformSupports
+public import OpenCausalScience.Papers.KimEtAl2026.BlockMaps
+public import OpenCausalScience.Papers.KimLee2026DFPC.StableSchedule
+public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.ExactCover
+public import OpenCausalScience.Papers.JungEtAl2024.TailAlignment
+public import OpenCausalScience.Papers.JungEtAl2024.Randomization
+public import OpenCausalScience.Papers.LeeEtAl2019.JointSCM

@@ -31,6 +31,15 @@ lake build
 lake env lean OpenCausalScience/Axioms.lean
 ```
 
-The last command prints the transitive axiom dependencies of each result. The expected report uses at most the standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`.
+The last command prints the transitive axiom dependencies of the listed theorems. The expected report uses at most the standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`.
 
-The earlier comparison using Causalean's general Bayes Ball and Verma–Pearl proofs is available at Git tag `causalean-reference`. Use that revision's README and Lean `v4.33.0` to reproduce it. [Causalean's graph library](https://causalsmith.org/library/Graph/)
+The optional package in [`analysis/`](analysis/) checks the connected-support argument for causal representation learning with Mathlib. The root package uses only Lean's bundled standard library. To check the optional package, run these commands from the project root.
+
+```sh
+cd analysis
+lake exe cache get Mathlib.Analysis.Calculus.MeanValue Mathlib.Order.Fin.Basic
+lake build
+lake env lean -DwarningAsError=true FocusedAxioms.lean
+```
+
+The earlier comparison used Causalean's general Bayes Ball and Verma–Pearl proofs with Lean `v4.33.0`. [Causalean's graph library](https://causalsmith.org/library/Graph/)

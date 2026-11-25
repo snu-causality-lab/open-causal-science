@@ -1,0 +1,14 @@
+import OpenCausalScienceAnalysis.ConnectedBlockMaps
+import OpenCausalScienceAnalysis.BlockHessian
+
+open OpenCausalScience.Papers.KimEtAl2026.ConnectedBlockMaps
+
+#print axioms fiberConstant_of_zero_off_block_deriv
+#print axioms exists_matched_block_maps_of_zero_off_block_deriv
+#print axioms exists_global_block_matching
+#print axioms exists_matched_block_maps_of_continuous_block_derivatives
+
+open OpenCausalScience.Papers.KimEtAl2026.BlockHessian
+
+#print axioms derivative_terms_eq_zero_of_injective_system
+#print axioms block_gradients_excluded_of_injective_system
