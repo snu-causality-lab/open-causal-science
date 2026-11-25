@@ -3,24 +3,21 @@ public import OpenCausalScience.Papers.LeeEtAl2019.UpperSupport
 
 /-! # Joint world weights for the corrected g-identifiability converse
 
-This module combines the independent hedge coordinates in
-[R-46](https://causalai.net/r46.pdf) §3.1 with the July 2022
-[R-46e](https://causalai.net/r46e.pdf) mechanisms (A.2), (2), and (3).
-Under the finite family representation, each choice of upper UC bits appears
-once. Summing the bottom weights over the worlds at specified upper bits
-gives the joint weights on upper bits and roots. Summing over all upper worlds
-gives the root marginal weights and the parity statistic used in Appendix A.2.
-
-The graph-level translation into a ranked family, the hypotheses for whole
-untouched hedges and target hedgelet hits, and the translation from root
-disagreement to the paper's target outcome are separate from this construction.
+The July 2022 [R-46e](https://causalai.net/r46e.pdf) gives the upper
+structural equation (A.2) and the updated bottom equations (2) and (3).
+Each choice of the independent upper confounder bits is enumerated once.
+Summing bottom weights over worlds at specified upper bits gives the joint
+weights; summing over all upper worlds gives the root marginal weights.
+The target check uses a compatible solution of (A.2) enabling every root.
+The graph embedding and the transport of root disagreement to the target
+outcome are separate from these finite calculations.
 -/
 
 namespace OpenCausalScience.Papers.LeeEtAl2019.JointSCM
 
 @[expose] public section
 
-open GeneralIdentifiabilityErratum CorrectedConverse UpperHedgelets UpperSupport
+open GeneralIdentifiabilityErratum CorrectedConverse UpperMechanisms UpperSupport
 
 variable {roots count : Nat}
 
@@ -249,9 +246,8 @@ def rootWeight (ranking : Rankings hedges) (fixed : Intervention hedges)
   noisyRootMixture bottom distinguished secondModel rootFixed (enabled hedges)
     (worlds hedges ranking fixed) keep flip
 
-/-- R-46 Definition 6 supplies a root intervention or one whole untouched
-hedge for each supplied experiment. Every upper slice agrees in the two
-models under this explicit premise. -/
+/-- A root intervention or one whole untouched hedge suffices for a
+supplied experiment. Every upper slice agrees under this explicit premise. -/
 theorem supplied_weights_equal (ranking : Rankings hedges) (fixed : Intervention hedges)
     (bottom : Bottom roots bottomEdges) (distinguished : Fin roots)
     (connected : ∀ r, Walk bottom r distinguished)
@@ -288,37 +284,36 @@ theorem supplied_weight_positive (ranking : Rankings hedges) (fixed : Interventi
     _ observed consistent bottom distinguished secondModel rootFixed (enabled hedges) keep flip
     keepPositive flipPositive out outConsistent
 
-/-- Each frontier's bidirected component contains a vertex with a directed
-path to a target intervention. -/
-def TargetHits (fixed : Intervention hedges) : Prop :=
-  ∀ i f, (hedges i).graph.child f = none →
-    ∃ p v, Walk (hedges i).graph.internalEdges f p ∧
-      DirectedPath (hedges i).graph p v ∧ fixed i v ≠ none
+/-- A compatible solution of (A.2), including the frontier toggle and the
+target assignment, at which all root indicators are enabled. -/
+def HasEnabledWorld (fixed : Intervention hedges) : Prop :=
+  ∃ w : World hedges, (∀ i, (hedges i).graph.Satisfies (fixed i) (w i)) ∧
+    ∀ r, enabled hedges w r = true
+
+/-- Exhaustive finite check of the target equations and root indicators. -/
+def targetHasEnabledWorld (ranking : Rankings hedges) (fixed : Intervention hedges) : Bool :=
+  (worlds hedges ranking fixed).any fun w => (List.finRange roots).all (enabled hedges w)
+
+theorem targetHasEnabledWorld_eq_true (ranking : Rankings hedges) (fixed : Intervention hedges) :
+    targetHasEnabledWorld hedges ranking fixed = true ↔ HasEnabledWorld hedges fixed := by
+  simp only [targetHasEnabledWorld, List.any_eq_true, List.all_eq_true, List.mem_finRange,
+    true_implies, mem_worlds_iff, HasEnabledWorld]
 
 theorem exists_world_all_enabled (ranking : Rankings hedges) (fixed : Intervention hedges)
-    (fixesOne : ∀ i v, fixed i v ≠ some false) (hits : TargetHits hedges fixed) :
+    (target : HasEnabledWorld hedges fixed) :
     ∃ w ∈ worlds hedges ranking fixed, ∀ r, enabled hedges w r = true := by
-  let witness (i : Fin count) : TargetHedge roots :=
-    ⟨_, _, _, (hedges i).graph, ranking.rank i, ranking.ordered i, fixed i, fixesOne i, hits i⟩
-  let w : World hedges := fun i => Classical.choose (target_world_from_hedgelet_hits (witness i))
-  have spec i := Classical.choose_spec (target_world_from_hedgelet_hits (witness i))
-  refine ⟨w, (mem_worlds_iff hedges ranking fixed w).2 (fun i => (spec i).1), ?_⟩
-  intro r
-  apply (merged_enabled_iff _ r).2
-  intro input mem
-  obtain ⟨i, _, rfl⟩ := List.mem_map.mp mem
-  exact (spec i).2 r
+  obtain ⟨w, equations, on⟩ := target
+  exact ⟨w, (mem_worlds_iff hedges ranking fixed w).2 equations, on⟩
 
-/-- Root marginals differ for the target intervention of R-46 Lemma 5
-when the indicated hedgelet hit conditions hold, and no root is fixed.
-The private root noise can have any common biased positive weights. -/
+/-- Root marginals differ when the target admits an all-enabled world and
+no root is fixed. The private root noise can have any common biased weights. -/
 theorem target_root_weights_differ (ranking : Rankings hedges) (fixed : Intervention hedges)
-    (fixesOne : ∀ i v, fixed i v ≠ some false) (hits : TargetHits hedges fixed)
+    (target : HasEnabledWorld hedges fixed)
     (bottom : Bottom roots bottomEdges) (distinguished : Fin roots)
     (connected : ∀ r, Walk bottom r distinguished) (keep flip : Nat) (biased : keep ≠ flip) :
     rootWeight hedges ranking fixed bottom distinguished false (fun _ => none) keep flip ≠
       rootWeight hedges ranking fixed bottom distinguished true (fun _ => none) keep flip := by
-  obtain ⟨w, mem, on⟩ := exists_world_all_enabled hedges ranking fixed fixesOne hits
+  obtain ⟨w, mem, on⟩ := exists_world_all_enabled hedges ranking fixed target
   exact target_laws_differ bottom distinguished connected (enabled hedges) _ keep flip biased w mem on
 
 private theorem sum_map_add {α : Type} (xs : List α) (f g : α → Nat) :
@@ -609,7 +604,7 @@ theorem joint_weight_total (ranking : Rankings hedges) (fixed : Intervention hed
   exact joint_weight_marginalize hedges ranking fixed bottom distinguished secondModel rootFixed
     keep flip out
 
-/-- Parity of all bottom bits, the statistic used by R-46 Appendix A.2. -/
+/-- Parity of all bottom bits. -/
 def rootParity (out : Fin roots → Bool) : Bool :=
   xorAll ((List.finRange roots).map out)
 
@@ -757,17 +752,16 @@ private theorem raw_even_weights_differ {Context : Type} (bottom : Bottom roots 
   omega
 
 /-- The two target laws differ on root parity itself after biased private
-noise. This is the statistic required by the transport in R-46 Appendix A.2,
-Lemma 9. -/
+noise. -/
 theorem target_root_parity_weights_differ (ranking : Rankings hedges) (fixed : Intervention hedges)
-    (fixesOne : ∀ i v, fixed i v ≠ some false) (hits : TargetHits hedges fixed)
+    (target : HasEnabledWorld hedges fixed)
     (bottom : Bottom roots bottomEdges) (distinguished : Fin roots)
     (connected : ∀ r, Walk bottom r distinguished) (keep flip : Nat) (biased : keep ≠ flip) :
     parityWeights (rootWeight hedges ranking fixed bottom distinguished false
         (fun _ => none) keep flip) ≠
       parityWeights (rootWeight hedges ranking fixed bottom distinguished true
         (fun _ => none) keep flip) := by
-  obtain ⟨w, mem, on⟩ := exists_world_all_enabled hedges ranking fixed fixesOne hits
+  obtain ⟨w, mem, on⟩ := exists_world_all_enabled hedges ranking fixed target
   have difference := raw_even_weights_differ bottom distinguished connected (enabled hedges)
     (worlds hedges ranking fixed) w mem on
   intro eq
@@ -786,9 +780,9 @@ theorem parity_weights_total (law : WeightTable (Fin roots)) :
   cases rootParity out <;> simp
 
 /-- Odd root parity has a different weight in the two models with the same
-denominator, as in the hypothesis of R-46 Appendix A.2, Lemma 9. -/
+denominator. -/
 theorem target_odd_weight_differs (ranking : Rankings hedges) (fixed : Intervention hedges)
-    (fixesOne : ∀ i v, fixed i v ≠ some false) (hits : TargetHits hedges fixed)
+    (target : HasEnabledWorld hedges fixed)
     (bottom : Bottom roots bottomEdges) (distinguished : Fin roots)
     (connected : ∀ r, Walk bottom r distinguished) (keep flip : Nat) (biased : keep ≠ flip) :
     parityWeights (rootWeight hedges ranking fixed bottom distinguished false
@@ -798,7 +792,7 @@ theorem target_odd_weight_differs (ranking : Rankings hedges) (fixed : Intervent
   let law := fun model => rootWeight hedges ranking fixed bottom distinguished model
     (fun _ => none) keep flip
   intro odd
-  apply target_root_parity_weights_differ hedges ranking fixed fixesOne hits bottom distinguished
+  apply target_root_parity_weights_differ hedges ranking fixed target bottom distinguished
     connected keep flip biased
   have equal : totalRootWeight (law false) = totalRootWeight (law true) :=
     (root_weight_total hedges ranking fixed bottom distinguished false _ keep flip).trans

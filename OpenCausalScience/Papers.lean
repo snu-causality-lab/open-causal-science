@@ -28,8 +28,7 @@ public import OpenCausalScience.Papers.LeeBareinboim2020PartialObservability.Dir
 public import OpenCausalScience.Papers.LeeBareinboim2021.OutcomeIndexedProxies
 public import OpenCausalScience.Papers.LeeBareinboim2021.ProxyInversion
 public import OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
-public import OpenCausalScience.Papers.LeeEtAl2019.IntactHedgelet
-public import OpenCausalScience.Papers.LeeEtAl2019.UpperHedgelets
+public import OpenCausalScience.Papers.LeeEtAl2019.UpperMechanisms
 public import OpenCausalScience.Papers.LeeEtAl2019.UpperSupport
 public import OpenCausalScience.Papers.LeeHonavar2017.DeletionBound
 public import OpenCausalScience.Papers.YeomEtAl2026.JacobianSupport

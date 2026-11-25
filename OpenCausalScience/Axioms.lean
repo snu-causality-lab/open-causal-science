@@ -46,8 +46,8 @@ open OpenCausalScience.Papers.KimEtAl2024.DeduceDep
 #print axioms zero_order_removes_spurious_edge
 
 open OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
-#print axioms hedgelet_xor_aggregates
-#print axioms hedgelet_xor_eq_grouped_xor
+#print axioms xor_groups_aggregate
+#print axioms xor_groups_eq_regrouped_xor
 #print axioms xor_eq_crossings_of_paired_internal
 #print axioms corrected_frontiers_contain_false
 #print axioms noise_all_injective
@@ -127,10 +127,6 @@ open OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
 #print axioms root_disabled_by_intact_hedge
 #print axioms supplied_slice_agreement_from_hedges
 
-open OpenCausalScience.Papers.LeeEtAl2019.IntactHedgelet
-#print axioms observational_tables_equal_and_positive
-#print axioms intact_second_hedgelet_with_unequal_root_laws
-
 open OpenCausalScience.Papers.LeeBareinboim2020.ScopeReduction
 #print axioms restrict_preserves_policy_reward
 #print axioms extend_preserves_policy_reward
@@ -165,12 +161,10 @@ open OpenCausalScience.Papers.JungEtAl2024.SequentialFormula
 #print axioms StageConditions.step_of_sample
 #print axioms sequential_adjustment_formula
 
-open OpenCausalScience.Papers.LeeEtAl2019.UpperHedgelets
+open OpenCausalScience.Papers.LeeEtAl2019.UpperMechanisms
 #print axioms intact_frontier_parity
 #print axioms intact_hedge_disables_root
 #print axioms supplied_agreement_from_untouched_hedge
-#print axioms target_world_from_hedgelet_hits
-#print axioms target_laws_differ_from_hedgelet_hits
 
 open OpenCausalScience.Papers.KimEtAl2026.BayesBallCorrectness
 #print axioms corrected_reachable_iff_dconnected
@@ -418,6 +412,7 @@ open OpenCausalScience.Papers.KimLee2026DFPC.QueryHistory
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.worlds_length
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.supplied_weights_equal
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.supplied_weight_positive
+#print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.targetHasEnabledWorld_eq_true
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.exists_world_all_enabled
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.target_root_weights_differ
 #print axioms OpenCausalScience.Papers.LeeEtAl2019.JointSCM.root_weight_total

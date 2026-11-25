@@ -5,8 +5,7 @@ public import Std
 
 Source: the July 2022 erratum [R-46e](https://causalai.net/r46e.pdf),
 equations (A.1) and (A.2) and the following frontier and bottom-noise
-prescriptions, and revised [R-46](https://causalai.net/r46.pdf) §3.1,
-Lemmas 2–3 and 5–7.
+prescriptions.
 
 The first results check the Boolean aggregation and the frontier-parity rule.
 The bottom-noise results check the independent bit flips on finite tables of
@@ -49,11 +48,11 @@ theorem xor_all_flatten (groups : List (List Bool)) :
   | cons group groups ih =>
     simp only [List.map_cons, xorAll, List.flatten_cons, xor_all_append, ih]
 
-structure HedgeletInputs where
+structure XorInputGroup where
   parents : List Bool
   confounders : List Bool
 
-def hedgeletBit (input : HedgeletInputs) : Bool :=
+def groupBit (input : XorInputGroup) : Bool :=
   Bool.xor (xorAll input.parents) (xorAll input.confounders)
 
 private theorem xor_interchange (a b c d : Bool) :
@@ -61,25 +60,25 @@ private theorem xor_interchange (a b c d : Bool) :
   cases a <;> cases b <;> cases c <;> cases d <;> rfl
 
 /-- Equation (A.1) distributes over parent and confounder occurrences. -/
-theorem hedgelet_xor_aggregates (inputs : List HedgeletInputs) :
-    xorAll (inputs.map hedgeletBit) =
-      Bool.xor (xorAll (inputs.flatMap HedgeletInputs.parents))
-        (xorAll (inputs.flatMap HedgeletInputs.confounders)) := by
+theorem xor_groups_aggregate (inputs : List XorInputGroup) :
+    xorAll (inputs.map groupBit) =
+      Bool.xor (xorAll (inputs.flatMap XorInputGroup.parents))
+        (xorAll (inputs.flatMap XorInputGroup.confounders)) := by
   induction inputs with
   | nil => rfl
   | cons input inputs ih =>
-    simp only [List.map_cons, List.flatMap_cons, xorAll, xor_all_append, ih, hedgeletBit]
+    simp only [List.map_cons, List.flatMap_cons, xorAll, xor_all_append, ih, groupBit]
     exact xor_interchange _ _ _ _
 
 /-- Equation (A.2) can group occurrences into hedge-level parent bits and
 confounder bits when flattening each grouping keeps the original occurrences. -/
-theorem hedgelet_xor_eq_grouped_xor (inputs : List HedgeletInputs)
+theorem xor_groups_eq_regrouped_xor (inputs : List XorInputGroup)
     (parentGroups confounderGroups : List (List Bool))
-    (parents : (inputs.flatMap HedgeletInputs.parents).Perm parentGroups.flatten)
-    (confounders : (inputs.flatMap HedgeletInputs.confounders).Perm confounderGroups.flatten) :
-    xorAll (inputs.map hedgeletBit) =
+    (parents : (inputs.flatMap XorInputGroup.parents).Perm parentGroups.flatten)
+    (confounders : (inputs.flatMap XorInputGroup.confounders).Perm confounderGroups.flatten) :
+    xorAll (inputs.map groupBit) =
       Bool.xor (xorAll (parentGroups.map xorAll)) (xorAll (confounderGroups.map xorAll)) := by
-  rw [hedgelet_xor_aggregates, xor_all_flatten, xor_all_flatten,
+  rw [xor_groups_aggregate, xor_all_flatten, xor_all_flatten,
     xor_all_eq_of_perm parents, xor_all_eq_of_perm confounders]
 
 private theorem paired_xor_is_false (bits : List Bool) :
@@ -90,7 +89,7 @@ private theorem paired_xor_is_false (bits : List Bool) :
     simp only [List.flatMap_cons, xor_all_append, ih]
     cases b <;> rfl
 
-/-- The parity calculation in R-46 Lemma 2 once the two incidences of each
+/-- Cancellation given the two incidences of each
 internal confounder and the single incidences of crossing confounders are given. -/
 theorem xor_eq_crossings_of_paired_internal (total crossing internal : List Bool)
     (incidences : total.Perm (crossing ++ internal.flatMap fun b => [b, b])) :

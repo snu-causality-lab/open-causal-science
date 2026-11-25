@@ -1,6 +1,6 @@
 module
 public import OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
-public import OpenCausalScience.Papers.LeeEtAl2019.UpperHedgelets
+public import OpenCausalScience.Papers.LeeEtAl2019.UpperMechanisms
 
 /-! # Upper support of the supplied distributions in the g-identifiability converse
 
@@ -12,41 +12,26 @@ worlds at the observed upper bits is nonempty. For one hedge, this module
 constructs a world in that slice for every upper assignment agreeing with the
 intervention and passes it to the bottom lemma.
 
-Each hedge-specific top bit follows [R-46](https://causalai.net/r46.pdf) §3.1,
-equation (1), in the R-46e form (A.2): the XOR of its parent bits and of the bits
-of its UCs, negated at the chosen frontier. An intervention replaces the whole
-equation. Prescribed upper bits leave at each vertex a residual that the UC
-parity must equal. Flipping the internal UCs along a bidirected walk from a
-vertex to the top endpoint of a crossing UC, the kind of flip used in the proof
-of R-46 Lemma 5, and then flipping that crossing UC changes the UC parity at that
-vertex alone. The XOR of these corrections attains every residual.
+Each hedge coordinate is evaluated using R-46e Equation (A.2). Prescribed
+upper bits leave a residual that the confounder parity must equal at each
+vertex with a free equation. Flipping the internal bits along a bidirected
+walk to a crossing endpoint and then flipping that crossing bit changes
+the confounder parity at the starting vertex alone. The XOR of these
+corrections attains every residual.
 
-The walk exists when each bidirected component of the upper forest contains the
-top endpoint of a crossing UC. For a hedge `⟨F, F'⟩` this follows from `F` being
-a c-component, and R-46 states after Definition 5 (with its footnote 2) that each
-hedgelet has exactly one crossing UC. The theorems take the component condition
-as the explicit hypothesis `reach`. Its derivation from a published graph is not
-formalized here.
-
-A topological ranking of the upper forest makes the upper bits functions of the
-UCs. Hence `upperWorlds`, the list of all UC assignments with evaluated upper
-bits, contains every world satisfying the equations.
-
-R-46 §3.1 gives every top variable and UC one bit for each hedge in which it
-appears, so the coordinates of different hedges are disjoint.
-`joint_slice_positive` treats a family of hedges with independent coordinates and
-assumes that the retained joint worlds include every compatible family. A joint
-enumeration built from the lists `upperWorlds`, the multiplicities that make the
-slice weights the uniform-UC probabilities, the translation of variables shared by
-several hedges into these coordinates, and positive mechanisms for variables
-outside the thicket are not constructed here.
+The reachability premise is that each upper vertex has a bidirected walk
+to the top endpoint of a crossing confounder. A topological ranking makes
+the upper bits functions of the confounder bits. Thus `upperWorlds` contains
+every world satisfying the equations. `joint_slice_positive` treats a family
+of independently indexed coordinates given a complete world enumeration.
+`JointSCM` supplies that enumeration.
 -/
 
 namespace OpenCausalScience.Papers.LeeEtAl2019.UpperSupport
 
 @[expose] public section
 
-open GeneralIdentifiabilityErratum CorrectedConverse UpperHedgelets
+open GeneralIdentifiabilityErratum CorrectedConverse UpperMechanisms
 
 variable {tops internal crossings roots : Nat}
 
@@ -377,7 +362,7 @@ theorem evaluated_upper_slice_positive {bottomEdges : Nat}
     outConsistent
 
 /-- One hedge with its own upper coordinates and the component condition. In
-R-46 §3.1 each top variable and UC carries one bit for each hedge containing it,
+the indexed model each top variable and confounder carries a bit for each hedge containing it,
 so different hedges do not share these coordinates. -/
 structure SupportHedge (roots : Nat) where
   tops : Nat

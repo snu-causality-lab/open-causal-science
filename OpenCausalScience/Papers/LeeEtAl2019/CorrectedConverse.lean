@@ -3,8 +3,8 @@ public import OpenCausalScience.Papers.LeeEtAl2019.GeneralIdentifiabilityErratum
 
 /-! # Positive bottom witnesses in the g-identifiability converse
 
-The binary bottom construction of [R-46](https://causalai.net/r46.pdf) §3.1,
-Lemmas 4–7, using the root perturbation of [R-46e](https://causalai.net/r46e.pdf).
+The binary bottom mechanisms with the root perturbation of the July 2022
+erratum [R-46e](https://causalai.net/r46e.pdf).
 A bidirected edge has one independent fair bit. An upper assignment determines
 which root equations are enabled. An intervention replaces the affected root
 equation and suppresses its private noise. Laws below are integer weights with
@@ -13,8 +13,7 @@ a common denominator in each regime.
 For the non-degenerate case the upper construction must supply, for each
 available experiment, a disabled or intervened root for every upper assignment
 and support for every free upper value. The target must permit an all-enabled
-upper assignment. Those properties of arbitrary hedgelets are separate from
-the bottom witness construction.
+upper assignment. These are premises of the bottom witness construction.
 -/
 
 namespace OpenCausalScience.Papers.LeeEtAl2019.CorrectedConverse
@@ -177,7 +176,7 @@ def rawRootLaw (g : Bottom vertices edges) (distinguished : Fin vertices) (secon
     (List.finRange vertices).all fun v =>
       rootOutcome g distinguished secondModel fixed enabled (BitVec.ofFin u) v == out v
 
-/-- R-46 Lemma 4 and Corollary 1 at fixed upper inputs. One disabled or
+/-- Agreement at fixed upper inputs. One disabled or
 intervened root can absorb the distinguished-root flip. -/
 theorem raw_root_laws_equal (g : Bottom vertices edges) (distinguished hidden : Fin vertices)
     (path : Walk g hidden distinguished)
@@ -382,8 +381,7 @@ theorem target_laws_differ {Context : Type} (g : Bottom vertices edges)
   have rawEq := noise_all_injective keep flip biased _ eq
   exact Nat.ne_of_lt strict (congrFun rawEq (fun _ => false)).symm
 
-/-- The positive witnesses for the degenerate thicket, R-46 Lemmas 6–7
-with R-46e noise. The models agree for every nonempty root intervention and
+/-- The positive witnesses for the degenerate thicket with the R-46e noise. The models agree for every nonempty root intervention and
 every imposed value. Every configuration of the remaining roots has positive
 mass. Their observational laws differ. The upper world has one value and
 enables every root, so the result needs only the connected bottom graph. -/
@@ -411,7 +409,7 @@ theorem degenerate_thicket_witness (g : Bottom vertices edges)
       (fun _ _ => true) [()] keep flip biased () (List.mem_singleton.mpr rfl) (fun _ => rfl)
     exact difference
 
-/-- Inputs to the indicators in R-46 (2)–(3). In the complemented-vector
+/-- Inputs to the indicators in Equations (2)–(3) as updated by R-46e. In the complemented-vector
 notation, the zero tests require that every input bit be one. -/
 structure GateInputs (vertices : Nat) where
   frontiers : Fin vertices → List Bool
@@ -421,7 +419,7 @@ def GateInputs.enabled (inputs : GateInputs vertices) (v : Fin vertices) : Bool 
   (inputs.frontiers v).all id && (inputs.crossing v).all id
 
 /-- Data of an intact hedge at one upper exogenous assignment. The parity
-is the conclusion of R-46 Lemma 2 before the negation. The two coverage
+is computed before the selected frontier is negated. The two coverage
 conditions connect the hedge's bits to the tested root inputs. -/
 structure IntactHedgeBits (inputs : GateInputs vertices) where
   crossing : List Bool
