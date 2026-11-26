@@ -6,7 +6,7 @@ These records relate CGA operations to the published statements and Lean results
 | --- | --- | --- |
 | `d_separated`, `d_separated_sets` | Ancestral moralization and the active-path criterion. | On finite DAGs, deleting the conditioning set from the ancestral moral graph separates the query sets exactly when no active simple path joins them. The query sets are disjoint from the conditioning set. Lean also proves the Boolean ancestral-moral traversal implements this criterion. CGA uses the same reduction with undirected reachability. [Theorem 35](papers/perkovic-et-al-2018-dag-adjustment.md#ancestral-moralization) · [Bayes-ball worklist](papers/shachter-1998-bayes-ball.md) |
 | `m_separated`, `m_separated_sets` | The active edge-path criterion for ancestral graphs and ADMGs. | On finite mixed graphs with the stated endpoint restriction, the incoming-arrowhead search returns separation exactly when no vertex-simple active path joins the query sets. Distinct directed and bidirected edges stay distinct on a bow. [Worklist theorem and scope](papers/richardson-spirtes-2002-ancestral-graphs.md#arrival-state-search) |
-| `find_m_separator`, `find_minimal_m_separator` | Van der Zander, Liśkiewicz and Textor (2019), the 2023 corrigendum, and van der Zander and Liśkiewicz (2020). | The corrected parent-pair count and the correctness of the authors' two-pass algorithm on finite DAGs with required and allowed vertices. CGA uses its own augmentation and boundary search. [Corrected loop analysis](papers/van-der-zander-et-al-2019-ancestral-graphs.md) · [Finite DAG FindMinSep](papers/van-der-zander-liskiewicz-2020-minimal-separators.md) |
+| `find_m_separator`, `find_minimal_m_separator`, `m_separator_is_minimal` | Van der Zander, Liśkiewicz and Textor (2019), the 2023 corrigendum, and van der Zander and Liśkiewicz (2020). | Lean checks both executable finders and the minimality test for finite fully specified mixed graphs. The ADMG minimal finder proves correctness through CGA's latent-root expansion. [Corrected loop analysis](papers/van-der-zander-et-al-2019-ancestral-graphs.md) · [DAG and mixed-graph FindMinSep](papers/van-der-zander-liskiewicz-2020-minimal-separators.md) |
 | `adjustment_set_is_valid`, `find_adjustment_set`, `find_minimal_adjustment_set` | Perković et al. (2018), Definitions 3 and 6. | On finite DAGs, first-arrow reachability computes the forbidden set and deletes exactly the proper back-door edges. For fully oriented graphs under the companion's amenability and forbidden-set assumptions, active proper noncausal paths exist exactly when the proper back-door graph has an active connection. [Mixed-graph blocking](papers/perkovic-et-al-2018-dag-adjustment.md) [DAG construction](papers/perkovic-et-al-2018-dag-adjustment.md) · [Figure 2B](papers/witte-et-al-2020-efficient-adjustment.md#figure-2b) · [Figure 2F](papers/witte-et-al-2020-efficient-adjustment.md#figure-2f) |
 | `dag_markov_equivalent` | Verma–Pearl (1990), Lemmas 1–2 and Theorem 1. | The finite Lean signature test returns true exactly when every graphical d-separation query agrees. A mismatch yields a distinguishing query. [DAG equivalence](papers/verma-pearl-1990-dag-equivalence.md) |
 | `CPDAG.from_dag`, `find_consistent_dag_extension` | Andersson–Madigan–Perlman Proposition 4.1 and the potential-sink criterion from Dor–Tarsi and Wienöbst et al. | The semantic essential graph has ordered chordal components, and a consistent DAG extension exists exactly when a potential-sink elimination order exists. Removing any potential sink preserves extendability. [Essential graphs](papers/andersson-madigan-perlman-1997-essential-graphs.md) · [PDAG extension](papers/wienobst-bannach-liskiewicz-2021-pdag-extension.md) |
@@ -84,3 +84,21 @@ an independent oracle that enumerates simple edge-marked paths.
 ```sh
 python tests/compare_lean_mixed_separation.py /path/to/mixed-separation.json
 ```
+
+## Compare constrained minimal m-separators
+
+The [mixed-graph implementation](../OpenCausalScience/Graph/MixedSeparators.lean)
+proves that an output separates the endpoints and is inclusion-minimal among
+sets containing every required vertex and contained in the allowed set. A
+missing output rules out every separator in that interval. The finite
+comparison checks the public CGA result and the Lean result against literal
+marked paths and independent subset enumeration. It covers 3,652 queries
+on 138 mixed graphs, including ADMGs with bows and ancestral graphs with
+undirected edges.
+
+```sh
+lake env lean replay/MixedSeparators.lean > mixed-separators.json
+python replay/compare_cga_separators.py mixed-separators.json --cga-checkout /path/to/cga
+```
+
+Install CGA from [source revision `61cc073`](https://github.com/snu-causality-lab/cga/tree/61cc073a94cba296da1a539e0325eec16d5e355c) in the Python environment running the comparison. Both searches expand ADMGs into latent DAGs and augment ancestral graphs directly. The comparison checks each result against the full set of minimal outputs, allowing different choices when several minimal sets exist.

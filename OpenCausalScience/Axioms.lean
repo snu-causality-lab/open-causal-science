@@ -1148,3 +1148,18 @@ open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
 #print axioms OpenCausalScience.Papers.ElahiEtAl2024.DescendantAdjustment.observational_law_normalized
 #print axioms OpenCausalScience.Papers.ElahiEtAl2024.DescendantAdjustment.both_treatments_are_nonredundant
 #print axioms OpenCausalScience.Papers.ElahiEtAl2024.DescendantAdjustment.adjustment_gives_wrong_response
+
+#print axioms MixedGraph.mem_exploreStack_iff
+#print axioms MixedGraph.anterior_iff
+#print axioms MixedGraph.collider_augmented_iff
+#print axioms MixedGraph.walkConnected_of_augmentedWalk
+#print axioms SeparatorBoundary.find_separator_correct
+#print axioms SeparatorBoundary.is_minimal_separator_iff_boundary
+#print axioms SeparatorBoundary.find_minimal_separator_correct
+#print axioms MixedGraph.no_walkConnected_iff_augmented_separated
+#print axioms MixedGraph.find_minimal_m_separator_correct
+#print axioms MixedGraph.find_m_separator_correct
+#print axioms MixedGraph.m_separator_is_minimal_correct
+#print axioms MixedGraph.walkConnected_explicitLatentExpansion_iff
+#print axioms MixedGraph.find_minimal_m_separator_via_latents_correct
+#print axioms MixedGraph.find_minimal_admg_separator_correct

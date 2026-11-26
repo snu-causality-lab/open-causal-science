@@ -113,6 +113,25 @@ private theorem stack_sound {α : Type} [DecidableEq α] {next : α → List α}
     rw [exploreStack, ite_eq_right absent] at found
     exact ih (fun a mem => queued a (List.mem_cons_of_mem _ mem)) found
 
+/-- The order of a finite stack search does not affect membership in its
+visited set. The universe contains every state of the transition relation. -/
+theorem mem_exploreStack_iff {α : Type} [DecidableEq α] {next : α → List α}
+    {states seeds : List α} {state : α} (complete : ∀ a, a ∈ states) :
+    state ∈ exploreStack next states seeds ↔
+      ∃ seed, seed ∈ seeds ∧ Reach (fun a b => b ∈ next a) seed state := by
+  constructor
+  · intro found
+    refine stack_sound (P := fun current => ∃ seed, seed ∈ seeds ∧
+      Reach (fun a b => b ∈ next a) seed current) ?_ ?_ found
+    · rintro a b ⟨seed, initial, reached⟩ move
+      exact ⟨seed, initial, .extend reached move⟩
+    · intro seed initial
+      exact ⟨seed, initial, .refl seed⟩
+  · rintro ⟨seed, initial, reached⟩
+    induction reached with
+    | refl => exact stack_covers (complete seed) initial
+    | extend _ move ih => exact stack_closed ih move (complete _)
+
 /-- Parents in the directed part of the mixed graph. -/
 def directedParents (G : MixedGraph n) (v : Fin n) : List (Fin n) :=
   (List.finRange n).filter fun u => G.edge u false v true

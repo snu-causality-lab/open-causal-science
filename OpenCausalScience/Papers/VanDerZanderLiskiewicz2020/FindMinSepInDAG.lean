@@ -1,5 +1,6 @@
 module
 public import OpenCausalScience.Graph.Moralization
+public import OpenCausalScience.Graph.SeparatorBoundary
 
 /-! # Finding a minimal d-separator in a DAG
 
@@ -21,104 +22,15 @@ open OpenCausalScience.Papers.KimEtAl2026.BayesBallCorrectness
 
 @[expose] public section
 
-variable {α : Type}
+export OpenCausalScience.SeparatorBoundary (Reach keepReached Separated)
 
-/-- The last vertex may be blocked. Every vertex traversed before it must be open. -/
-inductive Reach (edge : α → α → Prop) (source blocked : α → Prop) : α → Prop
-  | seed {v} : source v → Reach edge source blocked v
-  | step {u v} : Reach edge source blocked u → ¬ blocked u → edge u v →
-      Reach edge source blocked v
+namespace Reach
 
-variable {edge : α → α → Prop} {X Y I Z W : α → Prop}
+export OpenCausalScience.SeparatorBoundary.Reach (seed step rec recOn casesOn)
 
-private theorem Reach.map {edge' : α → α → Prop} {X' Z' : α → Prop} {v : α}
-    (reach : Reach edge X Z v) (mapSeed : ∀ u, X u → Reach edge' X' Z' u)
-    (edgeSub : ∀ u w, edge u w → edge' u w) (blockSub : ∀ u, Z' u → Z u) :
-    Reach edge' X' Z' v := by
-  induction reach with
-  | seed start => exact mapSeed _ start
-  | step _ openVertex next ih => exact .step ih (fun h => openVertex (blockSub _ h)) (edgeSub _ _ next)
+end Reach
 
-private theorem Reach.reverse {v : α} (reach : Reach edge X Z v)
-    (symmetric : ∀ u w, edge u w → edge w u) (openLast : ¬ Z v) :
-    ∃ u, X u ∧ Reach edge (fun w => w = v) Z u := by
-  induction reach with
-  | seed start => exact ⟨_, start, .seed rfl⟩
-  | step before openVertex next ih =>
-    obtain ⟨u, start, rev⟩ := ih openVertex
-    exact ⟨u, start, rev.map
-      (fun w same => same.symm ▸ .step (.seed rfl) openLast (symmetric _ _ next))
-      (fun _ _ h => h) (fun _ h => h)⟩
-
-private def keepReached (edge : α → α → Prop) (X I Z : α → Prop) (v : α) : Prop :=
-  (Z v ∧ Reach edge X Z v) ∨ I v
-
-/-- Removing blockers unreachable from the source preserves the entire
-reachable set from that source, including its blocked boundary. -/
-private theorem reach_keep_reached_iff (required : ∀ v, I v → Z v) (v : α) :
-    Reach edge X (keepReached edge X I Z) v ↔ Reach edge X Z v := by
-  constructor
-  · intro reach
-    induction reach with
-    | seed hx => exact .seed hx
-    | step _ openVertex next ih =>
-      exact .step ih (fun blocked => openVertex (.inl ⟨blocked, ih⟩)) next
-  · intro reach
-    exact reach.map (fun _ h => .seed h) (fun _ _ h => h)
-      (fun u h => h.elim And.left (required u))
-
-private def Separated (edge : α → α → Prop) (X Y Z : α → Prop) : Prop :=
-  ∀ v, Y v → ¬ Reach edge X Z v
-
-private theorem separated_swap (symmetric : ∀ u v, edge u v → edge v u)
-    (leftOutside : ∀ v, X v → ¬ Z v) (separated : Separated edge X Y Z) :
-    Separated edge Y X Z := by
-  intro v hx reach
-  have openLast := leftOutside v hx
-  obtain ⟨u, hy, rev⟩ := reach.reverse symmetric openLast
-  exact separated u hy (rev.map (fun w eq => eq.symm ▸ .seed hx)
-    (fun _ _ h => h) (fun _ h => h))
-
-private theorem separating_prune {edge : α → α → Prop} {X Y I Z : α → Prop}
-    (symmetric : ∀ u v, edge u v → edge v u)
-    (required : ∀ v, I v → Z v)
-    (leftOutside : ∀ v, X v → ¬ Z v)
-    (rightOutside : ∀ v, Y v → ¬ Z v)
-    (separated : Separated edge X Y Z) :
-    let first := keepReached edge X I Z
-    let result := keepReached edge Y I first
-    Separated edge X Y result ∧ (∀ v, I v → result v) ∧ (∀ v, result v → Z v) ∧
-      ∀ v, result v → ¬ I v → Reach edge X result v ∧ Reach edge Y result v := by
-  dsimp only
-  let first := keepReached edge X I Z
-  let result := keepReached edge Y I first
-  have firstSub : ∀ v, first v → Z v := fun v h => h.elim And.left (required v)
-  have secondSub : ∀ v, result v → first v := fun _ h => h.elim And.left Or.inr
-  have firstSep : Separated edge X Y first := fun v hy route =>
-    separated v hy ((reach_keep_reached_iff required v).mp route)
-  have firstReverse := separated_swap symmetric (fun v hx h => leftOutside v hx (firstSub v h)) firstSep
-  have secondReverse : Separated edge Y X result := fun v hx route =>
-    firstReverse v hx ((reach_keep_reached_iff (fun _ h => Or.inr h) v).mp route)
-  have secondSep : Separated edge X Y result :=
-    separated_swap symmetric (fun v hy h => rightOutside v hy (firstSub v (secondSub v h))) secondReverse
-  refine ⟨secondSep, fun _ h => .inr h, fun v h => firstSub v (secondSub v h), ?_⟩
-  intro v chosen optional
-  obtain ⟨inFirst, fromRight⟩ := chosen.resolve_right optional
-  have fromLeft := (inFirst.resolve_right optional).2
-  have leftFirst := (reach_keep_reached_iff required v).mpr fromLeft
-  exact ⟨leftFirst.map (fun _ h => .seed h) (fun _ _ h => h) secondSub,
-    (reach_keep_reached_iff (fun _ h => Or.inr h) v).mpr fromRight⟩
-
-private theorem necessary_blocker {v : α}
-    (symmetric : ∀ u w, edge u w → edge w u)
-    (fromLeft : Reach edge X Z v) (fromRight : Reach edge Y Z v)
-    (subset : ∀ x, W x → Z x) (omitted : ¬ W v) :
-    ¬ Separated edge X Y W := by
-  intro separated
-  have left' := fromLeft.map (fun _ h => Reach.seed h) (fun _ _ h => h) subset
-  have right' := fromRight.map (fun _ h => Reach.seed h) (fun _ _ h => h) subset
-  obtain ⟨y, hy, rev⟩ := right'.reverse symmetric omitted
-  exact separated y hy (rev.map (fun w eq => eq.symm ▸ left') (fun _ _ h => h) (fun _ h => h))
+open OpenCausalScience.SeparatorBoundary (separating_prune necessary_blocker)
 
 variable {n : Nat}
 

@@ -1,2 +1,3 @@
 module
 public import OpenCausalScience.Examples.DSeparation
+public import OpenCausalScience.Examples.MixedReplayGraphs
