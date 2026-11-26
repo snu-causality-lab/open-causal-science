@@ -4,6 +4,10 @@
 
 [Paper index](../paper-checks.md)
 
+> **Author correction** · [UAI §6, Lemma 3](#figure-1c-and-the-2007-appendum) · The 2007 Appendum withdraws the claim that Tian’s conditional identification procedure is unsound.
+
+> **Verified counterexample** · [UAI Corollary 2 with empty conditioning](#later-hedge-criterion) · With empty conditioning, the corollary inherits the refuted arbitrary-subquery hedge condition.
+
 ## Figure 3 and the soundness of an exchange
 
 Figure 3 moves an observed variable from the conditioning set to the

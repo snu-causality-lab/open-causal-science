@@ -31,6 +31,14 @@ Use one Markdown record per paper in `docs/papers/`, with a stable filename such
 
 Link new references directly to the record, adding a section fragment when useful. Older links into `paper-checks.md` are retained through `index-anchor` and `topic-anchor` comments. Keep those comments when updating an existing record.
 
+An established counterexample, author correction, or checked discrepancy can be surfaced after the paper index link using a one-line callout. Name the affected statement and point to the section that gives the evidence and scope. The index uses that same line for its summary.
+
+```markdown
+> **Verified counterexample** · [Theorem 2, necessity](#where-the-selected-only-rc-procedure-stops) · RC stops on a graph where selected-only adjustment recovers the effect.
+```
+
+The other supported labels are **Author correction** and **Verified discrepancy**. Published examples that illustrate a theorem already stated in the paper stay in their ordinary sections.
+
 Regenerate the topic index after adding or editing a record.
 
 ```sh

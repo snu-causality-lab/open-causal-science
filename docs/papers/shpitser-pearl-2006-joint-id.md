@@ -4,6 +4,8 @@
 
 [Paper index](../paper-checks.md)
 
+> **Author correction** · [AAAI Corollary 3](#the-hedge-criterion) · The 2023 note replaces the arbitrary-subquery hedge condition with a criterion for the exact query.
+
 ## Lemma 6 and line 3 of ID
 
 Compute the ancestors of the outcome set after deleting arrows into the

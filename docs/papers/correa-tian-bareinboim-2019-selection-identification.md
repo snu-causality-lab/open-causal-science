@@ -4,6 +4,8 @@
 
 [Paper index](../paper-checks.md)
 
+> **Verified counterexample** · [Theorem 2, necessity](#where-the-selected-only-rc-procedure-stops) · RC stops on a six-vertex graph where adjustment using the selected sample recovers the same effect.
+
 These checks use the AAAI paper and its technical report R-38,
 November 2018, SHA-256
 `035d09019e49a061a2e1a2e4279bde2745ebc79dced42f0ba341225d8be75a60`.

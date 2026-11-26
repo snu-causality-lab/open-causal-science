@@ -2,6 +2,10 @@
 
 <!-- topic: Discovery -->
 
+[Paper index](../paper-checks.md)
+
+> **Author correction** · [Appendix C, potential sinks](#potential-sink-condition) · The erratum replaces the clique test on neighbors and parents with adjacency requirements for the undirected neighbors.
+
 Chickering's GES operators describe moves between Markov equivalence classes of DAGs using completed partially directed acyclic graphs. The companion formalizes the relationship between an operator's edge and collider changes and a single edit of a DAG extension. [JMLR article, Definitions 12–14, Theorems 15 and 17, and Appendix B](https://jmlr.org/papers/v3/chickering02b.html)
 
 - [Insert.lean](../../OpenCausalScience/Papers/Chickering2002/Insert.lean) proves the matching-tails characterization from Lemma 41 for a single acyclic insertion. It proves the necessity of the clique condition in Theorem 15. Here the selected tails are the reversible parents of `Y` that are nonadjacent to `X`. When the extension chooses the required parents, blocking all semidirected walks from `Y` to `X` by `N(Y,X) ∪ T` suffices for acyclicity. The edited DAG matches the operator PDAG's skeleton and unshielded colliders and agrees with its prescribed arrows.
@@ -19,5 +23,7 @@ Chickering's GES operators describe moves between Markov equivalence classes of 
 - For Delete, the source test is that `N(Y,X) ∖ H` is a clique. The within-component vertex order gives a representative with `X → Y` and exactly `N(Y,X) ∖ H` as the reversible parents of `Y` apart from `X` itself. The arrow `X → Y` puts the component of `X` no later than that of `Y`. A common child reached by a fixed arrow from `Y` is therefore strictly later than `X` in the component order. The arrow from `X` is then fixed as well, supplying the triangle implication needed by Lemma 42. [CliqueExtensions.lean](../../OpenCausalScience/Papers/Chickering2002/CliqueExtensions.lean)
 
 The result covers the graphical validity of the two operators. The two-phase large-sample theorem also requires the paper's score and distribution assumptions.
+
+## Potential-sink condition
 
 The published erratum corrects the potential-sink condition in Appendix C. Each undirected neighbor must be adjacent to the other undirected neighbors and to every parent. This is the condition used in the [PDAG extension companion](wienobst-bannach-liskiewicz-2021-pdag-extension.md). [Chickering's erratum](https://www.jmlr.org/papers/volume3/chickering02b/erratum.pdf)

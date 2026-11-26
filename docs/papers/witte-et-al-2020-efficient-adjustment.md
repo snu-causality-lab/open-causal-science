@@ -6,6 +6,10 @@
 
 [Paper index](../paper-checks.md)
 
+> **Verified counterexample** · [Figure 2B, adjustment claim](#figure-2b) · The drawn graph admits no valid adjustment set for the stated treatment and outcome.
+
+> **Verified discrepancy** · [Figure 2F, projected arrows](#figure-2f) · The printed projection contains two extra arrows. The panel’s adjustment conclusion still follows.
+
 ## The O-set in the forbidden projection
 
 [ForbiddenProjection.lean](../../OpenCausalScience/Papers/WitteEtAl2020/ForbiddenProjection.lean) proves `o_set_iff_projected_parent`, the graph equality of [Proposition 10](https://jmlr.org/papers/volume21/20-175/20-175.pdf#page=10) for finite DAGs. Treatments and outcomes are disjoint, and every outcome descends from a treatment. Under these assumptions, the parents of causal nodes outside the forbidden set are exactly the retained parents of outcomes in the forbidden projection, after excluding treatments and outcomes. The proof uses the directed part of Definitions 4–5 and covers arbitrary treatment and outcome sets. The main reverse step starts a proper causal path at the last treatment on a directed prefix. The result concerns the graph construction. Adjustment validity and variance comparisons are separate results.

@@ -4,6 +4,8 @@
 
 [Paper index](../paper-checks.md)
 
+> **Verified counterexample** · [Definition 8(b), literal wording](#proper-paths-with-joint-treatment) · For joint treatments, requiring all noncausal paths to be blocked can reject a valid pair. Definition 9 checks proper paths.
+
 An adjustment pair divides the covariates into an externally measured
 subset and a remainder. Equation (6) averages the outcome conditional in
 the selected sample against the remainder's conditional distribution
@@ -35,6 +37,8 @@ The pair `({Z₁,Z₂,Z₃}, {Z₂})` passes. Adding `Z₁` to the population
 part fails even when all three covariates are externally measured.
 The selected-only and all-adjustment-measured forms fail for every
 candidate adjustment set on this graph. [R-29, Figure 2](https://causalai.net/r29.pdf#page=4)
+
+## Proper paths with joint treatment
 
 [JointTreatment.lean](../../OpenCausalScience/Papers/CorreaTianBareinboim2018/JointTreatment.lean)
 distinguishes the proper-path reading from the literal phrase “all

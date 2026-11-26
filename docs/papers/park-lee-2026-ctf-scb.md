@@ -4,11 +4,19 @@
 
 [Paper index](../paper-checks.md)
 
+> **Verified counterexample** · [Proposition 1, no-conflict test](#the-proceedings-statements) · The test can reject an action with a realizable reward.
+
+> **Verified counterexample** · [Proposition 2, equivalent specifications](#the-proceedings-statements) · Distinct possibly optimal specifications can be equivalent.
+
+> **Verified counterexample** · [Corollary 3 and Theorem 2, empty border](#the-proceedings-statements) · Under the published regime-graph convention, a dominated action can have an empty border.
+
 The independent [Lean package](../../analysis/ctf-scb/README.md) checks selected
 statements from *Counterfactual Structural Causal Bandits*, ICLR 2026. Its source
 is the proceedings PDF with SHA-256
 `4f50fd16f223ca4a5bd008c10872d81aecab6b5007a9df68eee0049a1ab6f72d`.
 [Proceedings](https://proceedings.iclr.cc/paper_files/paper/2026/hash/da80970c6ca6967f2a4de6f2e13c4bae-Abstract-Conference.html)
+
+## The proceedings statements
 
 The [proceedings checks](../../analysis/ctf-scb/MecLean/CtfScb/ICLR.lean) show
 that the no-conflict test in Proposition 1 can fail for an action whose reward
