@@ -492,3 +492,14 @@ open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
 #print axioms OpenCausalScience.Moralization.Query.mem_moralNeighbors_iff
 #print axioms OpenCausalScience.Moralization.Query.mem_moralVisited_iff
 #print axioms OpenCausalScience.Moralization.Query.dagMoralSeparated_eq_true_iff
+
+#print axioms OpenCausalScience.MixedGraph.reachable_iff_active_walk
+#print axioms OpenCausalScience.MixedGraph.ActiveWalk.to_simple
+#print axioms OpenCausalScience.MixedGraph.walkConnected_iff_pathConnected
+#print axioms OpenCausalScience.MixedGraph.mem_ancestorVertices_iff
+#print axioms OpenCausalScience.MixedGraph.mem_seedArrivals_iff
+#print axioms OpenCausalScience.MixedGraph.mem_nextArrivals_iff
+#print axioms OpenCausalScience.MixedGraph.mem_visitedArrivals_iff
+#print axioms OpenCausalScience.MixedGraph.m_separated_iff_no_walk
+#print axioms OpenCausalScience.MixedGraph.m_separated_iff_no_path
+#print axioms OpenCausalScience.MixedGraph.walk_connected_iff_discovered_target

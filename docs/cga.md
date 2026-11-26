@@ -5,7 +5,7 @@ These records relate CGA operations to the published statements and Lean results
 | CGA operation | Published statement or example | What Lean checks |
 | --- | --- | --- |
 | `d_separated`, `d_separated_sets` | Ancestral moralization and the active-path criterion. | On finite DAGs, deleting the conditioning set from the ancestral moral graph separates the query sets exactly when no active simple path joins them. The query sets are disjoint from the conditioning set. Lean also proves the Boolean ancestral-moral traversal implements this criterion. CGA uses the same reduction with undirected reachability. [Theorem 35](papers/perkovic-et-al-2018-dag-adjustment.md#ancestral-moralization) · [Bayes-ball worklist](papers/shachter-1998-bayes-ball.md) |
-| `m_separated` | Richardson–Spirtes (2002), §3.4 and Figure 9. | Exact enumeration for simple endpoint-marked graph paths, and equality of separation signatures for the two graphs in Figure 9. The reference allows one edge per pair and includes undirected edges. [Mixed graphs](papers/richardson-spirtes-2002-ancestral-graphs.md) |
+| `m_separated`, `m_separated_sets` | The active edge-path criterion for ancestral graphs and ADMGs. | On finite mixed graphs with the stated endpoint restriction, the incoming-arrowhead search returns separation exactly when no vertex-simple active path joins the query sets. Distinct directed and bidirected edges stay distinct on a bow. [Worklist theorem and scope](papers/richardson-spirtes-2002-ancestral-graphs.md#arrival-state-search) |
 | `find_m_separator`, `find_minimal_m_separator` | Van der Zander, Liśkiewicz and Textor (2019), 2023 corrigendum, and [van der Zander and Liśkiewicz, FindMinSep, Proposition 5.2](https://proceedings.mlr.press/v115/van-der-zander20a.html). | The parent-pair count for the augmentation loop analyzed by the authors. CGA uses its own augmentation and boundary search. [Corrected loop analysis](papers/van-der-zander-et-al-2019-ancestral-graphs.md) |
 | `adjustment_set_is_valid`, `find_adjustment_set`, `find_minimal_adjustment_set` | Perković et al. (2018), Definitions 3 and 6. | On finite DAGs, first-arrow reachability computes the forbidden set and deletes exactly the proper back-door edges. The Witte et al. cases check specific adjustments or projections. [DAG construction](papers/perkovic-et-al-2018-dag-adjustment.md) · [Figure 2B](papers/witte-et-al-2020-efficient-adjustment.md#figure-2b) · [Figure 2F](papers/witte-et-al-2020-efficient-adjustment.md#figure-2f) |
 | `dag_markov_equivalent` | Verma–Pearl (1990), Lemmas 1–2 and Theorem 1. | Equal d-separation implies a matching skeleton and set of unshielded colliders. A signature mismatch yields a distinguishing query. [DAG equivalence](papers/verma-pearl-1990-dag-equivalence.md) |
@@ -41,4 +41,25 @@ The [CGA comparison](https://github.com/snu-causality-lab/cga/blob/v0.2.0a1/test
 
 ```sh
 python tests/compare_lean_dseparation.py /path/to/d-separation.json
+```
+
+## Compare the mixed-graph arrival search
+
+The exporter enumerates the 64 three-vertex ADMGs in one fixed topological
+order, the 72 three-vertex ancestral graphs, and two four-vertex graphs.
+The four-vertex inputs exercise a bow and collider descendants, and an
+ancestral graph with an undirected edge. It evaluates every legal
+pairwise disjoint set query with nonempty endpoints on each graph.
+
+```sh
+lake env lean replay/MixedSeparation.lean > mixed-separation.json
+```
+
+From the CGA checkout with the [v0.2.0a1 wheel](https://github.com/snu-causality-lab/cga/releases/tag/v0.2.0a1)
+installed, run the [mixed-graph comparison script](https://github.com/snu-causality-lab/cga/blob/main/tests/compare_lean_mixed_separation.py).
+It compares the Lean output with the public `m_separated_sets` API and with
+an independent oracle that enumerates simple edge-marked paths.
+
+```sh
+python tests/compare_lean_mixed_separation.py /path/to/mixed-separation.json
 ```
