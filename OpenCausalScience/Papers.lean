@@ -118,3 +118,5 @@ public import OpenCausalScience.Papers.ZhangSpirtes2005.LegitimateMarkChange
 public import OpenCausalScience.Papers.ZhangSpirtes2005.MarkChangeSeparation
 public import OpenCausalScience.Papers.ZhangSpirtes2005.MarkChangeMarkedGraph
 public import OpenCausalScience.Papers.ZhangSpirtes2005.ReversalCriterion
+public import OpenCausalScience.Papers.ShpitserPearl2006Conditional.Figure1C
+public import OpenCausalScience.Papers.Tian2004.ExactConditionalDecision

@@ -66,4 +66,5 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 - [Shpitser (2023), hedges for the exact query](papers/shpitser-2023-id-failure.md)
 - [Shpitser and Pearl (2006), conditional interventional identification](papers/shpitser-pearl-2006-conditional-idc.md)
 - [Shpitser and Pearl (2006), joint interventional identification](papers/shpitser-pearl-2006-joint-id.md)
+- [Tian (2004), identification of conditional causal effects](papers/tian-2004-conditional-effects.md)
 - [Tian and Pearl (2003), generalized Q-decomposition](papers/tian-pearl-2003-q-decomposition.md)

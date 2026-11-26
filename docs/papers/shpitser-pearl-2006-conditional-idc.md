@@ -27,18 +27,28 @@ cellwise independence used by Rule 2 are premises.
 - `single_exchange_then_normalize` proves the denominator is positive
   and that the resulting quotient equals the original conditional cell.
 
-Choosing all applicable exchanges, deriving Rule 2's premises in a
-general latent-variable model, and IDC completeness require further
-results.
+The [Tian companion](tian-2004-conditional-effects.md#failure-agreement-with-idc)
+checks the graph-level result of exhausting all Rule 2 exchanges.
 
-## Published correction and later hedge criterion
+## Figure 1(c) and the 2007 Appendum
 
 Shpitser's May 2007 UCLA Appendum withdraws §6 Lemma 3's claim that
 Tian's `cond-identify` is unsound. It attributes the claim to a notation
-misunderstanding and presents a completeness proof. Its Theorem 1 proof
-uses the back-door hedge criterion, so that dependency merits rechecking
-against the exact-query result before claiming a full validation of the
-Appendum's proof. [UCLA R-329-APPENDUM](https://ftp.cs.ucla.edu/pub/stat_ser/r329-appendum.pdf)
+misunderstanding and presents a completeness proof using the back-door
+hedge criterion. [UCLA R-329-APPENDUM](https://ftp.cs.ucla.edu/pub/stat_ser/r329-appendum.pdf)
+
+[Figure1C.lean](../../OpenCausalScience/Papers/ShpitserPearl2006Conditional/Figure1C.lean)
+replays the two algorithms on the graph with `X → Z`, `X ↔ Z`,
+`W → Y`, and `Y → Z`. In the disputed query `Pₓ(w | z)`, the failed
+district `{Z}` uses `Y`, the sole summed variable. Tian's `Pa({Y})`
+includes `Y` itself, so Phase 3 pulls in `{Y}`. That factor also uses
+`W`, making Phase 4 return `FAIL`. For the companion query `Pₓ(y | z)`,
+the failed factor on `{Z}` already uses the outcome `Y`.
+IDC cannot exchange `Z` in either query. Joint ID returns failure on
+the induced pair `{X,Z}` and `{Z}` in both cases. [UAI 2006, Figure 1(c) and §6 Lemma 3](https://ftp.cs.ucla.edu/pub/stat_ser/r329-uai.pdf) ·
+[Tian (2004), Figure 3](https://arxiv.org/pdf/1207.4161#page=7)
+
+## Later hedge criterion
 
 UAI Corollary 2 invokes the earlier arbitrary-subquery hedge condition.
 The UAI definitions allow the conditioning set to be empty. In that
