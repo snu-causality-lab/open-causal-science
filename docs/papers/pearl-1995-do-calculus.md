@@ -51,3 +51,30 @@ This graph condition uses separation in the entire remaining skeleton
 and conditions only on observed roots. Pearl's theorem allows general
 d-separation, including paths blocked by collider structure and
 conditioning on nonroots.
+
+## Arbitrary d-separation in a factorized finite cut regime
+
+[RuleTwoMoralization.lean](../../OpenCausalScience/Papers/Pearl1995/RuleTwoMoralization.lean)
+uses all ancestors of the natural exchange responses, set outcomes, and
+set covariates. A coordinate belongs to a factor if it is the factor's
+vertex or a parent of that vertex. The unconditioned coordinates of a
+factor form a clique in the ancestral moral graph. Lean places each such
+factor on one side of the separation and splits the conditional mass
+into two finite sums. The resulting independence identity applies to
+joint endpoint readouts and arbitrary conditioning vertices, including
+nonroots. The support assumptions enter when the masses are divided.
+
+[AncestralFactorization.lean](../../OpenCausalScience/Papers/Pearl1995/AncestralFactorization.lean)
+derives the ancestor-factor table from the full joint table for
+normalized binary node kernels. At each elimination step it selects a
+highest-ranked remaining nonancestor. The variable is childless in the
+remaining graph, so summing its two values removes its normalized
+factor and preserves all other factors.
+`supported_rule_two_of_factorized_joint` combines this derivation with
+ancestral moralization and action–observation exchange. It takes as
+input an exact factorized joint tabulation of the responses in the
+cut regime, with retained row lists representing the fixed evidence
+cell and readouts using only their declared endpoint coordinates.
+Deriving that tabulation directly from a general structural causal
+model, including the graph construction for earlier and simultaneous
+actions, is a separate probability-model step.

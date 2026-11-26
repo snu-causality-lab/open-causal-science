@@ -54,6 +54,14 @@ the number of retained vertices.
 `ancestors_eq_current_of_no_decrease` proves that a step with no decrease
 has reached the full current ancestor set.
 
+[IdentifyFixing.lean](../../OpenCausalScience/Papers/TianPearl2003/IdentifyFixing.lean)
+connects the first graph step to fixing. Given a topological ranking of
+the directed edges, `fixing_order_to_ancestors` finds a valid graphical
+fixing order that removes exactly the nonancestors. Each step fixes a
+highest-ranked remaining nonancestor, whose directed descendants all
+remain nonancestors. The district-extraction step and the effect of
+fixing on a probability kernel require separate results.
+
 [IdentifyCorrectness.lean](../../OpenCausalScience/Papers/TianPearl2003/IdentifyCorrectness.lean)
 executes the plan using kernel operations.
 `successful_plan_returns_target` proves that every successful execution

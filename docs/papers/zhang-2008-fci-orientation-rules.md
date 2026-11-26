@@ -22,4 +22,16 @@ The theorems quantify over finite ancestral graphs and allow undirected edges. E
 | R9 | `r9_sound` | The uncovered potentially directed path and the noncollider at its start force the directed shortcut. |
 | R10 | `r10_sound` | The two uncovered potentially directed paths and their unshielded noncollider at the common start force the directed shortcut. |
 
-The unshielded rules use the [proof of unshielded-collider invariance](ali-richardson-spirtes-2009-mag-equivalence.md) to transfer R0 information across the equivalence class. R4 proves the separator property from m-separation. The proof of the full FCI procedure also requires correctness of skeleton and separator discovery, and the mark completions in §4 that show every remaining circle can vary. [Edge rules](../../OpenCausalScience/Papers/Zhang2008OrientationRules/Orientations.lean) · [Unshielded paths](../../OpenCausalScience/Papers/Zhang2008OrientationRules/UnshieldedPaths.lean) · [Discriminating paths](../../OpenCausalScience/Papers/Zhang2008OrientationRules/DiscriminatingPaths.lean)
+The unshielded rules use unshielded-collider invariance to transfer R0 information across the equivalence class. R4 proves the separator property from m-separation. [Unshielded-collider invariance](ali-richardson-spirtes-2009-mag-equivalence.md) · [Edge rules](../../OpenCausalScience/Papers/Zhang2008OrientationRules/Orientations.lean) · [Unshielded paths](../../OpenCausalScience/Papers/Zhang2008OrientationRules/UnshieldedPaths.lean) · [Discriminating paths](../../OpenCausalScience/Papers/Zhang2008OrientationRules/DiscriminatingPaths.lean)
+
+## Chordality of the remaining circle graph
+
+The proof follows the chordality argument in Lemma 3 of Zhang's UAI 2007 paper, a precursor to the 2008 article. It permits undirected edges and tail–circle edges. P1 excludes arrowheads on adjacencies within a circle component, the tail–circle propagation clause of P3 excludes tail–circle edges there, and R6 excludes undirected edges that meet a circle endpoint. Consequently, a cycle with no circle chord has no skeleton chord and would still trigger R5. [UAI paper](https://arxiv.org/abs/1206.5282)
+
+| Lean declaration | Statement checked |
+| --- | --- |
+| `CircleStructure.tail_circle_source_outside` | A tail–circle edge has endpoints in different circle components under the stated P3 clause. |
+| `CircleStructure.adjacent_in_circle_component` | An adjacency within a circle component is a circle edge under P1, the P3 clause, and R6 closure. |
+| `CircleStructure.chordal_of_r5_closed` | R5 closure then makes the remaining circle graph chordal. |
+
+The proof takes the named structural and closure properties as hypotheses. The full FCI proof also requires correctness of skeleton and separator discovery, the derivation of the structural properties, and the completion arguments that show each remaining circle can vary among compatible MAGs. [Lean source](../../OpenCausalScience/Papers/Zhang2008OrientationRules/CircleStructure.lean)

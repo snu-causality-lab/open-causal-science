@@ -87,3 +87,16 @@ public import OpenCausalScience.Papers.WangQinZhou2023.LocalTransformation
 public import OpenCausalScience.Papers.Zhang2008OrientationRules.DiscriminatingPaths
 public import OpenCausalScience.Papers.Zhang2008OrientationRules.UnshieldedPaths
 public import OpenCausalScience.Papers.VermaPearl1990.Equivalence
+public import OpenCausalScience.Papers.Chickering2002.CliqueExtensions
+public import OpenCausalScience.Papers.Chickering2002.InsertBlocking
+public import OpenCausalScience.Papers.Chickering2002.OperatorTests
+public import OpenCausalScience.Papers.Meek1995.JoinTreeOrientation
+public import OpenCausalScience.Papers.Meek1995.ChainComponents
+public import OpenCausalScience.Papers.Pearl1995.RuleTwoMoralization
+public import OpenCausalScience.Papers.Pearl1995.AncestralFactorization
+public import OpenCausalScience.Papers.PerkovicEtAl2018.PAGNoncausality
+public import OpenCausalScience.Papers.TianPearl2003.IdentifyFixing
+public import OpenCausalScience.Papers.WangQinZhou2023.CircleChordality
+public import OpenCausalScience.Papers.WangQinZhou2023.CircleUpdates
+public import OpenCausalScience.Papers.WangQinZhou2023.Step2CircleSafety
+public import OpenCausalScience.Papers.Zhang2008OrientationRules.CircleStructure

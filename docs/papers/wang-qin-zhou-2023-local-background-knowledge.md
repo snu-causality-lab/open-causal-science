@@ -39,8 +39,24 @@ The local knowledge fixes all circle endpoints at one vertex. The Lean statement
 
 These results give the invariance arguments for Steps 1 and 2 and explain why the same Step 2 edge cannot receive opposite demands when the knowledge is correct. [Lean source](../../OpenCausalScience/Papers/WangQinZhou2023/LocalTransformation.lean)
 
+## Circle chordality after the local updates
+
+In Lemma 14, the active region consists of possible descendants reachable without passing through a selected vertex, excluding the treatment itself. The proof in Lean orders the two local `F` sets by inclusion on each active circle edge. A strict inclusion forces a direction in each compatible MAG, and the same direction can propagate through an unshielded triple. On a circle edge that survives the updates, the two sets must therefore agree.
+
+To preserve chordality, the proof takes a shortest old chord of a cycle of remaining circles. Such a chord spans two steps along the cycle. The two remaining circle edges in the triangle rule out either direction for the chord. The proof traces each propagation demand back to the strict inclusion that generated it. It uses the fact that a directed two-edge chain cannot have a residual circle shortcut. For Step 2 this follows directly from the old MAG class, because the propagation predecessor would create a new unshielded collider in a compatible MAG. The triangle argument also proves the case of Lemma 15 where all three edges started as circles, one has been directed, and a second remains a circle.
+
+| Source | Lean declaration | Statement checked |
+| --- | --- | --- |
+| Lemmas 3 and 14 | `CircleChordality.adjacent_in_circle_component` | In a PMG satisfying Balanced and R11, any adjacency within a circle component is a circle edge. |
+| Lemmas 7 and 11 | `CircleUpdates.step2_sound`, `CircleUpdates.comparable_on_active_circles` | Every Step 2 demand holds in any compatible MAG. Differences in both directions would demand opposite marks, so the `F` sets are comparable. |
+| Lemma 13 | `Step2CircleSafety.no_step2_chain_with_circle_shortcut` | In the active region, two Step 2 directions cannot have a residual circle shortcut. This checks the R2 configuration with three original circles. |
+| Lemma 14 | `CircleChordality.no_directed_chord_of_residual_two_step`, `Step2CircleSafety.chordal_from_retained_circles` | The triangle obstruction gives circle chordality under prior chordality, the stated assumptions on the input class, and the correspondence between final circles and the Step 2 residual graph. |
+| Lemma 15 | `CircleChordality.step2_head_along_residual` | Within an original circle triangle in the active region, the new head propagates along a residual circle edge. |
+
+The chordality theorem assumes that final circle edges stay within either the active region or the unchanged region, and that the active circle edges are exactly those left by Step 2. Establishing these conditions from the complete Algorithm 1 transition still requires the remaining Step 3 preservation cases in Lemma 13. [Circle chordality proof](../../OpenCausalScience/Papers/WangQinZhou2023/CircleChordality.lean), [Algorithm 1 instantiation](../../OpenCausalScience/Papers/WangQinZhou2023/CircleUpdates.lean), [Step 2 triangle argument](../../OpenCausalScience/Papers/WangQinZhou2023/Step2CircleSafety.lean)
+
 ## Modified discriminating-path rule
 
 Proposition 1 replaces FCI's R4 with R′4 for local background knowledge. `exists_minimal_collider_subpath` proves that any collider path contains a minimal collider subsequence with the same endpoints. `r4_prime_sound` proves R′4 given the initial PAG's definite arrowheads on minimal collider paths, using the implication from [Zhao, Zheng and Liu's Theorem 2.1](https://files.sciengine.com/pdfs/1006-9283/RwHHFBSrAywG9iMad.pdf) and initial PAG completeness as an explicit premise. If the final edge were bidirected, every earlier possible predecessor of its endpoint would have a tail pointing to that endpoint. The minimal collider subsequence must therefore still contain the discriminated vertex as its last interior collider, forcing a head where the current graph has a circle. [Lean source](../../OpenCausalScience/Papers/WangQinZhou2023/DiscriminatingRule.lean)
 
-Establishing the full output of Theorem 1 still requires correspondence with Algorithm 1's saturation and propagation, and proof that its updated PMG satisfies Chordal, Balanced and Complete. In particular, the MAG constructions in Lemmas 16.1 and 16.2 remain separate.
+Theorem 1 still requires correspondence with Algorithm 1's saturation and propagation, the remaining Balanced cases, and the Complete witnesses. The latter include the MAG constructions in Lemmas 16.1 and 16.2.
