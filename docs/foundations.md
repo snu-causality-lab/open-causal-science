@@ -32,3 +32,63 @@ The [Lean cases](../OpenCausalScience/Examples/DSeparation.lean) check d-separat
 
 1. **Ancestral graphs and MAG equivalence.** Extend path separation to m-separation. Start by checking one inducing-path or marginalization example, then introduce maximal ancestral graphs (MAGs) and the characterization by adjacencies and colliders with order. Ancestral graphs representing selection can include undirected edges. State the allowed edge types for each example. [Richardson and Spirtes, 2002](https://www.cmu.edu/dietrich/philosophy/docs/spirtes/annals2002.pdf) · [Ali, Richardson, and Spirtes, 2009, Theorem 3.7](https://www.cmu.edu/dietrich/philosophy/docs/spirtes/AOS626.pdf)
 2. **PAGs and Fast Causal Inference (FCI).** Define a partial ancestral graph by the invariant endpoint marks of a MAG equivalence class. Start with orienting an unshielded collider from an oracle separating set, then study a discriminating-path example. Zhang's completeness result concerns invariant marks under the stated causal assumptions, allowing latent confounding and selection bias. Ancestral-graph do-calculus is a later identification topic. [Spirtes, Meek, and Richardson, UAI, 1995](https://www.microsoft.com/en-us/research/publication/causal-inference-in-the-presence-of-latent-variables-and-selection-bias/) · [Jiji Zhang, Artificial Intelligence, 2008](https://doi.org/10.1016/j.artint.2008.08.001) · [Jiji Zhang, JMLR, 2008](https://www.jmlr.org/papers/v9/zhang08a.html)
+
+## Experiment design and interventional equivalence
+
+The arrows show how the research question changes or which graph result the
+next formalization reuses.
+
+```mermaid
+flowchart LR
+  ID["Shpitser–Pearl 2006 / ID hedges"] -->|Choose a regime that hits the hedges| AK["Akbari et al. 2022, extended 2025"]
+  AK -->|Design an experiment that permits adjustment| EL["Elahi et al. 2024"]
+  MEC["Verma–Pearl 1990 / DAG equivalence"] -->|Compare perfect-intervention cut graphs| HB["Hauser–Bühlmann 2012"]
+  HB -->|Distinguish every DAG of a given skeleton| KD["Kocaoglu et al. 2017"]
+  HB -->|Optimize directions resolved by singleton experiments| GH["Ghassami et al. 2018"]
+  MEC -->|Enumerate possible parents within one observational class| IDA["Maathuis et al. 2009 / IDA"]
+  IDA -->|Require the parent choices to share a DAG| JIDA["Nandy et al. 2017 / joint-IDA"]
+```
+
+The effect-specific line starts with a known graph and a target query.
+The [minimum-cost district companion](papers/akbari-et-al-2025-optimal-experiment-design.md)
+checks how a single experiment resolves the hedges and which targets are
+optimal in the worked example. The adjustment-based design of Elahi et al.
+inherits the proxy experiment problem from the ICML version.
+[Elahi et al., §1 and §4](https://papers.nips.cc/paper/2024/file/5bd9fbb3a5a985f80c16ddd0ec1dfc43-Paper-Conference.pdf)
+
+The structure-learning line starts with candidates for the unknown graph.
+The [cut-graph companion](papers/hauser-buhlmann-2012-interventional-equivalence.md)
+gives the graph-level equivalence criterion. The
+[minimum-cost skeleton companion](papers/kocaoglu-et-al-2017-cost-optimal-graph-learning.md)
+checks when a design distinguishes every orientation and derives its cost
+from vertex covers. The [budgeted orientation companion](papers/ghassami-et-al-2018-budgeted-experiment-design.md)
+proves that the number of resolved directions increases when more singleton
+experiments become available. Interventional essential-graph characterization
+and budgeted submodularity remain proof targets.
+
+The [IDA](papers/maathuis-kalisch-buhlmann-2009-ida.md) and
+[joint-IDA](papers/nandy-maathuis-richardson-2017-joint-ida.md) companions
+use one observational CPDAG. They show how compatible parent sets describe
+the available effect calculations as the representative DAG varies.
+
+## Missing data and single-world graphs
+
+The [single-world intervention graph companion](papers/richardson-robins-2013-swig.md)
+checks the graph split, path maps and fixed-label rules. The next step
+connects these rules to the probability factorization. The
+[missing-data companion](papers/nabi-et-al-2020-missing-data-full-law.md)
+uses a positive binary counterpair to check how self-censoring can prevent
+recovery of both the full law and the target law. Colluding paths and the
+general identification functional remain proof targets.
+
+## Linear graphical models
+
+The [trek separation companion](papers/sullivant-et-al-2010-trek-separation.md)
+proves the graph reduction to two-copy reachability. The
+[one-factor tetrad companion](papers/silva-et-al-2006-linear-latent-structure.md)
+derives the covariance equality for four distinct indicators with
+uncorrelated measurement errors. The
+[half-trek paper companion](papers/foygel-et-al-2012-half-trek-criterion.md)
+checks two instrumental-variable coefficient ratios. The general
+covariance rank theorem, half-trek witnesses and clustering guarantee
+remain proof targets.

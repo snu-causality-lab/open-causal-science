@@ -25,6 +25,8 @@ We develop these formalizations to reuse results from the causal graph literatur
 | [Shpitser and Pearl (2006) · UAI §6, Lemma 3](papers/shpitser-pearl-2006-conditional-idc.md#figure-1c-and-the-2007-appendum) | **Author correction** · The 2007 Appendum withdraws the claim that Tian’s conditional identification procedure is unsound. |
 | [Shpitser and Pearl (2006) · AAAI Corollary 3](papers/shpitser-pearl-2006-joint-id.md#the-hedge-criterion) | **Author correction** · The 2023 note replaces the arbitrary-subquery hedge condition with a criterion for the exact query. |
 | [Van der Zander, Liśkiewicz and Textor (2019, 2023) · Lemma 2, step 4 complexity](papers/van-der-zander-et-al-2019-ancestral-graphs.md#step-4-complexity) | **Author correction** · The corrigendum revises the bound for the explicit parent-pair loop. Its check count can grow cubically. |
+| [Akbari, Etesami and Kiyavash (2025) · Definition 5 and Algorithm 1](papers/akbari-et-al-2025-optimal-experiment-design.md#hedge-hull-with-no-proper-hedge) | **Verified discrepancy** · The algorithm returns the target when the union of proper hedges is empty. |
+| [Ghassami, Salehkaleybar, Kiyavash and Bareinboim (2018) · Lemma 1, inequality direction](papers/ghassami-et-al-2018-budgeted-experiment-design.md#the-printed-inequality) | **Verified discrepancy** · The main text reverses the inequality. Supplementary Appendix B proves the increasing direction. |
 | [Kivva et al. (2022) · Example 2, two probabilities](papers/kivva-et-al-2022-general-identifiability.md#the-two-printed-probabilities) | **Verified discrepancy** · The printed probabilities are twice the exact cell masses. The two models still disagree on the target. |
 | [Witte et al. (2020) · Figure 2F, projected arrows](papers/witte-et-al-2020-efficient-adjustment.md#figure-2f) | **Verified discrepancy** · The printed projection contains two extra arrows. The panel’s adjustment conclusion still follows. |
 
@@ -52,6 +54,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 ## Counterfactual identification
 
 - [Correa, Lee and Bareinboim (2021), nested counterfactual identification](papers/correa-lee-bareinboim-2021-counterfactual-identification.md)
+- [Richardson and Robins (2013), single-world intervention graphs](papers/richardson-robins-2013-swig.md)
 - [Shpitser and Pearl (2008), counterfactual identification](papers/shpitser-pearl-2008-counterfactual-id.md)
 
 ## Discovery
@@ -64,11 +67,20 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Wienöbst, Bannach and Liśkiewicz (2021), consistent PDAG extensions](papers/wienobst-bannach-liskiewicz-2021-pdag-extension.md)
 - [Zhang (2008), FCI orientation rules](papers/zhang-2008-fci-orientation-rules.md)
 
+## Experimental design
+
+- [Akbari, Etesami and Kiyavash (2025), optimal experiment design](papers/akbari-et-al-2025-optimal-experiment-design.md)
+- [Ghassami, Salehkaleybar, Kiyavash and Bareinboim (2018), budgeted experiment design](papers/ghassami-et-al-2018-budgeted-experiment-design.md)
+- [Hauser and Bühlmann (2012), interventional Markov equivalence](papers/hauser-buhlmann-2012-interventional-equivalence.md)
+- [Kocaoglu, Dimakis and Vishwanath (2017), cost-optimal learning of causal graphs](papers/kocaoglu-et-al-2017-cost-optimal-graph-learning.md)
+
 ## Graph equivalence
 
 - <a name="ali-richardson-and-spirtes-2009-mag-equivalence"></a>[Ali, Richardson and Spirtes (2009), MAG equivalence](papers/ali-richardson-spirtes-2009-mag-equivalence.md)
 - [Andersson, Madigan and Perlman (1997), essential graphs](papers/andersson-madigan-perlman-1997-essential-graphs.md)
 - [Chickering (1995), covered edge reversal](papers/chickering-1995-covered-reversals.md)
+- [Maathuis, Kalisch and Bühlmann (2009), local IDA](papers/maathuis-kalisch-buhlmann-2009-ida.md)
+- [Nandy, Maathuis and Richardson (2017), joint-IDA](papers/nandy-maathuis-richardson-2017-joint-ida.md)
 - <a name="verma-and-pearl-1990-dag-equivalence"></a>[Verma and Pearl (1990), DAG equivalence](papers/verma-pearl-1990-dag-equivalence.md)
 - [Zhang (2008), Causal Reasoning with Ancestral Graphs](papers/zhang-2008-causal-reasoning.md)
 - [Zhang and Spirtes (2005), legitimate mark changes in directed MAGs](papers/zhang-spirtes-2005-legitimate-mark-changes.md)
@@ -96,6 +108,16 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Shpitser and Pearl (2006), joint interventional identification](papers/shpitser-pearl-2006-joint-id.md)
 - [Tian (2004), identification of conditional causal effects](papers/tian-2004-conditional-effects.md)
 - [Tian and Pearl (2003), generalized Q-decomposition](papers/tian-pearl-2003-q-decomposition.md)
+
+## Linear graphical models
+
+- [Foygel, Draisma and Drton (2012), the half-trek criterion](papers/foygel-et-al-2012-half-trek-criterion.md)
+- [Silva, Scheines, Glymour and Spirtes (2006), linear latent structure](papers/silva-et-al-2006-linear-latent-structure.md)
+- [Sullivant, Talaska and Draisma (2010), trek separation](papers/sullivant-et-al-2010-trek-separation.md)
+
+## Missing data
+
+- [Nabi, Bhattacharya and Shpitser (2020), full-law identification with missing data](papers/nabi-et-al-2020-missing-data-full-law.md)
 
 ## Path-specific effects
 
