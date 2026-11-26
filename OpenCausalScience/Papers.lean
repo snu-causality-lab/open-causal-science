@@ -131,3 +131,10 @@ public import OpenCausalScience.Papers.ShpitserPearl2008.Figure9Trace
 public import OpenCausalScience.Papers.ShpitserPearl2008.WGraph
 public import OpenCausalScience.Papers.ShpitserTchetgenTchetgen2016.Figure2A
 public import OpenCausalScience.Papers.MalinskyEtAl2019.ExtendedGraph
+public import OpenCausalScience.Papers.BareinboimTianPearl2014.Figures
+public import OpenCausalScience.Papers.BareinboimTian2015.Figure3
+public import OpenCausalScience.Papers.BareinboimTian2015.Figure5
+public import OpenCausalScience.Papers.CorreaTianBareinboim2018.Figure2Recovery
+public import OpenCausalScience.Papers.CorreaTianBareinboim2018.JointTreatment
+public import OpenCausalScience.Papers.CorreaTianBareinboim2019.Figure2B
+public import OpenCausalScience.Papers.CorreaTianBareinboim2019.GraphCases

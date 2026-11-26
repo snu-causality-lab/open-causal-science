@@ -80,3 +80,10 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 - [Malinsky, Shpitser and Richardson (2019), conditional path-specific effects](papers/malinsky-shpitser-richardson-2019-conditional-path-effects.md)
 - [Shpitser (2013), recanting districts in longitudinal mediation](papers/shpitser-2013-longitudinal-mediation.md)
 - [Shpitser and Tchetgen Tchetgen (2016), a graphical hierarchy of interventions](papers/shpitser-tchetgen-tchetgen-2016-intervention-hierarchy.md)
+
+## Selection recovery
+
+- [Bareinboim and Tian (2015), causal effect recovery from selection bias](papers/bareinboim-tian-2015-selection-recovery.md)
+- [Bareinboim, Tian and Pearl (2014), recovery from selection bias](papers/bareinboim-tian-pearl-2014-selection-recovery.md)
+- [Correa, Tian and Bareinboim (2018), adjustment under confounding and selection](papers/correa-tian-bareinboim-2018-selection-adjustment.md)
+- [Correa, Tian and Bareinboim (2019), causal identification under selection](papers/correa-tian-bareinboim-2019-selection-identification.md)
