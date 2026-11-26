@@ -19,11 +19,13 @@ variable {n : Nat}
 
 abbrev Vertices (n : Nat) := List (Fin n)
 
+def advance (edge : Fin n → Fin n → Bool) (current visited : Vertices n) : Vertices n :=
+  current.filter fun v => visited.contains v || visited.any (fun u => edge u v)
+
 def close (edge : Fin n → Fin n → Bool) (current visited : Vertices n) :
     Nat → Vertices n
   | 0 => visited
-  | rounds + 1 => close edge current
-      (current.filter fun v => visited.contains v || visited.any (fun u => edge u v)) rounds
+  | rounds + 1 => close edge current (advance edge current visited) rounds
 
 def ancestors (graph : MixedGraph n) (current target : Vertices n) : Vertices n :=
   let reverseArrow u v := graph.edge v false u true

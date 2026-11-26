@@ -165,29 +165,36 @@ inductive ReversalSequence (target : DAG n) : DAG n → Prop
   | next {D E u v} : DifferingEdge D target u v → Reversal D E u v →
       ReversalSequence target E → ReversalSequence target D
 
-/-- For two DAGs with the same d-separations, covered reversals of
-differing orientations suffice to reach the target edge function. -/
-theorem reversal_sequence (same : SameDConnections G H) : ReversalSequence H G := by
+/-- Equality of skeletons and of the locations of unshielded colliders. -/
+def SameSignature (G H : DAG n) : Prop :=
+  (∀ u v, Adjacent G u v ↔ Adjacent H u v) ∧
+  (∀ u v w, UnshieldedCollider G u v w ↔ UnshieldedCollider H u v w)
+
+/-- The edge-selection argument needs only the common skeleton and
+unshielded colliders. Each step preserves those features by the
+covered-reversal theorem and the necessary direction of Verma–Pearl. -/
+theorem reversal_sequence_of_same_signature (same : SameSignature G H) : ReversalSequence H G := by
   suffices aux : ∀ k (D : DAG n), (arrows n).countP (differs D H) = k →
-      SameDConnections D H → ReversalSequence H D by
+      SameSignature D H → ReversalSequence H D by
     exact aux _ G rfl same
   intro k
   induction k using Nat.strongRecOn with
   | ind k ih =>
-    intro D count sameD
-    have sk := sameSkeleton_of_sameDConnections sameD
+    intro D count ⟨sk, col⟩
     by_cases existsDiff : ∃ a b, DifferingEdge D H a b
     · obtain ⟨a,b,selected,firstHead,lastParent⟩ := choose_find_edge existsDiff
-      have parents := parents_of_find_edge sk (sameUnshieldedColliders_of_sameDConnections sameD)
-        selected firstHead lastParent
+      have parents := parents_of_find_edge sk col selected firstHead lastParent
       let E := Reversal.flip D a b selected.1 parents
       have step : Reversal D E a b :=
         Reversal.flip_is_covered_reversal D a b selected.1 parents
       have less : (arrows n).countP (differs E H) < k := count ▸
         count_lt (fun _ => new_differences step selected) (mem_arrows (a,b))
           ((differs_iff _).mpr selected) (selected_is_removed step)
+      have kept := sameSkeleton_and_sameUnshieldedColliders_of_sameDConnections
+        (sameDConnections_of_reversal step)
       apply ReversalSequence.next selected step
-      exact ih _ less E rfl (fun C x y => (sameDConnections_of_reversal step C x y).symm.trans (sameD C x y))
+      exact ih _ less E rfl ⟨fun x y => (kept.1 x y).symm.trans (sk x y),
+        fun x y z => (kept.2 x y z).symm.trans (col x y z)⟩
     · apply ReversalSequence.done
       funext x y
       apply Bool.eq_iff_iff.mpr
@@ -200,6 +207,11 @@ theorem reversal_sequence (same : SameDConnections G H) : ReversalSequence H G :
         rcases (sk x y).mpr (.inl xy) with h | h
         · exact h
         · exact (existsDiff ⟨y,x,h,xy⟩).elim
+
+/-- Equivalent DAGs can be connected by covered reversals of differing
+orientations that reach the target edge function. -/
+theorem reversal_sequence (same : SameDConnections G H) : ReversalSequence H G :=
+  reversal_sequence_of_same_signature (sameSkeleton_and_sameUnshieldedColliders_of_sameDConnections same)
 
 end
 end OpenCausalScience.Papers.Chickering1995.Transformation

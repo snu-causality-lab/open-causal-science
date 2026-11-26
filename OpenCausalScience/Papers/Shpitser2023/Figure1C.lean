@@ -1,5 +1,5 @@
 module
-public import OpenCausalScience.Papers.TianPearl2003.IdentifyRecurrence
+public import OpenCausalScience.Papers.Shpitser2023.FixedPointObstruction
 
 /-! # Applying the hedge criterion to the exact query
 
@@ -17,6 +17,7 @@ namespace OpenCausalScience.Papers.Shpitser2023.Figure1C
 @[expose] public section
 
 open TianPearl2003.IdentifyRecurrence
+open FixedPointObstruction
 
 /-- The latent projection in Figure 1(c), with vertex order A₁, W, A₂, Y. -/
 def markedEdge (u : Fin 4) (atU : Bool) (v : Fin 4) (atV : Bool) : Bool :=
@@ -54,6 +55,19 @@ theorem strict_subquery_trace :
     identifyPlan graph [1, 3] 3 sourceComponent = [.ancestorFixedPoint [1, 2, 3]] := by
   rw [identifyPlan]
   decide +kernel
+
+theorem strict_subquery_target_not_reachable :
+    ¬ FixingOrder graph [1, 3] (List.finRange 4) [1, 3] := by
+  apply proper_fixed_point_blocks_target (fixedPoint := sourceComponent)
+  · intro v _
+    exact List.mem_finRange v
+  · intro v member
+    simp only [sourceComponent, List.mem_cons, List.not_mem_nil, or_false] at member ⊢
+    exact member.imp id Or.inr
+  · unfold DistrictConnected
+    decide +kernel
+  · decide +kernel
+  · exact ⟨2, by decide +kernel, by decide +kernel⟩
 
 /-- The private noises of A₁ and Y are independent of the two shared
 roots. The first root can enter W and Y, and the second W and A₂. -/

@@ -2,7 +2,7 @@
 
 <!-- topic: Discovery -->
 
-Tian-Zuo Wang, Tian Qin and Zhi-Hua Zhou, *Sound and complete causal identification with latent variables given local background knowledge*, Artificial Intelligence 322 (2023), 103964. The check uses Theorem 1, p. 5, and Lemmas 2 and 3, p. 17 of the journal article. [Journal article](https://doi.org/10.1016/j.artint.2023.103964)
+Tian-Zuo Wang, Tian Qin and Zhi-Hua Zhou, *Sound and complete causal identification with latent variables given local background knowledge*, Artificial Intelligence 322 (2023), 103964. The check uses Algorithm 1 and Theorem 1, pp. 4–5, and the path and invariance arguments in Appendix B, pp. 17–19 of the journal article. [Journal article](https://doi.org/10.1016/j.artint.2023.103964)
 
 ## Minimal possibly directed paths
 
@@ -23,4 +23,24 @@ The first clause of Theorem 1's Balanced property says that `A *→ B o-* C` imp
 | An arrowhead into one vertex of a circle component propagates to every vertex in that component. | `PMG.arrowhead_into_circle_component` |
 | The source of the arrowhead belongs to a different circle component. | `PMG.source_outside_circle_component` |
 
-The declarations quantify over finite partially marked graphs and state the relevant properties of the input explicitly. They cover Lemmas 2 and 3 from those properties. Algorithm 1's establishment of those properties and the validity criterion for local transformations remain outside this check. [Lean source](../../OpenCausalScience/Papers/WangQinZhou2023/LocalBackgroundKnowledge.lean)
+The declarations quantify over finite partially marked graphs and state the relevant properties of the input explicitly. [Lean source](../../OpenCausalScience/Papers/WangQinZhou2023/LocalBackgroundKnowledge.lean)
+
+## Local updates and descendant sets
+
+The local knowledge fixes all circle endpoints at one vertex. The Lean statements take a compatible no-selection MAG and the tail-witness direction of the preceding PMG's Complete property. Every asserted direction applies to an arbitrary compatible MAG. A witness for an old circle may belong to the preceding class without meeting the new local knowledge.
+
+| Source | Lean declaration | Statement checked |
+| --- | --- | --- |
+| R11 | `r11_sound` | A definite tail forces an arrowhead at the other endpoint under no selection. |
+| Lemma 4 | `possible_descendants_eq_descendants` | The possible descendants after removing the selected vertices are the descendants in each compatible MAG. |
+| Lemma 7, Step 1 | `step1_directs_unselected_edge`, `step1_head_at_descendant` | An unselected circle at the treatment points out, and every selected vertex adjacent to a descendant has a head at the descendant. |
+| Lemma 7, Step 2 | `step2_from_different_f`, `step2_propagates_direction` | The strict difference of the two `F` sets and the unshielded propagation case both force the direction in the compatible class. |
+| Lemmas 9–11 | `selected_vertices_are_adjacent`, `descendant_cannot_be_parent_of_selected`, `no_opposing_demands` | The selected vertices form a clique, their parents exclude the possible descendants, and directions established in a compatible MAG cannot conflict. |
+
+These results give the invariance arguments for Steps 1 and 2 and explain why the same Step 2 edge cannot receive opposite demands when the knowledge is correct. [Lean source](../../OpenCausalScience/Papers/WangQinZhou2023/LocalTransformation.lean)
+
+## Modified discriminating-path rule
+
+Proposition 1 replaces FCI's R4 with R′4 for local background knowledge. `exists_minimal_collider_subpath` proves that any collider path contains a minimal collider subsequence with the same endpoints. `r4_prime_sound` proves R′4 given the initial PAG's definite arrowheads on minimal collider paths, using the implication from [Zhao, Zheng and Liu's Theorem 2.1](https://files.sciengine.com/pdfs/1006-9283/RwHHFBSrAywG9iMad.pdf) and initial PAG completeness as an explicit premise. If the final edge were bidirected, every earlier possible predecessor of its endpoint would have a tail pointing to that endpoint. The minimal collider subsequence must therefore still contain the discriminated vertex as its last interior collider, forcing a head where the current graph has a circle. [Lean source](../../OpenCausalScience/Papers/WangQinZhou2023/DiscriminatingRule.lean)
+
+Establishing the full output of Theorem 1 still requires correspondence with Algorithm 1's saturation and propagation, and proof that its updated PMG satisfies Chordal, Balanced and Complete. In particular, the MAG constructions in Lemmas 16.1 and 16.2 remain separate.

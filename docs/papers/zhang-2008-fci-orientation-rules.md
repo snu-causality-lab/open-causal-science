@@ -2,16 +2,24 @@
 
 <!-- topic: Discovery -->
 
-Jiji Zhang, *On the completeness of orientation rules for causal discovery in the presence of latent confounders and selection bias*, Artificial Intelligence 172 (2008), 1873–1896. The check uses the FCI rules in §3, p. 1879 and the R8 soundness case of Theorem 1, p. 1881. [Journal article](https://doi.org/10.1016/j.artint.2008.08.001)
+Jiji Zhang, *On the completeness of orientation rules for causal discovery in the presence of latent confounders and selection bias*, Artificial Intelligence 172 (2008), 1873–1896. The check uses the FCI rules in §3, pp. 1879–1880 and the augmented rules and Theorem 1 in §4, pp. 1880–1882. [Journal article](https://doi.org/10.1016/j.artint.2008.08.001)
 
-## Soundness of R1, R2 and R8
+## Soundness of the individual orientation rules
 
-The theorems concern one orientation at a time and quantify over finite ancestral graphs. They allow undirected edges and use the ancestral restrictions on arrowheads at undirected vertices and at ancestors.
+The theorems quantify over finite ancestral graphs and allow undirected edges. Each mark conclusion is stated for a compatible fully marked graph, with the fixed marks and the relevant noncollider or discriminating-path information as hypotheses.
 
 | Rule | Lean declaration | Statement checked |
 | --- | --- | --- |
+| R0 | `r0_collider_iff_outside_separator` | An unshielded triple is a collider exactly when its middle vertex lies outside a separating set of its endpoints. |
 | R1 | `r1_sound` | In an unshielded triple `A *→ B o-* C` with a noncollider witness in the equivalence class, every matching MAG with the head at `B` on `AB` has `B → C`. |
 | R2 | `r2_sound` | From `A → B *→ C` or `A *→ B → C`, any `A–C` adjacency has an arrowhead at `C`. |
+| R3 | `r3_sound` | For the R3 configuration, the noncollider at `D` forces the head at `B` on `BD`. |
+| R4 | `collider_iff_outside_separator`, `r4_sound` | A separating set of the discriminating path endpoints determines the middle mark in the final triple. The proof verifies both the directed and bidirected branches. |
+| R5 | `r5_sound` | Every edge on the uncovered circle cycle is undirected, using the noncollider status of its consecutive triples. |
+| R6 | `r6_sound` | An undirected edge forces a tail on another edge at their shared vertex. |
+| R7 | `r7_sound` | A tail at the first vertex of an unshielded noncollider forces a tail at the middle vertex on its second edge. |
 | R8 | `r8_sound` | From `A → B → C` or `A -o B → C`, a partially oriented `A o→ C` must be `A → C`. |
+| R9 | `r9_sound` | The uncovered potentially directed path and the noncollider at its start force the directed shortcut. |
+| R10 | `r10_sound` | The two uncovered potentially directed paths and their unshielded noncollider at the common start force the directed shortcut. |
 
-R1 reuses the [proof of unshielded-collider invariance](ali-richardson-spirtes-2009-mag-equivalence.md). Its noncollider witness supplies the information established by the earlier R0 step. R2 and R8 follow from the marked-edge restrictions in each compatible graph. The complete FCI procedure and the completeness of the orientation rules in combination are separate results. [Lean source](../../OpenCausalScience/Papers/Zhang2008OrientationRules/Orientations.lean)
+The unshielded rules use the [proof of unshielded-collider invariance](ali-richardson-spirtes-2009-mag-equivalence.md) to transfer R0 information across the equivalence class. R4 proves the separator property from m-separation. The proof of the full FCI procedure also requires correctness of skeleton and separator discovery, and the mark completions in §4 that show every remaining circle can vary. [Edge rules](../../OpenCausalScience/Papers/Zhang2008OrientationRules/Orientations.lean) · [Unshielded paths](../../OpenCausalScience/Papers/Zhang2008OrientationRules/UnshieldedPaths.lean) · [Discriminating paths](../../OpenCausalScience/Papers/Zhang2008OrientationRules/DiscriminatingPaths.lean)

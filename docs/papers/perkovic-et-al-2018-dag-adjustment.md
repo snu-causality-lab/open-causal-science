@@ -11,7 +11,15 @@
 
 [MixedBackDoor.lean](../../OpenCausalScience/Papers/PerkovicEtAl2018/MixedBackDoor.lean) formalizes the edge deletion of Definition 6 for fully oriented mixed graphs with acyclic directed parts, supplying the directed-edge visibility predicate. `proper_backdoor_deletes_iff` identifies precisely the arrows removed. `bidirected_unchanged` proves that directed cuts also preserve a bidirected edge between the same endpoints. `path_connected_of_deleted` shows that a marked active path after deletion was already active in the original graph. Its collider-activation walks use only retained arrows.
 
-Theorem 7 additionally needs the relation between open paths after deletion and the proper noncausal paths used in adjustment. Lemma 10 requires comparison with PAG definite-status paths, and Corollary 15 adds the constructive adjustment-set argument. These remain separate proof obligations, along with the probabilistic identification result and correspondence with the CGA traversal.
+## Blocking and separation on fully oriented graphs
+
+[ProperPathBlocking.lean](../../OpenCausalScience/Papers/PerkovicEtAl2018/ProperPathBlocking.lean) proves the path-blocking equivalence in [Theorem 7](https://jmlr.org/papers/volume18/16-319/16-319.pdf) for fully oriented graphs, including DAGs and MAGs. `forbidden_iff_forbidden_on_paths` identifies the descendants of first-arrow heads with the descendants of all non-treatment vertices on proper directed paths. `proper_noncausal_path_iff_backdoor_connection` proves that there is an active proper noncausal path in the original graph exactly when there is an active path in the proper back-door graph. The treatment and outcome sets are disjoint. Amenability uses the supplied visibility predicate, and the conditioning set avoids the forbidden set. The proof preserves the marks of separate edges at the same endpoints.
+
+## Definite-status paths in MAG representatives
+
+[PAGBlocking.lean](../../OpenCausalScience/Papers/PerkovicEtAl2018/PAGBlocking.lean) proves `noncausal_path_in_representative`, the non-blocking direction used in Lemma 10. A definite-status active noncausal PAG path remains active and noncausal on the same vertex sequence in each MAG representative. A circle on an unshielded triple supplies a representative with a tail at that endpoint. The [unshielded collider invariance result](ali-richardson-spirtes-2009-mag-equivalence.md) then shows that the triple remains a noncollider in every representative. The representation premises include invariant marks, adjacencies, maximality and shared m-separations.
+
+The reverse transfer of a shortest, minimum-distance-to-conditioning MAG path to a definite-status PAG path follows Lemmas 50–52 and remains open in this library. Corollary 15 also needs the constructive adjustment-set argument of Theorem 14. The probabilistic identification result and the correspondence with CGA's PAG traversal have separate proof obligations.
 
 ## Ancestral moralization
 

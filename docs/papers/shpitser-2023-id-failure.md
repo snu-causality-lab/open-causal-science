@@ -30,5 +30,19 @@ target `{Y}` for the full query and an ancestor fixed point for target
 models. Identification of the full query across all compatible models
 uses the paper's argument.
 
+## Fixed points and valid fixing orders
+
+[FixedPointObstruction.lean](../../OpenCausalScience/Papers/Shpitser2023/FixedPointObstruction.lean)
+formalizes a graphical step in Proposition 1. If every vertex of a
+bidirected-connected set is an ancestor of a retained target within
+that set, any fixing order that keeps the target also keeps the entire
+set. Each extra vertex has a distinct target descendant in its current
+district, even if the current graph still has other vertices.
+`proper_fixed_point_blocks_target` proves that such a proper fixed
+point makes the target unreachable. The declaration
+`Figure1C.strict_subquery_target_not_reachable` applies it to
+`{W,Y}` in the paper's four-vertex graph. The general implication from
+a hedge to probability-level nonidentifiability is separate.
+
 The [CGA fixture](https://github.com/snu-causality-lab/cga/blob/v0.2.0a1/tests/fixtures/papers/shpitser_2023_figure1c_hedge_counterexample.json)
 checks the distinction between the two queries at the identification API.

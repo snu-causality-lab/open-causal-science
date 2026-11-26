@@ -3,3 +3,4 @@ public import OpenCausalScience.Graph.DAG
 public import OpenCausalScience.Graph.MSeparation
 public import OpenCausalScience.Graph.MoralizationExecutable
 public import OpenCausalScience.Graph.MixedSeparation
+public import OpenCausalScience.Graph.DirectedEdgeEdit

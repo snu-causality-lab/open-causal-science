@@ -27,8 +27,9 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 
 ## Discovery
 
+- [Chickering (2002), Insert and Delete](papers/chickering-2002-greedy-equivalence-search.md)
 - <a name="kim-hwang-and-lee-2024-deduce-dep-correction"></a>[Kim, Hwang and Lee (2024), DEDUCE-DEP correction](papers/kim-hwang-lee-2024-deduce-dep.md)
-- [Meek (1995), orientation rules R1 and R2](papers/meek-1995-orientation.md)
+- [Meek (1995), orientation rules and consistent extensions](papers/meek-1995-orientation.md)
 - [Wang, Qin and Zhou (2023), local background knowledge](papers/wang-qin-zhou-2023-local-background-knowledge.md)
 - [Zhang (2008), FCI orientation rules](papers/zhang-2008-fci-orientation-rules.md)
 
