@@ -52,9 +52,11 @@ flowchart LR
 The effect-specific line starts with a known graph and a target query.
 The [minimum-cost district companion](papers/akbari-et-al-2025-optimal-experiment-design.md)
 checks how a single experiment resolves the hedges and which targets are
-optimal in the worked example. The adjustment-based design of Elahi et al.
-inherits the proxy experiment problem from the ICML version.
-[Elahi et al., §1 and §4](https://papers.nips.cc/paper/2024/file/5bd9fbb3a5a985f80c16ddd0ec1dfc43-Paper-Conference.pdf)
+optimal in the worked example. The [proxy experiment companion](papers/elahi-et-al-2024-fast-proxy-experiment-design.md)
+checks the graph cut for adjustment and verifies the outcome-intervention
+counterexample. The protected cut keeps the target mechanisms available.
+The companion also proves the external-intervention identity for ranked
+binary SCMs.
 
 The structure-learning line starts with candidates for the unknown graph.
 The [cut-graph companion](papers/hauser-buhlmann-2012-interventional-equivalence.md)
@@ -71,15 +73,46 @@ The [IDA](papers/maathuis-kalisch-buhlmann-2009-ida.md) and
 use one observational CPDAG. They show how compatible parent sets describe
 the available effect calculations as the representative DAG varies.
 
-## Missing data and single-world graphs
+### Interventions with latent variables
+
+The [latent experimental-design companion](papers/kocaoglu-et-al-2017-latent-experimental-design.md)
+checks how a separating set of randomized experiments recovers ancestry
+among observed vertices. The [controlled soft-intervention companion](papers/kocaoglu-et-al-2019-controlled-soft-interventions.md)
+uses comparison roots constructed from known target differences. The
+[unknown-target companion](papers/jaber-et-al-2020-unknown-soft-targets.md)
+records differences between mechanisms for each pair of regimes. Both
+use ancestral marginalization to obtain augmented MAGs. Lean checks the
+root construction and the published separation examples. CGA compares
+the augmented MAGs, including examples with different proposed targets.
+
+## Missing data and selection recovery
+
+The [Mohan–Pearl–Tian companion](papers/mohan-et-al-2013-missing-data.md)
+uses observed response rates to recover the target joint, including in
+the cross-censoring example. The [2014 testability companion](papers/mohan-pearl-2014-missing-data-testability.md)
+checks observable restrictions of the model. The
+[2018 example](papers/mohan-pearl-2018-consistent-estimation-missing-data.md)
+and [2021 survey companion](papers/mohan-pearl-2021-missing-data-factorization.md)
+recover supported conditional and joint cells from observed proxies.
+
+[Complete-case selection](papers/mohan-pearl-2018-consistent-estimation-missing-data.md#what-complete-case-selection-retains)
+connects these results to [selection recovery](#selection-recovery).
+The complete-case conditional and the population stratum margin together
+give the population joint. A missing-data record can retain the stratum
+in an incomplete row. With selected-only data the population margin must
+come from other information. Two positive binary models illustrate this
+difference: their complete cases agree and their population joints differ.
+
+The [Nabi–Bhattacharya–Shpitser companion](papers/nabi-et-al-2020-missing-data-full-law.md)
+checks self-censoring in a binary model and characterizes the graph structure
+of colluding paths. Its full-law query includes the response mechanism.
+The general probability-level odds-ratio recovery remains a proof target.
+
+## Single-world graphs
 
 The [single-world intervention graph companion](papers/richardson-robins-2013-swig.md)
-checks the graph split, path maps and fixed-label rules. The next step
-connects these rules to the probability factorization. The
-[missing-data companion](papers/nabi-et-al-2020-missing-data-full-law.md)
-uses a positive binary counterpair to check how self-censoring can prevent
-recovery of both the full law and the target law. Colluding paths and the
-general identification functional remain proof targets.
+checks node splitting, path maps and fixed-label rules. The probability
+factorization remains a proof target.
 
 ## Linear graphical models
 

@@ -27,5 +27,18 @@ response cells exceed one quarter. `positive_self_censoring_counterpair`
 checks both the difference in the full law and the difference in the target.
 `no_universal_target_recovery` rules out a recovery function on the observed
 law for this model. These two laws are a constructed instance of Theorem 2's
-obstruction. The general colluder, colluding-path and odds-ratio results remain
+obstruction. The general full-law results for colluders and odds-ratio recovery remain
 open here.
+
+## Reading a colluding path from a mixed graph
+
+[ColludingPaths.lean](../../OpenCausalScience/Papers/NabiEtAl2020/ColludingPaths.lean)
+checks the path predicate in §6. A path may be a single edge. On a longer
+path, the first and last edges must have an arrowhead at their interior
+ends, and each edge between interior vertices has two arrowheads. A
+separate vertex predicate excludes deterministic proxies. The theorem
+`colluding_path_iff_bidirected_interior` gives exactly the decomposition
+used for the CGA search through bidirected edges. This is a graph theorem
+for the obstruction predicate. The general odds-ratio functional and the
+proof that this predicate characterizes full-law identification remain open
+in Lean.
