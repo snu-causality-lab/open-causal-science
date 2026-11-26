@@ -1,10 +1,8 @@
 # Open Causal Science
 
-Open Causal Science formalizes results from published research on causal graphs. The [paper checks](docs/paper-checks.md) identify the original statement and what Lean proves. The [homepage corrections](docs/errata.md) track the versions and statements under verification. The [finite DAG library](OpenCausalScience/Graph/DAG.lean) uses Lean's bundled standard library and provides the graph operations for these checks.
+Open Causal Science formalizes published results in causal inference and discovery. The [paper checks](docs/paper-checks.md) identify each source and the Lean statement. The [corrections index](docs/errata.md) tracks the versions and statements under verification.
 
-The first checks cover Witte et al.'s Figures 2B and 2F, the parent-pair loop discussed in van der Zander et al.'s corrigendum, and directed path blocking in front-door searches. The [foundations guide](docs/foundations.md) traces mathematical dependencies across related papers. The [CGA proof map](docs/cga.md) links implemented graph operations to their published statements and Lean checks.
-
-Import `OpenCausalScience.Core` to use the shared definitions and theorems or import an individual `OpenCausalScience.Papers` module to work with a published result. The [structure guide](docs/structure.md) explains module placement and naming.
+Import `OpenCausalScience.Core` for finite DAGs, d-separation and rational event mass. The [structure guide](docs/structure.md) lists the shared and paper-specific modules. The [foundations guide](docs/foundations.md) traces dependencies across papers, and the [CGA proof map](docs/cga.md) links implemented operations to theorems and executable comparisons.
 
 ## Conditioning on a collider or its descendant
 
@@ -33,7 +31,7 @@ lake env lean OpenCausalScience/Axioms.lean
 
 The last command prints the transitive axiom dependencies of the listed theorems. The expected report uses at most the standard Lean axioms `propext`, `Classical.choice`, and `Quot.sound`.
 
-The optional [`analysis/`](analysis/) package uses Mathlib to check the connected-support argument for causal representation learning and the [Beyond Bounds results](docs/papers/kim-cho-lee-2026-beyond-bounds.md). The root package uses only Lean's bundled standard library. To check the optional package, run these commands from the project root.
+The root package uses Lean's bundled standard library. The optional [`analysis/`](analysis/) package uses Mathlib for [Tian–Pearl causal factors](docs/papers/tian-pearl-2003-q-decomposition.md), the connected-support argument for causal representation learning, and the [Beyond Bounds results](docs/papers/kim-cho-lee-2026-beyond-bounds.md). Run the following from the project root.
 
 ```sh
 cd analysis

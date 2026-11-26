@@ -1,6 +1,6 @@
 # Lean modules and names
 
-`OpenCausalScience.Core` is the entry point for shared mathematical definitions and theorems. It currently imports finite DAGs and d-separation. Import the specific module when only one is needed.
+`OpenCausalScience.Core` imports finite DAGs, d-separation and rational event mass. A consumer can import the specific module it uses.
 
 ```text
 OpenCausalScience.lean
@@ -9,6 +9,8 @@ OpenCausalScience/
   Graph/
     DAG.lean
     DSeparation.lean
+  Probability/
+    FiniteMass.lean
   Papers.lean
   Papers/
     JeongEtAl2022/Lemma4.lean
@@ -24,6 +26,8 @@ OpenCausalScience/
 **Published results.** Group a paper's formalizations in `Papers/<WorkId>/`, with a module for a coherent result. Use names such as `Figure2B`, `Lemma4`, or `AugmentationParentPairs`. Cite the exact original statement and any later correction in the file and the [paper checks](paper-checks.md). A corrigendum is a separately citable work, so its own formalization may have its own `WorkId`. Add new paper modules to `Papers.lean` so the default `lake build` checks them. When one paper uses a general theorem established in another, shared theory can supply the theorem while each paper module records its use and hypotheses.
 
 **Examples and verification.** Put general reference examples under `Examples/` and published figures beside the paper result. Keep the axiom inspection commands in `Axioms.lean`, keyed by declaration name. In the paper record, distinguish a calculation on a concrete graph, a theorem quantified over a class of models, and a proof that an implementation meets a specification. For a counterexample, show which hypotheses hold and which conclusion fails. Record a corrected theorem with its own assumptions and conclusion. The release or toolchain revision, source version, theorem name, and precise mathematical statement identify what was checked.
+
+**Mathlib modules.** The optional [analysis package](../analysis/) contains proofs using Mathlib. Import `OpenCausalScienceAnalysis.Identification.TianKernelOperations` to use the identification proofs, which reuse the [finite structural model](../analysis/ctf-scb/MecLean/Common/SCM.lean) from the bundled public package. `FocusedAxioms.lean` lists the analysis declarations to check.
 
 ## Paper records
 

@@ -40,10 +40,10 @@ theorem product_event_mass (first : List Ω) (second : List Ξ)
       (fun atom => firstEvent atom.1 && secondEvent atom.2) =
     mass first firstWeight firstEvent * mass second secondWeight secondEvent := by
   induction first with
-  | nil => simp [productAtoms, mass, Rat.zero_mul]
+  | nil => simp [productAtoms, mass, Probability.FiniteMass.mass, Rat.zero_mul]
   | cons head rest ih =>
-    simp only [productAtoms, List.flatMap_cons, mass, List.map_append, List.sum_append,
-      List.map_cons, List.sum_cons] at ih ⊢
+    simp only [productAtoms, List.flatMap_cons, mass, Probability.FiniteMass.mass, List.map_append,
+      List.sum_append, List.map_cons, List.sum_cons] at ih ⊢
     rw [ih, Rat.add_mul]
     congr 1
     rw [List.map_map, ← sum_scale]

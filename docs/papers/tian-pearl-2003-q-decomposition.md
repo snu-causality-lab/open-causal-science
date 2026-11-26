@@ -4,22 +4,22 @@
 
 [Paper index](../paper-checks.md)
 
-Lemma 4(ii) in *On the Identification of Causal Effects* obtains a
-c-factor by taking the ratios of consecutive prefix marginals at the
-positions occupied by that c-component in a topological order. Equation
-(71) gives the ratios. Equation (72) obtains the prefix marginals from
-the input kernel. [Technical report R-290-L, Lemma 4](https://ftp.cs.ucla.edu/pub/stat_ser/R290-L.pdf#page=22)
+In *On the Identification of Causal Effects*, Lemma 3 gives ancestral
+marginalization of a causal factor. Lemma 4(i) factors a kernel over its
+c-components. Lemma 4(ii) recovers each component by multiplying the
+ratios of consecutive prefix marginals at its positions in a topological
+order. [Technical report R-290-L, Eqs. (69)–(72)](https://ftp.cs.ucla.edu/pub/stat_ser/R290-L.pdf#page=21)
 
-[QDecomposition.lean](../../OpenCausalScience/Papers/TianPearl2003/QDecomposition.lean)
-checks the ratio calculation for finite rational prefix masses. The
-premises require distinct block labels, a product of partial block factors
-at every prefix, and a change only to the block containing the new vertex.
-For a prefix with nonzero mass,
-`prefix_ratio_eq_block_ratio` cancels the unchanged factors.
-`recovered_factor_eq_final` proves that multiplying the selected ratios
-recovers the final factor from its empty-prefix value of one. The
-graphical derivation of the prefix factorization and marginalization
-premises in Lemmas 3–4 is separate.
+The [finite-SCM proof](../../analysis/OpenCausalScienceAnalysis/Identification/QFactor.lean)
+uses finite variable spaces and independent finite exogenous roots. Each
+root can occur in any number of structural equations, and the causal
+diagram records the pairs that share a root. The report's semi-Markovian
+model gives each latent root exactly two observed children.
+`Q_marg_ancestral` and
+`Q_prod_ccomps` prove the marginalization and product identities.
+`cfac_eq_Q` proves the recovery formula when its selected denominators
+are positive, and `Q_pos_of_observational_pos` obtains causal-factor
+positivity from positive observational mass at the same assignment.
 
 ## Ancestral marginalization and the product of c-factors
 
@@ -31,7 +31,8 @@ unclamped vertices then preserves the retained responses on every unit.
 `ancestral_marginal_equals_kernel` sums the old kernel cells on the
 removed coordinates and returns the new kernel's retained event mass.
 Latent roots may remain in the graph while the event reads only the
-retained observed responses.
+retained observed responses. The event-mass and partition identities
+are in [FiniteMass.lean](../../OpenCausalScience/Probability/FiniteMass.lean).
 
 [DistrictProduct.lean](../../OpenCausalScience/Papers/TianPearl2003/DistrictProduct.lean)
 proves the probability calculation in Lemma 4(i).
@@ -40,6 +41,13 @@ Cartesian list of primitive root assignments and yields the product of
 the separately marginalized factors. The premise assigns each
 component its own independent block and a block-local likelihood at the
 fixed observed and intervention cell.
+
+[QDecomposition.lean](../../OpenCausalScience/Papers/TianPearl2003/QDecomposition.lean)
+isolates the finite rational ratio calculation. Given distinct block labels,
+prefix products, and a change only to the block containing the new vertex,
+`prefix_ratio_eq_block_ratio` cancels the unchanged factors at a nonzero
+prefix. `recovered_factor_eq_final` shows that the selected ratios telescope
+to the final factor.
 
 ## The Identify recursion
 
@@ -66,6 +74,9 @@ fixing on a probability kernel require separate results.
 executes the plan using kernel operations.
 `successful_plan_returns_target` proves that every successful execution
 returns `Q[C]` when the two local kernel operations obey the stated
-marginalization and extraction laws. Figure 7's fixed-point branch
-produces no kernel. Proving nonidentifiability from that branch takes a
-separate completeness argument. [Figure 7 and following discussion](https://ftp.cs.ucla.edu/pub/stat_ser/R290-L.pdf#page=26)
+marginalization and extraction laws. The [finite-SCM instance](../../analysis/OpenCausalScienceAnalysis/Identification/TianKernelOperations.lean)
+supplies these laws from Lemmas 3 and 4 and uses the causal diagram of
+the SCM as the input graph. When every full assignment has positive observational mass,
+`successful_identify_eq_Q` proves that running the plan on the supplied
+causal factor and returning a kernel yields the target factor.
+Figure 7's fixed-point branch returns no kernel. [Figure 7](https://ftp.cs.ucla.edu/pub/stat_ser/R290-L.pdf#page=26)

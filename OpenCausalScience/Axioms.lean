@@ -1163,3 +1163,7 @@ open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
 #print axioms MixedGraph.walkConnected_explicitLatentExpansion_iff
 #print axioms MixedGraph.find_minimal_m_separator_via_latents_correct
 #print axioms MixedGraph.find_minimal_admg_separator_correct
+
+#print axioms Probability.FiniteMass.mass_univ
+#print axioms Probability.FiniteMass.mass_congr_on_support
+#print axioms Probability.FiniteMass.sum_masses_of_partition

@@ -1,5 +1,5 @@
 module
-public import Std
+public import OpenCausalScience.Probability.FiniteMass
 
 /-!
 # Yeom et al. (2026), alignment along an intervention rollout
@@ -203,13 +203,14 @@ structure FiniteInnovations (Ω : Type) where
 def Schedule.trajectoryMass {Ω H O : Type} (schedule : Schedule Ω H O)
     (implementation : Implementation) (law : FiniteInnovations Ω)
     (initial : Ω → H) (event : O → Bool) : Rat :=
-  (law.atoms.map fun u =>
-    if event (schedule.rollout implementation (initial u) u) then law.weight u else 0).sum
+  OpenCausalScience.Probability.FiniteMass.mass law.atoms law.weight fun u =>
+    event (schedule.rollout implementation (initial u) u)
 
 theorem Schedule.trajectory_mass_univ {Ω H O : Type} (schedule : Schedule Ω H O)
     (implementation : Implementation) (law : FiniteInnovations Ω) (initial : Ω → H) :
     schedule.trajectoryMass implementation law initial (fun _ => true) = 1 := by
-  simpa [Schedule.trajectoryMass] using law.normalized
+  rw [Schedule.trajectoryMass, OpenCausalScience.Probability.FiniteMass.mass_univ]
+  exact law.normalized
 
 /-- The two finite trajectory distributions agree on every event when
 the reference reaches aligned inputs at all positive-mass atoms. -/
@@ -219,13 +220,10 @@ theorem Schedule.trajectory_mass_eq {Ω H O : Type} (schedule : Schedule Ω H O)
       schedule.referenceSupported (initial u) u) (event : O → Bool) :
     schedule.trajectoryMass .reference law initial event =
       schedule.trajectoryMass .fitted law initial event := by
-  apply congrArg List.sum
-  apply List.map_congr_left
-  intro u member
-  by_cases zero : law.weight u = 0
-  · simp [zero]
-  · have positive := Rat.lt_of_le_of_ne (law.nonnegative u member) (Ne.symm zero)
-    rw [schedule.rollout_eq (initial u) u (coverage u member positive)]
+  apply OpenCausalScience.Probability.FiniteMass.mass_congr_on_support
+  intro u member nonzero
+  have positive := Rat.lt_of_le_of_ne (law.nonnegative u member) (Ne.symm nonzero)
+  rw [schedule.rollout_eq (initial u) u (coverage u member positive)]
 
 end
 

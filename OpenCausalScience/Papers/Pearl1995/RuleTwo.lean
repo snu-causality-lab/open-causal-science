@@ -1,5 +1,5 @@
 module
-public import Std
+public import OpenCausalScience.Probability.FiniteMass
 
 /-! # Action and observation exchange
 
@@ -34,7 +34,7 @@ namespace Model
 variable {Ω Z Y W : Type}
 
 def mass (model : Model Ω Z Y W) (event : Ω → Bool) : Rat :=
-  (model.atoms.map fun atom => if event atom then model.weight atom else 0).sum
+  OpenCausalScience.Probability.FiniteMass.mass model.atoms model.weight event
 
 variable [DecidableEq Z] [DecidableEq Y] [DecidableEq W]
 

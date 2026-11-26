@@ -6,6 +6,7 @@ import KimEtAl2026BeyondBounds.ReducedCE
 import KimEtAl2026BeyondBounds.SCMPrefixHull
 import OpenCausalScienceAnalysis.ConnectedBlockMaps
 import OpenCausalScienceAnalysis.BlockHessian
+import OpenCausalScienceAnalysis.Identification.TianKernelOperations
 
 open OpenCausalScience.Papers.KimEtAl2026.ConnectedBlockMaps
 
@@ -47,3 +48,14 @@ open OpenCausalScience.Papers.KimEtAl2026.BlockHessian
 #print axioms KimEtAl2026BeyondBounds.responseTableSCM
 #print axioms KimEtAl2026BeyondBounds.tolerance_fairness_probability
 #print axioms KimEtAl2026BeyondBounds.tolerance_fairness_probability_pushforward
+
+#print axioms Mec.SCM.Q_marg_ancestral
+#print axioms Mec.SCM.Q_prod_ccomps
+#print axioms Mec.SCM.cfac_eq_Q
+#print axioms Mec.SCM.cfac_eq_Q_of_pos
+#print axioms Mec.SCM.Q_pos_of_observational_pos
+#print axioms OpenCausalScienceAnalysis.TianPearl2003.ancestors_ancestralIn
+#print axioms OpenCausalScienceAnalysis.TianPearl2003.district_eq_ccOf
+#print axioms OpenCausalScienceAnalysis.TianPearl2003.rankOrder_isTopoOrder
+#print axioms OpenCausalScienceAnalysis.TianPearl2003.kernelOperations
+#print axioms OpenCausalScienceAnalysis.TianPearl2003.successful_identify_eq_Q

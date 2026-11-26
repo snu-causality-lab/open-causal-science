@@ -1,5 +1,6 @@
 module
 public import OpenCausalScience.Graph.DAG
+public import OpenCausalScience.Probability.FiniteMass
 
 /-! # Ancestral marginalization of intervention kernels
 
@@ -74,7 +75,7 @@ theorem retained_evaluation_unchanged (G : DAG n)
       · rw [dite_eq_right parent, dite_eq_right parent]
 
 def mass (atoms : List Ω) (weight : Ω → Rat) (event : Ω → Bool) : Rat :=
-  (atoms.map fun unit => if event unit then weight unit else 0).sum
+  OpenCausalScience.Probability.FiniteMass.mass atoms weight event
 
 def readsOnly (event : (Fin n → Bool) → Bool) (keep : Fin n → Bool) : Prop :=
   ∀ first second, (∀ v, keep v = true → first v = second v) → event first = event second
@@ -89,52 +90,13 @@ theorem retained_mass_unchanged (G : DAG n) (mechanism : Ω → Fin n → (Fin n
   funext unit
   exact reads _ _ (retained_evaluation_unchanged G mechanism unit keep values fixed ancestral)
 
-private theorem sum_add {A : Type} (states : List A) (p q : A → Rat) :
-    (states.map fun a => p a + q a).sum = (states.map p).sum + (states.map q).sum := by
-  induction states with
-  | nil => simp [Rat.zero_add]
-  | cons a rest ih =>
-    simp only [List.map_cons, List.sum_cons, ih, Rat.add_assoc]
-    rw [← Rat.add_assoc (q a), Rat.add_comm (q a), Rat.add_assoc]
-
-private theorem sum_indicator {A : Type} [DecidableEq A] (states : List A)
-    (picked : A) (c : Rat) (unique : states.Nodup) :
-    (states.map fun a => if picked = a then c else 0).sum = if picked ∈ states then c else 0 := by
-  induction states with
-  | nil => simp
-  | cons a rest ih =>
-    obtain ⟨absent, tailUnique⟩ := List.nodup_cons.mp unique
-    by_cases same : picked = a
-    · subst picked
-      simp [ih tailUnique, absent, Rat.add_zero]
-    · simp [same, List.mem_cons, ih tailUnique, Rat.zero_add]
-
 theorem sum_masses_of_partition {A : Type} [DecidableEq A] (states : List A)
     (unique : states.Nodup) (atoms : List Ω) (weight : Ω → Rat)
     (cell : Ω → A) (exhaustive : ∀ unit ∈ atoms, cell unit ∈ states) (event : Ω → Bool) :
     (states.map fun a => mass atoms weight (fun unit => event unit && decide (cell unit = a))).sum =
-      mass atoms weight event := by
-  induction atoms with
-  | nil =>
-    have zero (xs : List A) : (xs.map fun _ => (0 : Rat)).sum = 0 := by
-      induction xs with
-      | nil => rfl
-      | cons a rest ih => simp [ih, Rat.zero_add]
-    exact zero states
-  | cons unit tail ih =>
-    have inside := exhaustive unit List.mem_cons_self
-    have tailInside : ∀ sample ∈ tail, cell sample ∈ states :=
-      fun sample member => exhaustive sample (List.mem_cons_of_mem _ member)
-    simp only [mass, List.map_cons, List.sum_cons] at ih ⊢
-    rw [sum_add, ih tailInside]
-    by_cases holds : event unit = true
-    · simp [holds, sum_indicator states (cell unit) (weight unit) unique, inside]
-    · have fails : event unit = false := Bool.eq_false_iff.mpr holds
-      have zero := sum_indicator states (cell unit) 0 unique
-      have every : (states.map fun _ => (0 : Rat)) =
-          states.map (fun a => if cell unit = a then (0 : Rat) else 0) := by
-        simp
-      simp [fails, every, zero, inside]
+      mass atoms weight event :=
+  OpenCausalScience.Probability.FiniteMass.sum_masses_of_partition
+    states unique atoms weight cell exhaustive event
 
 /-- The sum of the old kernel cells on the removed coordinates equals
 the retained event mass in the kernel with the extra clamps. -/

@@ -64,13 +64,13 @@ private theorem mass_false (units : List Ω) (weight : Ω → Rat) :
     mass units weight (fun _ => false) = 0 := by
   induction units with
   | nil => rfl
-  | cons unit units ih => simp [mass, Rat.zero_add] at ih ⊢; exact ih
+  | cons unit units ih => simp [mass, Probability.FiniteMass.mass, Rat.zero_add] at ih ⊢; exact ih
 
 theorem empty_query_mass (G : DAG n) (mechanism : Mechanism Ω n)
     (settings : W → Setting n) (units : List Ω) (weight : Ω → Rat)
     (normalized : (units.map weight).sum = 1) :
     mass units weight (fun unit => holds (response G mechanism settings unit) []) = 1 := by
-  simpa [holds, mass] using normalized
+  simpa [holds, mass, Probability.FiniteMass.mass_univ] using normalized
 
 theorem conflicting_own_setting_mass (G : DAG n) (mechanism : Mechanism Ω n)
     (settings : W → Setting n) (units : List Ω) (weight : Ω → Rat)

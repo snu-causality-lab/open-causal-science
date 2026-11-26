@@ -1,2 +1,3 @@
 module
 public import OpenCausalScience.Graph.DSeparation
+public import OpenCausalScience.Probability.FiniteMass
