@@ -26,6 +26,11 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 
 - [Kim, Cho and Lee (2026), Beyond Bounds](papers/kim-cho-lee-2026-beyond-bounds.md)
 
+## Counterfactual identification
+
+- [Correa, Lee and Bareinboim (2021), nested counterfactual identification](papers/correa-lee-bareinboim-2021-counterfactual-identification.md)
+- [Shpitser and Pearl (2008), counterfactual identification](papers/shpitser-pearl-2008-counterfactual-id.md)
+
 ## Discovery
 
 - [Chickering (2002), Insert and Delete](papers/chickering-2002-greedy-equivalence-search.md)
@@ -68,3 +73,10 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 - [Shpitser and Pearl (2006), joint interventional identification](papers/shpitser-pearl-2006-joint-id.md)
 - [Tian (2004), identification of conditional causal effects](papers/tian-2004-conditional-effects.md)
 - [Tian and Pearl (2003), generalized Q-decomposition](papers/tian-pearl-2003-q-decomposition.md)
+
+## Path-specific effects
+
+- [Avin, Shpitser and Pearl (2005), recanting witness](papers/avin-shpitser-pearl-2005-path-specific-effects.md)
+- [Malinsky, Shpitser and Richardson (2019), conditional path-specific effects](papers/malinsky-shpitser-richardson-2019-conditional-path-effects.md)
+- [Shpitser (2013), recanting districts in longitudinal mediation](papers/shpitser-2013-longitudinal-mediation.md)
+- [Shpitser and Tchetgen Tchetgen (2016), a graphical hierarchy of interventions](papers/shpitser-tchetgen-tchetgen-2016-intervention-hierarchy.md)

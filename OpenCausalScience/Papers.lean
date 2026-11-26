@@ -120,3 +120,14 @@ public import OpenCausalScience.Papers.ZhangSpirtes2005.MarkChangeMarkedGraph
 public import OpenCausalScience.Papers.ZhangSpirtes2005.ReversalCriterion
 public import OpenCausalScience.Papers.ShpitserPearl2006Conditional.Figure1C
 public import OpenCausalScience.Papers.Tian2004.ExactConditionalDecision
+public import OpenCausalScience.Papers.AvinEtAl2005.Kite
+public import OpenCausalScience.Papers.CorreaLeeBareinboim2021.Figure5
+public import OpenCausalScience.Papers.CorreaLeeBareinboim2021.Figure6
+public import OpenCausalScience.Papers.MalinskyEtAl2019.Figure1
+public import OpenCausalScience.Papers.MalinskyEtAl2019.Figure1BFormula
+public import OpenCausalScience.Papers.MalinskyEtAl2019.Normalize
+public import OpenCausalScience.Papers.Shpitser2013.LongitudinalExamples
+public import OpenCausalScience.Papers.ShpitserPearl2008.Figure9Trace
+public import OpenCausalScience.Papers.ShpitserPearl2008.WGraph
+public import OpenCausalScience.Papers.ShpitserTchetgenTchetgen2016.Figure2A
+public import OpenCausalScience.Papers.MalinskyEtAl2019.ExtendedGraph
