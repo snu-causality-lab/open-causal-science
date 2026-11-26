@@ -1,0 +1,23 @@
+# Jaber et al. (2022), marginal identification in a PAG
+
+<!-- topic: Identification -->
+
+[Paper index](../paper-checks.md)
+
+Example 3 of the May 2022 report R-86 illustrates Proposition 2 and
+Algorithm 1 on Figure 3(a). It first removes the bucket
+`{X₁,W}`, then removes `{X₂}`. The source simplifies the
+result to `P(a)P(y,z | w,a)`. [R-86, Section 4.1](https://causalai.net/r86.pdf#page=6)
+
+[Example3.lean](../../OpenCausalScience/Papers/JaberEtAl2022/Example3.lean)
+computes possible descendants and possible c-component membership from the
+figure's endpoint marks and visibility labels. The first bucket's
+possible c-component contains `A,X₁,X₂,W`, and its possible
+descendants are `X₁,W,Z,Y`. Their intersection is the bucket. After
+removing it, `X₂` is isolated. Lean checks both instances of the
+graphical test and obtains the denominator conditioning sets
+`{A,X₂}` and `{A,Z,Y}`. The probability equality in Proposition 2
+and general completeness of Algorithm 1 are separate results.
+
+The [CGA marginal IDP contract](https://github.com/snu-causality-lab/cga/blob/v0.2.0a1/docs/reference/PUBLISHED_IDENTIFICATION.md#equivalence-classes)
+uses the possible-descendant test of this edition.
