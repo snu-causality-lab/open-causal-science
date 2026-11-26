@@ -9,11 +9,15 @@ Chickering's GES operators describe moves between Markov equivalence classes of 
 
 [DirectedEdgeEdit.lean](../../OpenCausalScience/Graph/DirectedEdgeEdit.lean) proves that adding `X → Y` to a DAG on distinct vertices admits an acyclic ranking exactly when the original graph has no directed path from `Y` to `X`. Deletion keeps the original topological ranking.
 
-## The validity tests together
+<a name="the-validity-tests-together"></a>
 
-[OperatorTests.lean](../../OpenCausalScience/Papers/Chickering2002/OperatorTests.lean) proves both directions of the Insert and Delete validity tests for admissible operator inputs under the chain-component representation used by the construction. Components have a topological order, fixed parents are inherited throughout a component, and each clique can be placed in the root bag of a join tree. The last property follows from clique containment in a bag and the ability to choose that bag as the root. In the tests below, `N(Y,X)` consists of reversible neighbors of `Y` adjacent to `X`. [Join-tree orientation](meek-1995-orientation.md#maximal-orientation-and-chordality)
+## The validity tests on essential graphs
+
+[CPDAGOperators.lean](../../OpenCausalScience/Papers/Chickering2002/CPDAGOperators.lean) proves both directions of the Insert and Delete validity tests for admissible inputs on the essential graph of any finite DAG. [OperatorTests.lean](../../OpenCausalScience/Papers/Chickering2002/OperatorTests.lean) uses ordered chain components, inherited parents, and the ability to put a prescribed clique first. The essential-graph proof supplies all three properties from the DAG. In the tests below, `N(Y,X)` consists of reversible neighbors of `Y` adjacent to `X`. [Essential-graph structure](andersson-madigan-perlman-1997-essential-graphs.md)
 
 - For Insert, the source tests are that `N(Y,X) ∪ T` is a clique and blocks all semidirected paths from `Y` to `X`. [InsertBlocking.lean](../../OpenCausalScience/Papers/Chickering2002/InsertBlocking.lean) proves that a shortest semidirected route avoiding that set is simple and has unshielded consecutive triples. In a representative satisfying the required parent configuration, the first arrow points out of `Y`. Reversing a later edge would create an unshielded collider, so the route would be directed from `Y` to `X` and close a cycle upon insertion.
 - For Delete, the source test is that `N(Y,X) ∖ H` is a clique. The within-component vertex order gives a representative with `X → Y` and exactly `N(Y,X) ∖ H` as the reversible parents of `Y` apart from `X` itself. The arrow `X → Y` puts the component of `X` no later than that of `Y`. A common child reached by a fixed arrow from `Y` is therefore strictly later than `X` in the component order. The arrow from `X` is then fixed as well, supplying the triangle implication needed by Lemma 42. [CliqueExtensions.lean](../../OpenCausalScience/Papers/Chickering2002/CliqueExtensions.lean)
 
-This formulation takes the ordered chain components and re-rootable join trees as structural inputs. The construction of those inputs for arbitrary completed PDAGs remains to be formalized. The two-phase large-sample theorem also requires the paper's score and distribution assumptions.
+The result covers the graphical validity of the two operators. The two-phase large-sample theorem also requires the paper's score and distribution assumptions.
+
+The published erratum corrects the potential-sink condition in Appendix C. Each undirected neighbor must be adjacent to the other undirected neighbors and to every parent. This is the condition used in the [PDAG extension companion](wienobst-bannach-liskiewicz-2021-pdag-extension.md). [Chickering's erratum](https://www.jmlr.org/papers/volume3/chickering02b/erratum.pdf)

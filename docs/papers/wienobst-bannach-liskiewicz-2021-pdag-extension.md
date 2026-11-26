@@ -1,0 +1,9 @@
+# Wienöbst, Bannach and Liśkiewicz (2021), consistent PDAG extensions
+
+<!-- topic: Discovery -->
+
+Definition 4.2 characterizes a potential sink by its lack of outgoing arrows, the clique of its undirected neighbors, and adjacency between each such neighbor and every parent. Corollary 4.4 says that a partially directed graph admits a consistent DAG extension exactly when vertices can be successively removed as potential sinks in the remaining graph. [UAI 2021, Section 4](https://proceedings.mlr.press/v161/wienobst21a.html)
+
+`PDAG.extendable_iff_elimination_order` proves the equivalence on a finite labelled graph. From a consistent DAG, reverse topological order supplies the elimination sequence. Conversely, directing edges toward the earlier-removed endpoint preserves all existing arrows. The local adjacency checks prevent a new unshielded collider when an undirected neighbor becomes a parent. `PDAG.Extends.colliders_iff` checks equality of the unshielded collider sets, and `PDAG.extends_iff_meek` relates the specification to the existing Meek formalization when the reference DAG provides the same skeleton and collider signature. [PotentialSink.lean](../../OpenCausalScience/Papers/WienobstEtAl2021/PotentialSink.lean)
+
+`PDAG.Extends.exists_potential_sink` proves Fact 4.3 for nonempty inputs. `PDAG.extendable_iff_delete_potential_sink` permits any eligible sink choice. `PDAG.Extends.append_potential_sink` lifts an extension of the remainder by keeping every arrow between surviving vertices and orienting all edges incident to the chosen sink into it. These are the graph conditions of CGA's `find_consistent_dag_extension` in version 0.2.0a1. CGA's PDAG constructor validates directed acyclicity. The Lean theorem takes any arrow specification on a simple skeleton. [CGA graph operation contract](https://github.com/snu-causality-lab/cga/blob/v0.2.0a1/docs/reference/GRAPH_OPERATIONS.md#pdags-meek-rules-and-background-knowledge)

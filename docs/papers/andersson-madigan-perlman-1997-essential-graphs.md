@@ -1,0 +1,12 @@
+# Andersson, Madigan and Perlman (1997), essential graphs
+
+<!-- topic: Graph equivalence -->
+
+The essential graph records the skeleton of a DAG and the arrows that have the same orientation in every Markov-equivalent DAG. Proposition 4.1 shows that it is a chain graph and that each chain component has a chordal skeleton. These are the component properties used to choose representatives for GES operators. [Annals of Statistics, §4](https://doi.org/10.1214/aos/1031833662)
+
+- [EssentialGraph.lean](../../OpenCausalScience/Papers/AnderssonEtAl1997/EssentialGraph.lean) uses the separation-based equivalence relation from the [Verma–Pearl companion](verma-pearl-1990-dag-equivalence.md). `possible_path_normal_form` compresses a semidirected route to reversible steps followed by compelled arrows. It yields the collider and flag arguments in `collider_arrow_has_no_return` and `no_flag_after_forgetting_internal_arrows`.
+- [Condensation.lean](../../OpenCausalScience/Papers/AnderssonEtAl1997/Condensation.lean) temporarily forgets the arrows inside the strongly connected components of the possible-arrow relation. `label_eq_iff` identifies the component labels, `label_lt_of_across` orders the surviving arrows, and `contains_colliders` shows that every unshielded collider is retained.
+- [PerfectOrientation.lean](../../OpenCausalScience/Papers/AnderssonEtAl1997/PerfectOrientation.lean) constructs an orientation of a collider-free component with a prescribed clique first and with the chosen order on its edges. The proof removes a sink, whose neighbors form a clique, and reattaches it while preserving the initial clique condition.
+- [Characterization.lean](../../OpenCausalScience/Papers/AnderssonEtAl1997/Characterization.lean) uses these orientations to show that any adjacency internal to a component is reversible in the original equivalence class. `compelled_has_no_semidirected_return` and `chain_components_chordal` establish both conclusions of Proposition 4.1 for all finite DAGs. `extend_with_initial_clique` supplies the representative used by [Chickering's operator tests](chickering-2002-greedy-equivalence-search.md#the-validity-tests-on-essential-graphs).
+
+The formalized essential graph is defined by common orientations across the class. The algorithmic recognition conditions of Theorem 4.1 and refinement of CGA's `CPDAG.from_dag` are further results. [Public CGA graph operations](https://github.com/snu-causality-lab/cga/blob/v0.2.0a1/docs/reference/GRAPH_OPERATIONS.md)

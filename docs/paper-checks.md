@@ -14,6 +14,7 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 - <a name="jung-park-and-lee-2024-sequential-adjustment-correction"></a>[Jung, Park and Lee (2024), sequential adjustment correction](papers/jung-park-lee-2024-sequential-adjustment.md)
 - <a name="perković-et-al-2018-dag-adjustment"></a>[Perković et al. (2018), DAG adjustment](papers/perkovic-et-al-2018-dag-adjustment.md)
 - [Runge (2021), the O-set construction](papers/runge-2021-o-set.md)
+- [Smucler, Sapienza and Rotnitzky (2022), adjustment efficiency graph](papers/smucler-et-al-2022-adjustment-efficiency-graph.md)
 - <a name="witte-et-al-2020-figure-2b"></a><a name="witte-et-al-2020-figure-2f"></a>[Witte et al. (2020), efficient adjustment](papers/witte-et-al-2020-efficient-adjustment.md)
 
 ## Causal decision making
@@ -30,15 +31,19 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 - [Chickering (2002), Insert and Delete](papers/chickering-2002-greedy-equivalence-search.md)
 - <a name="kim-hwang-and-lee-2024-deduce-dep-correction"></a>[Kim, Hwang and Lee (2024), DEDUCE-DEP correction](papers/kim-hwang-lee-2024-deduce-dep.md)
 - [Meek (1995), orientation rules and consistent extensions](papers/meek-1995-orientation.md)
+- [Spirtes and Glymour (1991), oracle PC](papers/spirtes-glymour-1991-pc.md)
 - [Wang, Qin and Zhou (2023), local background knowledge](papers/wang-qin-zhou-2023-local-background-knowledge.md)
+- [Wienöbst, Bannach and Liśkiewicz (2021), consistent PDAG extensions](papers/wienobst-bannach-liskiewicz-2021-pdag-extension.md)
 - [Zhang (2008), FCI orientation rules](papers/zhang-2008-fci-orientation-rules.md)
 
 ## Graph equivalence
 
 - <a name="ali-richardson-and-spirtes-2009-mag-equivalence"></a>[Ali, Richardson and Spirtes (2009), MAG equivalence](papers/ali-richardson-spirtes-2009-mag-equivalence.md)
+- [Andersson, Madigan and Perlman (1997), essential graphs](papers/andersson-madigan-perlman-1997-essential-graphs.md)
 - [Chickering (1995), covered edge reversal](papers/chickering-1995-covered-reversals.md)
 - <a name="verma-and-pearl-1990-dag-equivalence"></a>[Verma and Pearl (1990), DAG equivalence](papers/verma-pearl-1990-dag-equivalence.md)
 - [Zhang (2008), Causal Reasoning with Ancestral Graphs](papers/zhang-2008-causal-reasoning.md)
+- [Zhang and Spirtes (2005), legitimate mark changes in directed MAGs](papers/zhang-spirtes-2005-legitimate-mark-changes.md)
 
 <a name="finite-dag-and-ancestral-graph-separation"></a>
 
@@ -46,13 +51,19 @@ For the complete list of author-hosted homepage corrections and the Lean scope o
 
 - [Richardson and Spirtes (2002), ancestral graph separation](papers/richardson-spirtes-2002-ancestral-graphs.md)
 - [Shachter (1998), Bayes-ball](papers/shachter-1998-bayes-ball.md)
+- [Van der Zander and Liśkiewicz (2020), finding minimal d-separators](papers/van-der-zander-liskiewicz-2020-minimal-separators.md)
 - <a name="van-der-zander-liśkiewicz-and-textor-2019-2023-lemma-2"></a>[Van der Zander, Liśkiewicz and Textor (2019, 2023), Lemma 2](papers/van-der-zander-et-al-2019-ancestral-graphs.md)
 
 ## Identification
 
 - [Jaber et al. (2022), marginal identification in a PAG](papers/jaber-et-al-2022-marginal-idp.md)
+- [Jaber, Zhang and Bareinboim (2019), IDP](papers/jaber-zhang-bareinboim-2019-idp.md)
 - <a name="kivva-et-al-2022-example-2"></a>[Kivva et al. (2022), Example 2](papers/kivva-et-al-2022-general-identifiability.md)
 - <a name="lee-correa-and-bareinboim-2019-gid-erratum"></a>[Lee, Correa and Bareinboim (2019), gID erratum](papers/lee-correa-bareinboim-2019-gid.md)
 - [Pearl (1995), action and observation exchange](papers/pearl-1995-do-calculus.md)
+- [Perković (2020), partial causal ordering of MPDAG buckets](papers/perkovic-2020-partial-causal-order.md)
+- [Richardson et al. (2023), nested Markov properties](papers/richardson-et-al-2023-nested-markov.md)
 - [Shpitser (2023), hedges for the exact query](papers/shpitser-2023-id-failure.md)
+- [Shpitser and Pearl (2006), conditional interventional identification](papers/shpitser-pearl-2006-conditional-idc.md)
+- [Shpitser and Pearl (2006), joint interventional identification](papers/shpitser-pearl-2006-joint-id.md)
 - [Tian and Pearl (2003), generalized Q-decomposition](papers/tian-pearl-2003-q-decomposition.md)

@@ -3,8 +3,8 @@ public import OpenCausalScience.Papers.Chickering2002.Delete
 public import OpenCausalScience.Papers.Meek1995.ChainComponents
 
 /-! GES Insert and Delete with the component structure used in
-Chickering (2002), Lemma 36. The clique order is realized by rooted
-join-tree construction and substitution into the full DAG. -/
+Chickering (2002), Lemma 36. The proofs consume an extension with a prescribed initial clique.
+One construction uses a rooted join tree and component substitution. -/
 
 namespace OpenCausalScience.Papers.Chickering2002.CliqueExtensions
 
@@ -33,21 +33,38 @@ private theorem adjacent_distinct {G : DAG n} {u v : Fin n} (edge : Adjacent G u
   subst v
   exact G.no_directed_cycle u (.single (edge.elim id id))
 
-/-- The sufficient direction of the Insert test under rooted component
-data. The selected extension is constructed inside the proof. -/
-theorem insert_from_root_clique (components : Components base fixed)
-    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (tails : Vertices n)
+/-- An initial clique can be oriented in any prescribed order in an
+extension of the same PDAG. All edges from the clique to the rest of
+the component point outward. -/
+def RealizesInitialClique (components : Components base fixed) (c : Nat)
+    (clique : Vertices n) : Prop :=
+  ∀ priority : Fin n → Nat, ∃ K : DAG n, Extension base fixed K ∧
+    (∀ u v, clique u → clique v → priority u < priority v →
+      components.adjacency c u v → K.edge u v = true) ∧
+    (∀ u v, clique u → ¬ clique v →
+      components.adjacency c u v → K.edge u v = true)
+
+theorem realizes_initial_clique_of_root (components : Components base fixed)
+    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (c : Nat)
+    (clique : Vertices n) (tree : RootedJoinTree (components.adjacency c) m)
+    (inRoot : ∀ v, clique v → tree.inBag tree.root v) :
+    RealizesInitialClique components c clique :=
+  components.extend_with_root_clique ext contains c tree clique inRoot
+
+/-- The sufficient direction of the Insert test given a method for
+realizing the initial clique. -/
+theorem insert_from_initial_clique (components : Components base fixed)
+    (contains : ContainsColliders base fixed) (tails : Vertices n)
     (choice : Insert.Choice base fixed x y tails)
-    (tree : RootedJoinTree (components.adjacency (components.label y)) m)
-    (inRoot : ∀ v, insertClique base fixed x y tails v → tree.inBag tree.root v)
+    (orient : RealizesInitialClique components (components.label y)
+      (insertClique base fixed x y tails))
     (blocked : ¬ Insert.AvoidingWalk base fixed
       (fun v => NeighborsAdjacentToSource base fixed x y v ∨ tails v) y x) :
     ∃ K H : DAG n, Extension base fixed K ∧ K.IsInsertion H x y ∧
       Insert.Realizes base fixed x y tails H := by
   classical
   let priority (v : Fin n) := if v = y then 1 else 0
-  obtain ⟨K, keep, order, away⟩ := components.extend_with_root_clique ext contains _ tree
-    (insertClique base fixed x y tails) inRoot priority
+  obtain ⟨K, keep, order, away⟩ := orient priority
   have step {v : Fin n} (edge : Unoriented base fixed v y) :
       components.adjacency (components.label y) v y :=
     ⟨edge.1, components.label_eq_of_unoriented edge, rfl⟩
@@ -78,6 +95,18 @@ theorem insert_from_root_clique (components : Components base fixed)
       (fun _ => parent) blocked
   exact ⟨K, H, keep, edit, realizes⟩
 
+theorem insert_from_root_clique (components : Components base fixed)
+    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (tails : Vertices n)
+    (choice : Insert.Choice base fixed x y tails)
+    (tree : RootedJoinTree (components.adjacency (components.label y)) m)
+    (inRoot : ∀ v, insertClique base fixed x y tails v → tree.inBag tree.root v)
+    (blocked : ¬ Insert.AvoidingWalk base fixed
+      (fun v => NeighborsAdjacentToSource base fixed x y v ∨ tails v) y x) :
+    ∃ K H : DAG n, Extension base fixed K ∧ K.IsInsertion H x y ∧
+      Insert.Realizes base fixed x y tails H :=
+  insert_from_initial_clique components contains tails choice
+    (realizes_initial_clique_of_root components ext contains _ _ tree inRoot) blocked
+
 /-- The Delete clique consists of Y, X if their edge is reversible,
 and common reversible neighbors that are outside the argument H. -/
 def deleteClique (base : DAG n) (fixed : Orientations n) (x y : Fin n)
@@ -85,20 +114,19 @@ def deleteClique (base : DAG n) (fixed : Orientations n) (x y : Fin n)
   v = y ∨ (v = x ∧ Unoriented base fixed x y) ∨
     (NeighborsAdjacentToSource base fixed x y v ∧ ¬ heads v)
 
-/-- The sufficient direction of the Delete test under rooted component
-data. The compelled-child implication follows from the component order. -/
-theorem delete_from_root_clique (components : Components base fixed)
-    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (heads : Vertices n)
+/-- The sufficient direction of the Delete test given a method for
+realizing the initial clique. The component order fixes common children. -/
+theorem delete_from_initial_clique (components : Components base fixed)
+    (contains : ContainsColliders base fixed) (heads : Vertices n)
     (xy : fixed x y ∨ Unoriented base fixed x y)
     (valid : ∀ v, heads v → NeighborsAdjacentToSource base fixed x y v)
-    (tree : RootedJoinTree (components.adjacency (components.label y)) m)
-    (inRoot : ∀ v, deleteClique base fixed x y heads v → tree.inBag tree.root v) :
+    (orient : RealizesInitialClique components (components.label y)
+      (deleteClique base fixed x y heads)) :
     ∃ K : DAG n, Extension base fixed K ∧ K.edge x y = true ∧
       Delete.Realizes base fixed x y heads (K.deleteArrow x y) := by
   classical
   let priority (v : Fin n) := if v = y then 2 else if v = x then 1 else 0
-  obtain ⟨K, keep, order, away⟩ := components.extend_with_root_clique ext contains _ tree
-    (deleteClique base fixed x y heads) inRoot priority
+  obtain ⟨K, keep, order, away⟩ := orient priority
   have step {v : Fin n} (edge : Unoriented base fixed v y) :
       components.adjacency (components.label y) v y :=
     ⟨edge.1, components.label_eq_of_unoriented edge, rfl⟩
@@ -132,6 +160,17 @@ theorem delete_from_root_clique (components : Components base fixed)
     exact components.fixed_of_edge_between keep edge (by omega)
   exact ⟨K, keep, toward,
     Delete.realized_of_matching_heads keep contains toward valid compelledChild selected⟩
+
+theorem delete_from_root_clique (components : Components base fixed)
+    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (heads : Vertices n)
+    (xy : fixed x y ∨ Unoriented base fixed x y)
+    (valid : ∀ v, heads v → NeighborsAdjacentToSource base fixed x y v)
+    (tree : RootedJoinTree (components.adjacency (components.label y)) m)
+    (inRoot : ∀ v, deleteClique base fixed x y heads v → tree.inBag tree.root v) :
+    ∃ K : DAG n, Extension base fixed K ∧ K.edge x y = true ∧
+      Delete.Realizes base fixed x y heads (K.deleteArrow x y) :=
+  delete_from_initial_clique components contains heads xy valid
+    (realizes_initial_clique_of_root components ext contains _ _ tree inRoot)
 
 end
 end OpenCausalScience.Papers.Chickering2002.CliqueExtensions

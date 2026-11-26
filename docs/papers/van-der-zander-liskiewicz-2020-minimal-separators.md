@@ -1,0 +1,11 @@
+# Van der Zander and Liśkiewicz (2020), finding minimal d-separators
+
+<!-- topic: Graph separation -->
+
+[Paper index](../paper-checks.md)
+
+Section 3 and Figure 3 describe `FindMinSepInDAG`. Given endpoint sets X and Y, required vertices I, and allowed vertices R, it starts with the allowed ancestors of X ∪ Y ∪ I. The two directional searches prune this set from opposite sides while retaining I. When a permitted separator exists, the algorithm returns a separator Z with I ⊆ Z ⊆ R and no proper subset still separating X and Y while containing I. [PMLR 115, pp. 637–647](https://proceedings.mlr.press/v115/van-der-zander20a.html) · [§3, Figure 3](https://proceedings.mlr.press/v115/van-der-zander20a/van-der-zander20a.pdf#page=4)
+
+`FindMinSepInDAG.find_min_sep_in_dag_correct` proves this characterization for the finite DAG procedure with set-valued endpoints, I ⊆ R, and R disjoint from both endpoints. The proof also shows that `none` rules out every permitted separator, including candidates with non-ancestral vertices. `FindMinSepInDAG.dag_reach_iff_moral_reach` equates the directed arrival-state search with boundary reachability in the fixed ancestral moral graph. Each optional vertex of the output has a witness from both sides, so omitting it in any allowed subset of the output would connect the endpoints. [FindMinSepInDAG.lean](../../OpenCausalScience/Papers/VanDerZanderLiskiewicz2020/FindMinSepInDAG.lean)
+
+`FindMinSepInDAG.find_min_sep_refines_spec` verifies the executable finite worklist, and `FindMinSepInDAG.find_min_sep_correct` gives its correctness directly. The proof concerns the returned set and success or failure. The paper's linear-time bound and the mixed-graph extension in Proposition 5.2 remain separate. The public CGA routine prunes with boundary reachability after graph augmentation. The Lean reachability theorem explains the DAG correspondence without verifying CGA's Python graph conversion or other graph classes. [FindMinSepInDAG.lean](../../OpenCausalScience/Papers/VanDerZanderLiskiewicz2020/FindMinSepInDAG.lean) · [CGA, pinned implementation](https://github.com/snu-causality-lab/cga/blob/8a12610b3ac58d8f6c2f543759ebd2ee6d14ee2b/python/src/causal_graph_algorithms/separators.py)

@@ -2,8 +2,8 @@ module
 public import OpenCausalScience.Papers.Chickering2002.InsertBlocking
 
 /-! The two operator validity tests with abstract chain-component
-structure. Root availability is a property of the component
-representation, independent of either choice of GES operator. -/
+structure. Prescribed initial cliques can be realized from rooted
+join trees or directly from a collider-free component orientation. -/
 
 namespace OpenCausalScience.Papers.Chickering2002.OperatorTests
 
@@ -47,10 +47,21 @@ theorem roots_available_of_join_trees (components : Components base fixed)
   obtain ⟨rooted, same, root⟩ := reroot bag
   exact ⟨_, rooted, fun v hv => by rw [same, root]; exact contains v hv⟩
 
-/-- Theorem 15 under the chain-component assumptions and the rooted
-join-tree representation. Both tests use the original PDAG. -/
-theorem insert_iff_clique_and_blocks (components : Components base fixed)
+def CliquesOrientable (components : Components base fixed) : Prop :=
+  ∀ c (vertices : Vertices n), (∀ u, vertices u → components.label u = c) →
+    IsClique base vertices → RealizesInitialClique components c vertices
+
+theorem cliques_orientable_of_roots_available (components : Components base fixed)
     (roots : RootsAvailable components) (ext : Extension base fixed G)
+    (contains : ContainsColliders base fixed) : CliquesOrientable components := by
+  intro c vertices inside clique
+  obtain ⟨_, tree, root⟩ := roots c vertices inside clique
+  exact realizes_initial_clique_of_root components ext contains c vertices tree root
+
+/-- Theorem 15 for components that admit prescribed initial cliques.
+Both tests use the original PDAG. -/
+theorem insert_iff_clique_and_blocks_of_initial_cliques (components : Components base fixed)
+    (orient : CliquesOrientable components)
     (contains : ContainsColliders base fixed) (tails : Vertices n)
     (choice : Insert.Choice base fixed x y tails) :
     (∃ K H : DAG n, Extension base fixed K ∧ K.IsInsertion H x y ∧
@@ -65,7 +76,7 @@ theorem insert_iff_clique_and_blocks (components : Components base fixed)
     have neighbor {v : Fin n} (h : NeighborsAdjacentToSource base fixed x y v ∨ tails v) :
         Unoriented base fixed v y :=
       h.elim And.left (fun picked => (choice.valid v picked).1)
-    obtain ⟨_, tree, root⟩ := roots (components.label y) (insertClique base fixed x y tails)
+    have initial := orient (components.label y) (insertClique base fixed x y tails)
       (fun _ h => h.elim (fun e => e.symm ▸ rfl)
         (fun selected => components.label_eq_of_unoriented (neighbor selected))) (by
       intro u v hu hv different
@@ -76,13 +87,12 @@ theorem insert_iff_clique_and_blocks (components : Components base fixed)
         · subst v
           exact (neighbor selectedU).1
         · exact clique _ _ selectedU selectedV different)
-    exact insert_from_root_clique components ext contains tails choice tree root blocks
+    exact insert_from_initial_clique components contains tails choice initial blocks
 
-/-- Theorem 17 under the chain-component assumptions and the rooted
-join-tree representation. The unselected common neighbors must and
-can form a clique. -/
-theorem delete_iff_clique (components : Components base fixed) (roots : RootsAvailable components)
-    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (heads : Vertices n)
+/-- Theorem 17 for components that admit prescribed initial cliques. -/
+theorem delete_iff_clique_of_initial_cliques (components : Components base fixed)
+    (orient : CliquesOrientable components)
+    (contains : ContainsColliders base fixed) (heads : Vertices n)
     (xy : fixed x y ∨ Unoriented base fixed x y)
     (valid : ∀ v, heads v → NeighborsAdjacentToSource base fixed x y v) :
     (∃ K : DAG n, Extension base fixed K ∧ K.edge x y = true ∧
@@ -92,7 +102,7 @@ theorem delete_iff_clique (components : Components base fixed) (roots : RootsAva
   · rintro ⟨_, before, present, after⟩
     exact fun _ _ => Delete.clique_of_realization before contains present after
   · intro clique
-    obtain ⟨_, tree, root⟩ := roots (components.label y) (deleteClique base fixed x y heads)
+    have initial := orient (components.label y) (deleteClique base fixed x y heads)
       (by
         intro v h
         rcases h with eq | ⟨eq, openEdge⟩ | ⟨common, _⟩
@@ -121,7 +131,28 @@ theorem delete_iff_clique (components : Components base fixed) (roots : RootsAva
         · subst v
           exact Or.symm commonU.2
         · exact clique _ _ ⟨commonU, notU⟩ ⟨commonV, notV⟩ different)
-    exact delete_from_root_clique components ext contains heads xy valid tree root
+    exact delete_from_initial_clique components contains heads xy valid initial
+
+theorem insert_iff_clique_and_blocks (components : Components base fixed)
+    (roots : RootsAvailable components) (ext : Extension base fixed G)
+    (contains : ContainsColliders base fixed) (tails : Vertices n)
+    (choice : Insert.Choice base fixed x y tails) :
+    (∃ K H : DAG n, Extension base fixed K ∧ K.IsInsertion H x y ∧
+      Insert.Realizes base fixed x y tails H) ↔
+      IsClique base (fun v => NeighborsAdjacentToSource base fixed x y v ∨ tails v) ∧
+      ¬ Insert.AvoidingWalk base fixed (fun v => NeighborsAdjacentToSource base fixed x y v ∨ tails v) y x :=
+  insert_iff_clique_and_blocks_of_initial_cliques components
+    (cliques_orientable_of_roots_available components roots ext contains) contains tails choice
+
+theorem delete_iff_clique (components : Components base fixed) (roots : RootsAvailable components)
+    (ext : Extension base fixed G) (contains : ContainsColliders base fixed) (heads : Vertices n)
+    (xy : fixed x y ∨ Unoriented base fixed x y)
+    (valid : ∀ v, heads v → NeighborsAdjacentToSource base fixed x y v) :
+    (∃ K : DAG n, Extension base fixed K ∧ K.edge x y = true ∧
+      Delete.Realizes base fixed x y heads (K.deleteArrow x y)) ↔
+      IsClique base (fun v => NeighborsAdjacentToSource base fixed x y v ∧ ¬ heads v) :=
+  delete_iff_clique_of_initial_cliques components
+    (cliques_orientable_of_roots_available components roots ext contains) contains heads xy valid
 
 end
 end OpenCausalScience.Papers.Chickering2002.OperatorTests
