@@ -14,6 +14,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 | [Correa, Tian and Bareinboim (2019) · Theorem 2, necessity](papers/correa-tian-bareinboim-2019-selection-identification.md#where-the-selected-only-rc-procedure-stops) | **Verified counterexample** · RC stops on a six-vertex graph where adjustment using the selected sample recovers the same effect. |
 | [Elahi, Akbari, Etesami, Kiyavash and Thiran (2024) · Lemma 2 and Algorithm 1, line 8](papers/elahi-et-al-2024-fast-proxy-experiment-design.md#the-intervention-domain) | **Verified counterexample** · The printed split network can select the outcome itself, even when the resulting experiment cannot identify its response to treatment. |
 | [Elahi, Akbari, Etesami, Kiyavash and Thiran (2024) · Lemma 2, eligibility of adjustment variables](papers/elahi-et-al-2024-fast-proxy-experiment-design.md#a-treatment-descendant-in-the-adjustment-set) | **Verified counterexample** · A zero-cost observational cut can adjust for a treatment descendant and give the wrong response, even with interventions restricted to vertices outside the target ancestor set. |
+| [Lee and Honavar (2016) · Section 4.1.1, six-label bound](papers/lee-honavar-2016-rpcd.md#the-original-construction) | **Verified counterexample** · A 13-item skeleton has an unshielded triple that needs twelve middle-path labels from either endpoint. |
 | [Park and Lee (2026) · Proposition 1, no-conflict test](papers/park-lee-2026-ctf-scb.md#the-proceedings-statements) | **Verified counterexample** · The test can reject an action with a realizable reward. |
 | [Park and Lee (2026) · Proposition 2, equivalent specifications](papers/park-lee-2026-ctf-scb.md#the-proceedings-statements) | **Verified counterexample** · Distinct possibly optimal specifications can be equivalent. |
 | [Park and Lee (2026) · Corollary 3 and Theorem 2, empty border](papers/park-lee-2026-ctf-scb.md#the-proceedings-statements) | **Verified counterexample** · Under the published regime-graph convention, a dominated action can have an empty border. |
@@ -31,6 +32,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 | [Akbari, Etesami and Kiyavash (2025) · Definition 5 and Algorithm 1](papers/akbari-et-al-2025-optimal-experiment-design.md#hedge-hull-with-no-proper-hedge) | **Verified discrepancy** · The algorithm returns the target when the union of proper hedges is empty. |
 | [Ghassami, Salehkaleybar, Kiyavash and Bareinboim (2018) · Lemma 1, inequality direction](papers/ghassami-et-al-2018-budgeted-experiment-design.md#the-printed-inequality) | **Verified discrepancy** · The main text reverses the inequality. Supplementary Appendix B proves the increasing direction. |
 | [Kivva et al. (2022) · Example 2, two probabilities](papers/kivva-et-al-2022-general-identifiability.md#the-two-printed-probabilities) | **Verified discrepancy** · The printed probabilities are twice the exact cell masses. The two models still disagree on the target. |
+| [Lee and Honavar (2016) · Appendix, maximal pivots and the proof of Lemma 5](papers/lee-honavar-2016-rcd-light.md#the-appendix-corrections) | **Verified discrepancy** · The maximal-pivot set uses the forward word twice, and the unequal-pivot formula uses a one-sided difference. |
 | [Mohan and Pearl (2018) · Example 2, conditional independence](papers/mohan-pearl-2018-consistent-estimation-missing-data.md#conditioning-on-the-response-collider) | **Verified discrepancy** · The stated independence conditions on a collider in Figure 1(b). The same page gives the separation needed for the response ratio. |
 | [Witte et al. (2020) · Figure 2F, projected arrows](papers/witte-et-al-2020-efficient-adjustment.md#figure-2f) | **Verified discrepancy** · The printed projection contains two extra arrows. The panel’s adjustment conclusion still follows. |
 
@@ -70,6 +72,8 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Jaber, Kocaoglu, Shanmugam and Bareinboim (2020), soft interventions with unknown targets](papers/jaber-et-al-2020-unknown-soft-targets.md)
 - <a name="kim-hwang-and-lee-2024-deduce-dep-correction"></a>[Kim, Hwang and Lee (2024), DEDUCE-DEP correction](papers/kim-hwang-lee-2024-deduce-dep.md)
 - [Kocaoglu, Jaber, Shanmugam and Bareinboim (2019), controlled soft interventions](papers/kocaoglu-et-al-2019-controlled-soft-interventions.md)
+- [Lee and Honavar (2016), RCD-Light](papers/lee-honavar-2016-rcd-light.md)
+- [Lee and Honavar (2016), relational causal discovery under path semantics](papers/lee-honavar-2016-rpcd.md)
 - [Meek (1995), orientation rules and consistent extensions](papers/meek-1995-orientation.md)
 - [Spirtes and Glymour (1991), oracle PC](papers/spirtes-glymour-1991-pc.md)
 - [Wang, Qin and Zhou (2023), local background knowledge](papers/wang-qin-zhou-2023-local-background-knowledge.md)

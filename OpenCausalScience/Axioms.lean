@@ -1171,3 +1171,19 @@ open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
 #print axioms Papers.ParkEtAl2026.ComponentParentDeletion.delete_edge_iff
 #print axioms Papers.ParkEtAl2026.ComponentParentDeletion.deletion_contains_colliders
 #print axioms Papers.ParkEtAl2026.ComponentParentDeletion.component_parent_deletion_valid
+
+#print axioms RpCD.full_path_counts
+#print axioms RpCD.actual_endpoints_unshielded
+#print axioms RpCD.GeneratingPaths.every_witness_has_twelve_middle_paths
+#print axioms RpCD.supplement_line20_unreachable
+#print axioms RpCD.mem_boundedCandidates
+#print axioms CutComplete.construct_of_groundWitness
+#print axioms CutComplete.construct_sound
+#print axioms RpCD.CutSchedule.exact_cut_coverage
+#print axioms RpCD.Completion.extend_iff
+#print axioms RpCD.learnBounded_correct_all_equivalent
+
+#print axioms RCDPathValidity.representative_unshielded_triple
+#print axioms RCDLight.Learning.unrolled_adjacency_faithfulness_from_ground_oracle
+#print axioms RCDLight.Learning.representative_orientation_faithfulness
+#print axioms RCDLight.Learning.algorithm1_sound

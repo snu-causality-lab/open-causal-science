@@ -173,3 +173,9 @@ public import OpenCausalScience.Papers.MohanPearl2021.OrderedFactorization
 public import OpenCausalScience.Papers.NabiEtAl2020.ColludingPaths
 public import OpenCausalScience.Papers.MohanPearl2014.ComparisonWitnesses
 public import OpenCausalScience.Papers.ElahiEtAl2024.DescendantAdjustment
+
+public import OpenCausalScience.Papers.LeeHonavar2016RpCD.RpCDBounded
+public import OpenCausalScience.Papers.LeeHonavar2016RCDLight.Algorithm1
+public import OpenCausalScience.Papers.LeeHonavar2016RCDLight.FullAdjacency
+public import OpenCausalScience.Papers.LeeHonavar2016RpCD.Witnesses
+public import OpenCausalScience.Papers.LeeHonavar2016RpCD.PrintedRpCD
