@@ -201,3 +201,16 @@ public import OpenCausalScience.Papers.Richardson2009.Figures
 public import OpenCausalScience.Papers.Richardson2009.HeadCharacterization
 public import OpenCausalScience.Papers.Richardson2009.HeadTail
 public import OpenCausalScience.Papers.SadeghiLauritzen2014.Markov
+
+public import OpenCausalScience.Discovery.OrderDAG
+public import OpenCausalScience.Papers.RaskuttiUhler2018.Minimality
+public import OpenCausalScience.Papers.RaskuttiUhler2018.Figure1
+public import OpenCausalScience.Papers.LamEtAl2022.Tuck
+public import OpenCausalScience.Papers.LamEtAl2022.Search
+public import OpenCausalScience.Papers.LamEtAl2022.EdgeCount
+public import OpenCausalScience.Papers.LamEtAl2022.CoveredProjection
+public import OpenCausalScience.Papers.LamEtAl2022.GRaSP
+public import OpenCausalScience.Papers.LamEtAl2022.Figure2
+public import OpenCausalScience.Papers.AndrewsEtAl2023.BestMove
+public import OpenCausalScience.Papers.AndrewsEtAl2023.GrowShrinkTree
+public import OpenCausalScience.Papers.AndrewsEtAl2023.OrderSearch

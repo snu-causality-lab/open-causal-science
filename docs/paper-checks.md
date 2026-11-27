@@ -32,6 +32,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 | [Akbari, Etesami and Kiyavash (2025) · Definition 5 and Algorithm 1](papers/akbari-et-al-2025-optimal-experiment-design.md#hedge-hull-with-no-proper-hedge) | **Verified discrepancy** · The algorithm returns the target when the union of proper hedges is empty. |
 | [Ghassami, Salehkaleybar, Kiyavash and Bareinboim (2018) · Lemma 1, inequality direction](papers/ghassami-et-al-2018-budgeted-experiment-design.md#the-printed-inequality) | **Verified discrepancy** · The main text reverses the inequality. Supplementary Appendix B proves the increasing direction. |
 | [Kivva et al. (2022) · Example 2, two probabilities](papers/kivva-et-al-2022-general-identifiability.md#the-two-printed-probabilities) | **Verified discrepancy** · The printed probabilities are twice the exact cell masses. The two models still disagree on the target. |
+| [Lam, Andrews and Ramsey (2022) · Supplement Lemma B.8(c), edge count in the proof](papers/lam-et-al-2022-grasp.md#edge-count-in-lemma-b8c) | **Verified discrepancy** · The covered reversal preserves the original DAG’s arrow count. Figure 2 shows that the reinduced DAG can be sparser. |
 | [Lee and Honavar (2016) · Appendix, maximal pivots and the proof of Lemma 5](papers/lee-honavar-2016-rcd-light.md#the-appendix-corrections) | **Verified discrepancy** · The maximal-pivot set uses the forward word twice, and the unequal-pivot formula uses a one-sided difference. |
 | [Mohan and Pearl (2018) · Example 2, conditional independence](papers/mohan-pearl-2018-consistent-estimation-missing-data.md#conditioning-on-the-response-collider) | **Verified discrepancy** · The stated independence conditions on a collider in Figure 1(b). The same page gives the separation needed for the response ratio. |
 | [Witte et al. (2020) · Figure 2F, projected arrows](papers/witte-et-al-2020-efficient-adjustment.md#figure-2f) | **Verified discrepancy** · The printed projection contains two extra arrows. The panel’s adjustment conclusion still follows. |
@@ -70,14 +71,17 @@ We develop these formalizations to reuse results from the causal graph literatur
 
 ## Discovery
 
+- [Andrews et al. (2023), BOSS and grow–shrink trees](papers/andrews-et-al-2023-boss.md)
 - [Chickering (2002), Insert and Delete](papers/chickering-2002-greedy-equivalence-search.md)
 - [Jaber, Kocaoglu, Shanmugam and Bareinboim (2020), soft interventions with unknown targets](papers/jaber-et-al-2020-unknown-soft-targets.md)
 - <a name="kim-hwang-and-lee-2024-deduce-dep-correction"></a>[Kim, Hwang and Lee (2024), DEDUCE-DEP correction](papers/kim-hwang-lee-2024-deduce-dep.md)
 - [Kocaoglu, Jaber, Shanmugam and Bareinboim (2019), controlled soft interventions](papers/kocaoglu-et-al-2019-controlled-soft-interventions.md)
+- [Lam, Andrews and Ramsey (2022), GRaSP](papers/lam-et-al-2022-grasp.md)
 - [Lee and Honavar (2016), RCD-Light](papers/lee-honavar-2016-rcd-light.md)
 - [Lee and Honavar (2016), relational causal discovery under path semantics](papers/lee-honavar-2016-rpcd.md)
 - [Meek (1995), orientation rules and consistent extensions](papers/meek-1995-orientation.md)
 - [Park et al. (2026), Breaking Bad](papers/park-et-al-2026-component-parent-deletion.md)
+- [Raskutti and Uhler (2018), sparsest permutations](papers/raskutti-uhler-2018-sparsest-permutations.md)
 - [Spirtes and Glymour (1991), oracle PC](papers/spirtes-glymour-1991-pc.md)
 - [Wang, Qin and Zhou (2023), local background knowledge](papers/wang-qin-zhou-2023-local-background-knowledge.md)
 - [Wienöbst, Bannach and Liśkiewicz (2021), consistent PDAG extensions](papers/wienobst-bannach-liskiewicz-2021-pdag-extension.md)
