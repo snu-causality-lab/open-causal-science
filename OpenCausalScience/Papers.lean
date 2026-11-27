@@ -179,3 +179,25 @@ public import OpenCausalScience.Papers.LeeHonavar2016RCDLight.Algorithm1
 public import OpenCausalScience.Papers.LeeHonavar2016RCDLight.FullAdjacency
 public import OpenCausalScience.Papers.LeeHonavar2016RpCD.Witnesses
 public import OpenCausalScience.Papers.LeeHonavar2016RpCD.PrintedRpCD
+
+public import OpenCausalScience.Papers.AnderssonEtAl2001.Flag
+public import OpenCausalScience.Papers.Dawid1979.ConditionalIndependence
+public import OpenCausalScience.Papers.Drton2009.Example3
+public import OpenCausalScience.Papers.Frydenberg1990.MinimalComplex
+public import OpenCausalScience.Papers.Frydenberg1990.MoralSeparation
+public import OpenCausalScience.Papers.Grimmett1973.CliqueFactorization
+public import OpenCausalScience.Papers.KiiveriSpeedCarlin1984.Example3
+public import OpenCausalScience.Papers.LauritzenEtAl1990.KernelElimination
+public import OpenCausalScience.Papers.LauritzenEtAl1990.MoralFactorization
+public import OpenCausalScience.Papers.LauritzenEtAl1990.OrderedFactorization
+public import OpenCausalScience.Papers.LauritzenSadeghi2018.ConnectingWalks
+public import OpenCausalScience.Papers.LauritzenSpeedVijayan1984.EliminationBags
+public import OpenCausalScience.Papers.LauritzenSpiegelhalter1988.SeparatorGluing
+public import OpenCausalScience.Papers.LauritzenSpiegelhalter1988.TreeMessages
+public import OpenCausalScience.Papers.LevitzEtAl2001.Table2
+public import OpenCausalScience.Papers.Moussouris1974.FourCycle
+public import OpenCausalScience.Papers.Richardson2003.OrderedLocal
+public import OpenCausalScience.Papers.Richardson2009.Figures
+public import OpenCausalScience.Papers.Richardson2009.HeadCharacterization
+public import OpenCausalScience.Papers.Richardson2009.HeadTail
+public import OpenCausalScience.Papers.SadeghiLauritzen2014.Markov

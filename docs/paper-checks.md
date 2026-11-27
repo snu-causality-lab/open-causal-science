@@ -66,6 +66,8 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Richardson and Robins (2013), single-world intervention graphs](papers/richardson-robins-2013-swig.md)
 - [Shpitser and Pearl (2008), counterfactual identification](papers/shpitser-pearl-2008-counterfactual-id.md)
 
+<a name="graph-learning"></a>
+
 ## Discovery
 
 - [Chickering (2002), Insert and Delete](papers/chickering-2002-greedy-equivalence-search.md)
@@ -75,6 +77,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Lee and Honavar (2016), RCD-Light](papers/lee-honavar-2016-rcd-light.md)
 - [Lee and Honavar (2016), relational causal discovery under path semantics](papers/lee-honavar-2016-rpcd.md)
 - [Meek (1995), orientation rules and consistent extensions](papers/meek-1995-orientation.md)
+- [Park et al. (2026), Breaking Bad](papers/park-et-al-2026-component-parent-deletion.md)
 - [Spirtes and Glymour (1991), oracle PC](papers/spirtes-glymour-1991-pc.md)
 - [Wang, Qin and Zhou (2023), local background knowledge](papers/wang-qin-zhou-2023-local-background-knowledge.md)
 - [Wienöbst, Bannach and Liśkiewicz (2021), consistent PDAG extensions](papers/wienobst-bannach-liskiewicz-2021-pdag-extension.md)
@@ -100,10 +103,6 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Zhang (2008), Causal Reasoning with Ancestral Graphs](papers/zhang-2008-causal-reasoning.md)
 - [Zhang and Spirtes (2005), legitimate mark changes in directed MAGs](papers/zhang-spirtes-2005-legitimate-mark-changes.md)
 
-## Graph learning
-
-- [Park et al. (2026), Breaking Bad](papers/park-et-al-2026-component-parent-deletion.md)
-
 <a name="finite-dag-and-ancestral-graph-separation"></a>
 
 ## Graph separation
@@ -112,6 +111,28 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Shachter (1998), Bayes-ball](papers/shachter-1998-bayes-ball.md)
 - [Van der Zander and Liśkiewicz (2020), finding minimal d-separators](papers/van-der-zander-liskiewicz-2020-minimal-separators.md)
 - <a name="van-der-zander-liśkiewicz-and-textor-2019-2023-lemma-2"></a>[Van der Zander, Liśkiewicz and Textor (2019, 2023), Lemma 2](papers/van-der-zander-et-al-2019-ancestral-graphs.md)
+
+## Graphical Markov models
+
+- [Andersson, Madigan and Perlman (2001), alternative Markov properties for chain graphs](papers/andersson-et-al-2001-amp-chain-graphs.md)
+- [Besag (1974), spatial interaction](papers/besag-1974-spatial-interaction.md)
+- [Darroch, Lauritzen and Speed (1980), graphical log-linear models](papers/darroch-lauritzen-speed-1980-log-linear-markov-fields.md)
+- [Dawid (1979), conditional independence](papers/dawid-1979-conditional-independence.md)
+- [Drton (2009), discrete chain graph models](papers/drton-2009-discrete-chain-graph-models.md)
+- [Frydenberg (1990), the chain graph Markov property](papers/frydenberg-1990-chain-graph-markov.md)
+- [Grimmett (1973), random fields](papers/grimmett-1973-random-fields.md)
+- [Kiiveri, Speed and Carlin (1984), recursive causal models](papers/kiiveri-speed-carlin-1984-recursive-causal-models.md)
+- [Lauritzen and Richardson (2002), causal interpretations of chain graphs](papers/lauritzen-richardson-2002-causal-chain-graphs.md)
+- [Lauritzen and Sadeghi (2018), unifying Markov properties for graphical models](papers/lauritzen-sadeghi-2018-unifying-markov.md)
+- [Lauritzen and Spiegelhalter (1988), local probability computations](papers/lauritzen-spiegelhalter-1988-local-computations.md)
+- [Lauritzen and Wermuth (1989), graphical association models](papers/lauritzen-wermuth-1989-graphical-models.md)
+- [Lauritzen, Dawid, Larsen and Leimer (1990), directed Markov fields](papers/lauritzen-et-al-1990-directed-markov-fields.md)
+- [Lauritzen, Speed and Vijayan (1984), decomposable graphs and hypergraphs](papers/lauritzen-speed-vijayan-1984-decomposable-graphs.md)
+- [Levitz, Perlman and Madigan (2001), AMP p-separation](papers/levitz-et-al-2001-amp-p-separation.md)
+- [Moussouris (1974), Gibbs and Markov fields with constraints](papers/moussouris-1974-gibbs-markov-constraints.md)
+- [Richardson (2003), Markov properties for acyclic directed mixed graphs](papers/richardson-2003-ordered-local-markov.md)
+- [Richardson (2009), a factorization criterion for acyclic directed mixed graphs](papers/richardson-2009-admg-factorization.md)
+- [Sadeghi and Lauritzen (2014), Markov properties for mixed graphs](papers/sadeghi-lauritzen-2014-mixed-graph-markov.md)
 
 ## Identification
 

@@ -1,6 +1,7 @@
 # Park et al. (2026), Breaking Bad
 
-<!-- topic: Graph learning -->
+<!-- topic: Discovery -->
+<!-- topic-anchor: graph-learning -->
 
 [Paper index](../paper-checks.md)
 

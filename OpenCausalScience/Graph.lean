@@ -7,3 +7,6 @@ public import OpenCausalScience.Graph.MixedSeparators
 public import OpenCausalScience.Graph.MixedSeparatorChecks
 public import OpenCausalScience.Graph.LatentExpansionSeparation
 public import OpenCausalScience.Graph.DirectedEdgeEdit
+
+public import OpenCausalScience.Graph.ChainGraph
+public import OpenCausalScience.Graph.ChainMarkov
