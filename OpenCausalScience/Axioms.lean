@@ -1167,3 +1167,7 @@ open OpenCausalScience.Papers.VermaPearl1990.ExecutableQuery
 #print axioms Probability.FiniteMass.mass_univ
 #print axioms Probability.FiniteMass.mass_congr_on_support
 #print axioms Probability.FiniteMass.sum_masses_of_partition
+
+#print axioms Papers.ParkEtAl2026.ComponentParentDeletion.delete_edge_iff
+#print axioms Papers.ParkEtAl2026.ComponentParentDeletion.deletion_contains_colliders
+#print axioms Papers.ParkEtAl2026.ComponentParentDeletion.component_parent_deletion_valid

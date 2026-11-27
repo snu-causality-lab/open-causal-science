@@ -51,6 +51,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 - <a name="lee-and-bareinboim-2018-structural-causal-bandits"></a>[Lee and Bareinboim (2018), structural causal bandits](papers/lee-bareinboim-2018-structural-causal-bandits.md)
 - [Lee and Bareinboim (2019), structural causal bandits with non-manipulable variables](papers/lee-bareinboim-2019-scb-non-manipulable.md)
 - [Park and Lee (2026), counterfactual structural causal bandits](papers/park-lee-2026-ctf-scb.md)
+- [Park and Lee (2026), transportability for structural causal bandits](papers/park-lee-2026-scb-transportability.md)
 
 ## Counterfactual fairness
 
@@ -58,6 +59,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 
 ## Counterfactual identification
 
+- [Choe, Kwon, Park and Lee (2026), Canonical Domain Reduction](papers/choe-kwon-park-lee-2026-canonical-domain-reduction.md)
 - [Correa, Lee and Bareinboim (2021), nested counterfactual identification](papers/correa-lee-bareinboim-2021-counterfactual-identification.md)
 - [Richardson and Robins (2013), single-world intervention graphs](papers/richardson-robins-2013-swig.md)
 - [Shpitser and Pearl (2008), counterfactual identification](papers/shpitser-pearl-2008-counterfactual-id.md)
@@ -93,6 +95,10 @@ We develop these formalizations to reuse results from the causal graph literatur
 - <a name="verma-and-pearl-1990-dag-equivalence"></a>[Verma and Pearl (1990), DAG equivalence](papers/verma-pearl-1990-dag-equivalence.md)
 - [Zhang (2008), Causal Reasoning with Ancestral Graphs](papers/zhang-2008-causal-reasoning.md)
 - [Zhang and Spirtes (2005), legitimate mark changes in directed MAGs](papers/zhang-spirtes-2005-legitimate-mark-changes.md)
+
+## Graph learning
+
+- [Park et al. (2026), Breaking Bad](papers/park-et-al-2026-component-parent-deletion.md)
 
 <a name="finite-dag-and-ancestral-graph-separation"></a>
 
@@ -145,3 +151,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 - [Bareinboim, Tian and Pearl (2014), recovery from selection bias](papers/bareinboim-tian-pearl-2014-selection-recovery.md)
 - [Correa, Tian and Bareinboim (2018), adjustment under confounding and selection](papers/correa-tian-bareinboim-2018-selection-adjustment.md)
 - [Correa, Tian and Bareinboim (2019), causal identification under selection](papers/correa-tian-bareinboim-2019-selection-identification.md)
+
+## Uncertainty quantification
+
+- [Cho et al. (2026), decomposing conformal uncertainty](papers/cho-et-al-2026-conformal-shapley.md)

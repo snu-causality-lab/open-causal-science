@@ -42,6 +42,7 @@ public import OpenCausalScience.Papers.JungEtAl2024.TailAlignment
 public import OpenCausalScience.Papers.JungEtAl2024.Randomization
 public import OpenCausalScience.Papers.LeeEtAl2019.JointSCM
 public import OpenCausalScience.Papers.PerkovicEtAl2018.DAGAdjustment
+public import OpenCausalScience.Papers.ParkEtAl2026.ComponentParentDeletion
 public import OpenCausalScience.Papers.KivvaEtAl2022.Example2
 public import OpenCausalScience.Papers.VermaPearl1990.DAGEquivalence
 public import OpenCausalScience.Papers.AliRichardsonSpirtes2009.EquivalenceNecessary

@@ -7,7 +7,10 @@ import KimEtAl2026BeyondBounds.SCMPrefixHull
 import OpenCausalScienceAnalysis.ConnectedBlockMaps
 import OpenCausalScienceAnalysis.BlockHessian
 import OpenCausalScienceAnalysis.Decision.SCB2019Theorem4
+import OpenCausalScienceAnalysis.Decision.SCB2026Transport
+import OpenCausalScienceAnalysis.Identification.CanonicalDomainReduction
 import OpenCausalScienceAnalysis.Identification.TianKernelOperations
+import OpenCausalScienceAnalysis.Uncertainty.ConformalShapley
 
 open OpenCausalScience.Papers.KimEtAl2026.ConnectedBlockMaps
 
@@ -76,3 +79,17 @@ open OpenCausalScience.Papers.KimEtAl2026.BlockHessian
 #print axioms OpenCausalScienceAnalysis.Scb2019.project_model_preserves_best
 #print axioms OpenCausalScienceAnalysis.Scb2019.best_le_projected_border
 #print axioms OpenCausalScienceAnalysis.Scb2019.constrained_pomis_eq_projected_pomis
+
+#print axioms OpenCausalScienceAnalysis.Scb2026Transport.nested_factor_bounds
+#print axioms OpenCausalScienceAnalysis.Scb2026Transport.partial_transport_bounds
+#print axioms OpenCausalScienceAnalysis.Scb2026Transport.projected_pomis_is_original_mis
+
+#print axioms OpenCausalScienceAnalysis.CanonicalDomainReduction.attainable_values_eq
+#print axioms OpenCausalScienceAnalysis.CanonicalDomainReduction.sharp_bounds_eq
+
+#print axioms OpenCausalScienceAnalysis.Uncertainty.ConformalShapley.shapley_linear
+#print axioms OpenCausalScienceAnalysis.Uncertainty.ConformalShapley.two_game_decomposition
+#print axioms OpenCausalScienceAnalysis.Uncertainty.ConformalShapley.transformed_width_decomposition
+#print axioms OpenCausalScienceAnalysis.Uncertainty.ConformalShapley.group_width_decomposition
+#print axioms OpenCausalScienceAnalysis.Uncertainty.ConformalShapley.cqr_attribution
+#print axioms OpenCausalScienceAnalysis.Uncertainty.ConformalShapley.lacp_log_attribution

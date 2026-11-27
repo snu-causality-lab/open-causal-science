@@ -23,7 +23,10 @@ name = "OpenCausalScienceAnalysis"
 globs = [
   "OpenCausalScienceAnalysis",
   "OpenCausalScienceAnalysis.Decision.SCB2019Theorem4",
+  "OpenCausalScienceAnalysis.Decision.SCB2026Transport",
+  "OpenCausalScienceAnalysis.Identification.CanonicalDomainReduction",
   "OpenCausalScienceAnalysis.Identification.TianKernelOperations",
+  "OpenCausalScienceAnalysis.Uncertainty.ConformalShapley",
 ]
 
 [[lean_lib]]
