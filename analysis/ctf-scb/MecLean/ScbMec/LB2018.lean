@@ -667,6 +667,36 @@ theorem mu_le_half {G : ADMG n} (hG : G.WF) (T X : Finset (Fin n)) (K : ℕ) [Ne
   rw [Function.update_self] at e2
   exact pair_aux hd hdm hK (u l) e1 e2 (h.1 l) (h.2 l)
 
+/-- One explicit witness simultaneously beats every other DMIS. Each root of
+`wmodel` is a private root or the root of a bidirected edge. -/
+theorem exists_pomis_witness {G : ADMG n} (hG : G.WF) {y : Fin n} {X T : Finset (Fin n)}
+    (hT : DiagMUCT G y X T) (hB : diagBorder G T = X) :
+    ∃ (K : ℕ) (nonzero : NeZero K),
+      ∀ W, DMIS (ConfDiag G) y W → W ≠ X →
+        (@wmodel n G hG T K nonzero).best y (reward G hG T X K y) W <
+          (@wmodel n G hG T K nonzero).best y (reward G hG T X K y) X := by
+  obtain ⟨K, hK0, hK⟩ : ∃ K : ℕ, 0 < K ∧ ∀ l, 2 * LB18.cnt G T ∅ l y < K := by
+    refine ⟨2 * (∑ l, LB18.cnt G T ∅ l y) + 1, by omega, fun l => ?_⟩
+    have h1 : LB18.cnt G T ∅ l y ≤ ∑ l', LB18.cnt G T ∅ l' y :=
+      Finset.single_le_sum (f := fun l' => LB18.cnt G T ∅ l' y) (fun i _ => Nat.zero_le _)
+        (Finset.mem_univ l)
+    omega
+  let nonzero : NeZero K := ⟨by omega⟩
+  refine ⟨K, nonzero, fun W hW hne => ?_⟩
+  have hyW : y ∉ W := hW.1
+  have hWcrit : AncCrit G y W := (mis_diag_iff hG hyW).mp (dmis_mis hW)
+  obtain ⟨l, hl0, hlne⟩ := LB18.key_coord hG hT hB hyW hWcrit hne
+  have hsum : LB18.cnt G T W l y + LB18.cnt G T X l y < K := by
+    have h1 := LB18.cnt_le_empty hG T W l y
+    have h2 := LB18.cnt_le_empty hG T X l y
+    have h3 := hK l
+    omega
+  have hup : (LB18.wmodel G hG T K).best y (LB18.reward G hG T X K y) W ≤ 1 / 2 :=
+    LB18.best_le _ (fun w => LB18.mu_le_half hG T X K y hl0 hlne hsum w)
+  have hlow : 1 ≤ (LB18.wmodel G hG T K).best y (LB18.reward G hG T X K y) X :=
+    (LB18.mu_X hG T X K y).symm.le.trans ((LB18.wmodel G hG T K).mu_le_best y _ X _)
+  linarith
+
 end LB18
 
 /-- **Lee–Bareinboim (2018), Thm. 6, "if"**. -/
@@ -681,28 +711,9 @@ theorem pomis_diag {G : ADMG n} (hG : G.WF) {y : Fin n} {X T : Finset (Fin n)}
     obtain ⟨-, t, ht, hxt⟩ := LB18.mem_diagBorder.mp hx'
     have htH := LB18.mem_diagH.mp (hT.1.1 ht)
     exact Reach.head hxt htH.1 htH.2
-  refine ⟨dmis_diag_of_ancCrit hG hyX hcrit, ?_⟩
-  obtain ⟨K, hK0, hK⟩ : ∃ K : ℕ, 0 < K ∧ ∀ l, 2 * LB18.cnt G T ∅ l y < K := by
-    refine ⟨2 * (∑ l, LB18.cnt G T ∅ l y) + 1, by omega, fun l => ?_⟩
-    have h1 : LB18.cnt G T ∅ l y ≤ ∑ l', LB18.cnt G T ∅ l' y :=
-      Finset.single_le_sum (f := fun l' => LB18.cnt G T ∅ l' y) (fun i _ => Nat.zero_le _)
-        (Finset.mem_univ l)
-    omega
-  have : NeZero K := ⟨by omega⟩
-  refine ⟨LB18.wmodel G hG T K, LB18.reward G hG T X K y, LB18.wconf hG T K,
-    fun W hW hne => ?_⟩
-  have hyW : y ∉ W := hW.1
-  have hWcrit : AncCrit G y W := (mis_diag_iff hG hyW).mp (dmis_mis hW)
-  obtain ⟨l, hl0, hlne⟩ := LB18.key_coord hG hT hB hyW hWcrit hne
-  have hsum : LB18.cnt G T W l y + LB18.cnt G T X l y < K := by
-    have h1 := LB18.cnt_le_empty hG T W l y
-    have h2 := LB18.cnt_le_empty hG T X l y
-    have h3 := hK l
-    omega
-  have hup : (LB18.wmodel G hG T K).best y (LB18.reward G hG T X K y) W ≤ 1 / 2 :=
-    LB18.best_le _ (fun w => LB18.mu_le_half hG T X K y hl0 hlne hsum w)
-  have hlow : 1 ≤ (LB18.wmodel G hG T K).best y (LB18.reward G hG T X K y) X :=
-    (LB18.mu_X hG T X K y).symm.le.trans ((LB18.wmodel G hG T K).mu_le_best y _ X _)
-  linarith
+  obtain ⟨K, nonzero, hbest⟩ := LB18.exists_pomis_witness hG hT hB
+  let : NeZero K := nonzero
+  exact ⟨dmis_diag_of_ancCrit hG hyX hcrit,
+    LB18.wmodel G hG T K, LB18.reward G hG T X K y, LB18.wconf hG T K, hbest⟩
 
 end Mec.ScbMec

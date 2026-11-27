@@ -20,7 +20,11 @@ rev = "v4.36.0"
 
 [[lean_lib]]
 name = "OpenCausalScienceAnalysis"
-globs = ["OpenCausalScienceAnalysis", "OpenCausalScienceAnalysis.Identification.TianKernelOperations"]
+globs = [
+  "OpenCausalScienceAnalysis",
+  "OpenCausalScienceAnalysis.Decision.SCB2019Proposition3",
+  "OpenCausalScienceAnalysis.Identification.TianKernelOperations",
+]
 
 [[lean_lib]]
 name = "KimEtAl2026BeyondBounds"

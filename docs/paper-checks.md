@@ -23,6 +23,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 | [Jung, Park and Lee (2024) · Definition 7, forbidden descendants](papers/jung-park-lee-2024-sequential-adjustment.md#the-stagewise-forbidden-set) | **Author correction** · The revised stagewise graph admits an adjustment on the example chain that the published definition excludes. |
 | [Kim, Hwang and Lee (2024) · Algorithm 3, conditioning-set size](papers/kim-hwang-lee-2024-deduce-dep.md#marginal-independence-in-algorithm-3) | **Author correction** · The revision starts the PC loop at size zero, so marginal independence can remove an edge. |
 | [Lee and Bareinboim (2018) · Theorem 9, enumeration proof](papers/lee-bareinboim-2018-structural-causal-bandits.md#the-enumeration-proof) | **Author correction** · The revised proof treats nested and excluded territories in the enumeration and keeps the theorem’s conclusion. |
+| [Lee and Bareinboim (2019) · Proposition 3](papers/lee-bareinboim-2019-scb-non-manipulable.md#corrected-proposition-3) | **Author correction** · A projected POMIS needs one witness on the original graph that preserves all its strict comparisons. |
 | [Lee, Correa and Bareinboim (2019) · Definition 4 and Appendix A](papers/lee-correa-bareinboim-2019-gid.md#the-july-2022-erratum) | **Author correction** · R-46e adds input positivity to Definition 4 and revises the upper and bottom structural equations. |
 | [Shpitser and Pearl (2006) · UAI §6, Lemma 3](papers/shpitser-pearl-2006-conditional-idc.md#figure-1c-and-the-2007-appendum) | **Author correction** · The 2007 Appendum withdraws the claim that Tian’s conditional identification procedure is unsound. |
 | [Shpitser and Pearl (2006) · AAAI Corollary 3](papers/shpitser-pearl-2006-joint-id.md#the-hedge-criterion) | **Author correction** · The 2023 note replaces the arbitrary-subquery hedge condition with a criterion for the exact query. |
@@ -48,6 +49,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 ## Causal decision making
 
 - <a name="lee-and-bareinboim-2018-structural-causal-bandits"></a>[Lee and Bareinboim (2018), structural causal bandits](papers/lee-bareinboim-2018-structural-causal-bandits.md)
+- [Lee and Bareinboim (2019), structural causal bandits with non-manipulable variables](papers/lee-bareinboim-2019-scb-non-manipulable.md)
 - [Park and Lee (2026), counterfactual structural causal bandits](papers/park-lee-2026-ctf-scb.md)
 
 ## Counterfactual fairness
