@@ -6,7 +6,7 @@ import KimEtAl2026BeyondBounds.ReducedCE
 import KimEtAl2026BeyondBounds.SCMPrefixHull
 import OpenCausalScienceAnalysis.ConnectedBlockMaps
 import OpenCausalScienceAnalysis.BlockHessian
-import OpenCausalScienceAnalysis.Decision.SCB2019Proposition3
+import OpenCausalScienceAnalysis.Decision.SCB2019Theorem4
 import OpenCausalScienceAnalysis.Identification.TianKernelOperations
 
 open OpenCausalScience.Papers.KimEtAl2026.ConnectedBlockMaps
@@ -67,3 +67,12 @@ open OpenCausalScience.Papers.KimEtAl2026.BlockHessian
 #print axioms OpenCausalScienceAnalysis.Scb2019.restore_eliminated
 #print axioms OpenCausalScienceAnalysis.Scb2019.restore_projected_witness
 #print axioms OpenCausalScienceAnalysis.Scb2019.preserves_pomis_witnesses
+
+#print axioms OpenCausalScienceAnalysis.Scb2019.forwardMech_diag
+#print axioms OpenCausalScienceAnalysis.Scb2019.forwardMech_resp
+#print axioms OpenCausalScienceAnalysis.Scb2019.projectModel_expectation_eq
+#print axioms OpenCausalScienceAnalysis.Scb2019.projectModel_mean_eq
+#print axioms OpenCausalScienceAnalysis.Scb2019.projectModel_best_eq
+#print axioms OpenCausalScienceAnalysis.Scb2019.project_model_preserves_best
+#print axioms OpenCausalScienceAnalysis.Scb2019.best_le_projected_border
+#print axioms OpenCausalScienceAnalysis.Scb2019.constrained_pomis_eq_projected_pomis

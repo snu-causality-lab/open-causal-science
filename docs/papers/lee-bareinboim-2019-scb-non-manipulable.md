@@ -4,7 +4,31 @@
 
 [Paper index](../paper-checks.md)
 
-> **Author correction** · [Proposition 3](#corrected-proposition-3) · A projected POMIS needs one witness on the original graph that preserves all its strict comparisons.
+> **Author correction** · [Proposition 3 and Theorem 4](#pomis-equivalence) · The projected and constrained POMIS sets agree. Each projected POMIS uses one original-graph witness for all strict comparisons.
+
+## POMIS equivalence
+
+`constrained_pomis_eq_projected_pomis` proves Theorem 4 for finite SCMs with
+freely chosen state spaces and possibly unused structural inputs. The set of
+POMISs over feasible intervention sets of the original graph equals the set
+of POMISs of the projected diagram. [Lean theorem](../../analysis/OpenCausalScienceAnalysis/Decision/SCB2019Theorem4.lean)
+
+The forward projection in Proposition 2 substitutes a removed vertex's
+equation into its children's equations, preserving the retained responses at
+each exogenous assignment. After iterating the substitutions, Lean proves
+equality of the expectation of every function of the retained responses for
+each allowed arm. Indicator functions recover equality of the retained joint
+interventional distributions. Independent roots may have any number of readers.
+A one-point source shared by the children records the bidirected edges of a
+removed common parent, even if that parent had no exogenous input. The source
+has probability one, so it leaves the marginal law of the original roots intact.
+[Forward mechanism](../../analysis/OpenCausalScienceAnalysis/Decision/SCB2019ForwardMechanism.lean) ·
+[Joint expectations and best reward](../../analysis/OpenCausalScienceAnalysis/Decision/SCB2019ForwardProjection.lean)
+
+Projection transports the 2018 border dominance inequality to every compatible
+original SCM. A feasible set distinct from its projected border therefore has a
+feasible competitor with at least its best reward. Corrected Proposition 3
+supplies the witnesses in the reverse direction. [Public correction](https://www.sanghacklee.me/ai-corrected/SCB2019_AI_corrected_2026-09-19.pdf)
 
 ## Corrected Proposition 3
 

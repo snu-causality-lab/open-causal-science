@@ -22,7 +22,7 @@ rev = "v4.36.0"
 name = "OpenCausalScienceAnalysis"
 globs = [
   "OpenCausalScienceAnalysis",
-  "OpenCausalScienceAnalysis.Decision.SCB2019Proposition3",
+  "OpenCausalScienceAnalysis.Decision.SCB2019Theorem4",
   "OpenCausalScienceAnalysis.Identification.TianKernelOperations",
 ]
 
