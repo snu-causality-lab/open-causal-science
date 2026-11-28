@@ -274,7 +274,7 @@ def higherScoreCount (score : List V → Rat) (order : List V) (orders : List (L
 
 omit [DecidableEq V] in
 
-private theorem higher_score_count_lt {score : List V → Rat} {before after : List V}
+theorem higher_score_count_lt {score : List V → Rat} {before after : List V}
     {orders : List (List V)} (better : score before < score after) (present : after ∈ orders) :
     higherScoreCount score after orders < higherScoreCount score before orders := by
   let afterTest := fun candidate => decide (score after < score candidate)

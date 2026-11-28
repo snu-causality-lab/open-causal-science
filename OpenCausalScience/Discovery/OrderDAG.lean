@@ -37,6 +37,21 @@ def graphOracle (G : DAG n) : CIOracle n := fun x y condition =>
   let Q : Query G := ⟨(· == x), (· == y), Conditioning.ofPredicate G condition⟩
   Q.dagMoralSeparated
 
+theorem graphOracle_eq_true_iff (G : DAG n) (x y : Fin n) (condition : Fin n → Bool)
+    (xOutside : condition x = false) (yOutside : condition y = false) :
+    graphOracle G x y condition = true ↔ ¬ DConnected (Conditioning.ofPredicate G condition) x y := by
+  let Q : Query G := ⟨(· == x), (· == y), Conditioning.ofPredicate G condition⟩
+  have leftOutside : ∀ v, Q.left v = true → Q.condition.member v = false := by
+    intro v hv
+    change (v == x) = true at hv
+    simpa [Q, Conditioning.ofPredicate, beq_iff_eq.mp hv] using xOutside
+  have rightOutside : ∀ v, Q.right v = true → Q.condition.member v = false := by
+    intro v hv
+    change (v == y) = true at hv
+    simpa [Q, Conditioning.ofPredicate, beq_iff_eq.mp hv] using yOutside
+  change Q.dagMoralSeparated = true ↔ ¬ DConnected Q.condition x y
+  simpa [Q, Query.DConnection] using Q.dagMoralSeparated_eq_true_iff leftOutside rightOutside
+
 private theorem graphOracle_iff_no_moralConnection (G : DAG n) (x y : Fin n)
     (condition : Fin n → Bool) (xOutside : condition x = false) (yOutside : condition y = false) :
     graphOracle G x y condition = true ↔

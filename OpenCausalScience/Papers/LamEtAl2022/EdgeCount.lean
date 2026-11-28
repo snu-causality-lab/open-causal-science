@@ -14,10 +14,10 @@ variable {n : Nat}
 def vertexPairs (n : Nat) : List (Fin n × Fin n) :=
   (List.finRange n).flatMap fun u => (List.finRange n).map fun v => (u, v)
 
-private theorem mem_vertexPairs (p : Fin n × Fin n) : p ∈ vertexPairs n :=
+theorem mem_vertexPairs (p : Fin n × Fin n) : p ∈ vertexPairs n :=
   List.mem_flatMap.mpr ⟨p.1, List.mem_finRange _, List.mem_map.mpr ⟨p.2, List.mem_finRange _, rfl⟩⟩
 
-private theorem vertexPairs_nodup (n : Nat) : (vertexPairs n).Nodup := by
+theorem vertexPairs_nodup (n : Nat) : (vertexPairs n).Nodup := by
   rw [vertexPairs, List.Nodup, List.pairwise_flatMap]
   refine ⟨fun u _ => ?_, (List.nodup_finRange n).imp ?_⟩
   · rw [List.pairwise_map]
@@ -43,6 +43,52 @@ theorem arrow_count_le_of_subset {G H : DAG n}
       exact Nat.add_le_add_right ih _
     · simp only [small]
       exact Nat.le_trans ih (Nat.le_add_right _ _)
+
+private theorem countP_strict_of_member {α : Type} {small large : α → Bool}
+    (subset : ∀ a, small a = true → large a = true) {xs : List α} {x : α}
+    (member : x ∈ xs) (removed : small x = false) (present : large x = true) :
+    xs.countP small < xs.countP large := by
+  have le (ys : List α) : ys.countP small ≤ ys.countP large := by
+    induction ys with
+    | nil => exact Nat.le_refl _
+    | cons a ys ih =>
+      rw [List.countP_cons, List.countP_cons]
+      by_cases keep : small a = true
+      · simp [keep, subset a keep, ih]
+      · simp [keep]
+        split <;> omega
+  induction xs with
+  | nil => cases member
+  | cons a xs ih =>
+    rw [List.countP_cons, List.countP_cons]
+    rcases List.mem_cons.mp member with equal | tail
+    · subst a
+      simp [removed, present, Nat.lt_succ_of_le (le xs)]
+    · have strict := ih tail
+      by_cases keep : small a = true
+      · simp [keep, subset a keep, strict]
+      · simp [keep]
+        split <;> omega
+
+/-- A strict arrow subset has strictly fewer arrows. -/
+theorem arrow_count_lt_of_strict_subset {G H : DAG n}
+    (subset : ∀ u v, G.edge u v = true → H.edge u v = true)
+    {u v : Fin n} (removed : G.edge u v = false) (present : H.edge u v = true) :
+    arrowCount G < arrowCount H :=
+  countP_strict_of_member (small := fun p : Fin n × Fin n => G.edge p.1 p.2)
+    (large := fun p => H.edge p.1 p.2) (fun p => subset p.1 p.2) (mem_vertexPairs (u, v)) removed present
+
+/-- Equality of arrow counts turns inclusion into equality of edge functions. -/
+theorem edge_eq_of_subset_of_arrow_count_eq {G H : DAG n}
+    (subset : ∀ u v, G.edge u v = true → H.edge u v = true) (same : arrowCount G = arrowCount H) :
+    G.edge = H.edge := by
+  funext u v
+  apply Bool.eq_iff_iff.mpr
+  refine ⟨subset u v, ?_⟩
+  intro present
+  cases arrow : G.edge u v with
+  | true => rfl
+  | false => exact (Nat.ne_of_lt (arrow_count_lt_of_strict_subset subset arrow present) same).elim
 
 private theorem countP_or_of_disjoint {α : Type} (p q : α → Bool) (xs : List α)
     (disjoint : ∀ x, p x = true → q x = false) :

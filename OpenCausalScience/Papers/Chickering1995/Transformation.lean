@@ -157,6 +157,17 @@ private theorem count_lt {α : Type} {f g : α → Bool}
       · simp [found]
         split <;> omega
 
+/-- The number of arrows oriented oppositely in two finite DAGs. -/
+def orientationDisagreements (G H : DAG n) : Nat :=
+  ((List.finRange n).flatMap fun u => (List.finRange n).map fun v => (u, v)).countP
+    (fun (u, v) => G.edge u v && H.edge v u)
+
+theorem reversal_toward_target_decreases_disagreement {D : DAG n} (step : Reversal G D a b)
+    (selected : DifferingEdge G H a b) :
+    orientationDisagreements D H < orientationDisagreements G H :=
+  count_lt (fun _ => new_differences step selected) (mem_arrows (a, b))
+    ((differs_iff _).mpr selected) (selected_is_removed step)
+
 /-- A sequence of covered reversals toward a fixed target DAG. Each step
 agrees with the target on the edge just reversed. Ranks may differ
 between equivalent representations of the final edge function. -/

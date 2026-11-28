@@ -30,6 +30,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 | [Shpitser and Pearl (2006) · AAAI Corollary 3](papers/shpitser-pearl-2006-joint-id.md#the-hedge-criterion) | **Author correction** · The 2023 note replaces the arbitrary-subquery hedge condition with a criterion for the exact query. |
 | [Van der Zander, Liśkiewicz and Textor (2019, 2023) · Lemma 2, step 4 complexity](papers/van-der-zander-et-al-2019-ancestral-graphs.md#step-4-complexity) | **Author correction** · The corrigendum revises the bound for the explicit parent-pair loop. Its check count can grow cubically. |
 | [Akbari, Etesami and Kiyavash (2025) · Definition 5 and Algorithm 1](papers/akbari-et-al-2025-optimal-experiment-design.md#hedge-hull-with-no-proper-hedge) | **Verified discrepancy** · The algorithm returns the target when the union of proper hedges is empty. |
+| [Chickering (2002) · Figure 2, Step 8, eligible parents](papers/chickering-2002-greedy-equivalence-search.md#eligible-parents-in-step-8) | **Verified discrepancy** · The parent choice for inserting an arrow into `Y` must exclude `Y` itself. |
 | [Ghassami, Salehkaleybar, Kiyavash and Bareinboim (2018) · Lemma 1, inequality direction](papers/ghassami-et-al-2018-budgeted-experiment-design.md#the-printed-inequality) | **Verified discrepancy** · The main text reverses the inequality. Supplementary Appendix B proves the increasing direction. |
 | [Kivva et al. (2022) · Example 2, two probabilities](papers/kivva-et-al-2022-general-identifiability.md#the-two-printed-probabilities) | **Verified discrepancy** · The printed probabilities are twice the exact cell masses. The two models still disagree on the target. |
 | [Lam, Andrews and Ramsey (2022) · Supplement Lemma B.8(c), edge count in the proof](papers/lam-et-al-2022-grasp.md#edge-count-in-lemma-b8c) | **Verified discrepancy** · The covered reversal preserves the original DAG’s arrow count. Figure 2 shows that the reinduced DAG can be sparser. |
@@ -72,7 +73,7 @@ We develop these formalizations to reuse results from the causal graph literatur
 ## Discovery
 
 - [Andrews et al. (2023), BOSS and grow–shrink trees](papers/andrews-et-al-2023-boss.md)
-- [Chickering (2002), Insert and Delete](papers/chickering-2002-greedy-equivalence-search.md)
+- [Chickering (2002), GES and the inclusion transformation](papers/chickering-2002-greedy-equivalence-search.md)
 - [Jaber, Kocaoglu, Shanmugam and Bareinboim (2020), soft interventions with unknown targets](papers/jaber-et-al-2020-unknown-soft-targets.md)
 - <a name="kim-hwang-and-lee-2024-deduce-dep-correction"></a>[Kim, Hwang and Lee (2024), DEDUCE-DEP correction](papers/kim-hwang-lee-2024-deduce-dep.md)
 - [Kocaoglu, Jaber, Shanmugam and Bareinboim (2019), controlled soft interventions](papers/kocaoglu-et-al-2019-controlled-soft-interventions.md)
